@@ -19,27 +19,6 @@ jobs:
       - name: Checkout verification repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install uv
-        run: |
-          echo "::group::Installing uv"
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-          echo "::endgroup::"
-          echo "✓ uv installed successfully"
-
-      - name: Install libxml2-dev
-        run: |
-          echo "::group::Installing system dependencies"
-          sudo apt-get update
-          sudo apt-get install -y libxml2-dev libxslt-dev
-          echo "::endgroup::"
-          echo "✓ System dependencies installed"
-
       - name: Clone Zenodo RDM repository
         run: |
           echo "::group::Cloning zenodo-rdm repository"
