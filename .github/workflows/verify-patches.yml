@@ -194,6 +194,25 @@ jobs:
           echo "✓ Package cloned from patch repository"
           echo "SO_FAR_OK=1" >> $GITHUB_ENV
 
+      - name: Create virtual environment for patched package
+        continue-on-error: true
+        if: env.SO_FAR_OK == '1' && steps.load-patches.outputs.has_patch == 'true'
+        run: |
+          echo "SO_FAR_OK=0" >> $GITHUB_ENV
+          cd package-repo
+          echo "🔧 Setting up virtual environment and installing dependencies"
+          echo "::group::Creating virtual environment"
+          uv venv --seed
+          echo "::endgroup::"
+          source .venv/bin/activate
+
+          # Install the package with test dependencies
+          echo "::group::Installing package with dependencies"
+          uv pip install -e ".[tests,opensearch2,s3,devs,s3fs,oaipmh,rdf,sparql,postgresql,admin]"
+          echo "::endgroup::"
+          echo "✓ Virtual environment created and dependencies installed"
+          echo "SO_FAR_OK=1" >> $GITHUB_ENV
+
       - name: Check if patch applies to this package
         id: check-patch
         continue-on-error: true
