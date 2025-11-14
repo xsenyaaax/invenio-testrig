@@ -125,24 +125,15 @@ jobs:
         if: env.SO_FAR_OK == '1'
         run: |
           echo "SO_FAR_OK=0" >> $GITHUB_ENV
-          if [ "${{ steps.load-patches.outputs.has_patch }}" = "true" ]; then
-            echo "📦 Cloning from patch repository: ${{ steps.load-patches.outputs.patch_url }} @ ${{ steps.load-patches.outputs.patch_branch }}"
-            echo "::group::Cloning package repository"
-            git clone --depth 1 --branch ${{ steps.load-patches.outputs.patch_branch }} \
-              ${{ steps.load-patches.outputs.patch_url }} package-repo
+          echo "📦 Cloning from inveniosoftware: ${{ matrix.package }}"
+          echo "::group::Cloning package repository"
+          git clone --depth 1 https://github.com/inveniosoftware/${{ matrix.package }}.git package-repo || {
             echo "::endgroup::"
-            echo "✓ Package cloned from patch repository"
-          else
-            echo "📦 Cloning from inveniosoftware: ${{ matrix.package }}"
-            echo "::group::Cloning package repository"
-            git clone --depth 1 https://github.com/inveniosoftware/${{ matrix.package }}.git package-repo || {
-              echo "::endgroup::"
-              echo "❌ Failed to clone from inveniosoftware, package may not exist"
-              exit 0
-            }
-            echo "::endgroup::"
-            echo "✓ Package cloned from inveniosoftware"
-          fi
+            echo "❌ Failed to clone from inveniosoftware, package may not exist"
+            exit 0
+          }
+          echo "::endgroup::"
+          echo "✓ Package cloned from inveniosoftware"
           echo "SO_FAR_OK=1" >> $GITHUB_ENV
 
       - name: Create virtual environment
@@ -188,6 +179,18 @@ jobs:
             echo "✓ Tests passed without patches"
             echo "success" > ../test-output-before-status.txt
           fi
+          echo "SO_FAR_OK=1" >> $GITHUB_ENV
+
+      - name: Clone package repository if it is patched
+        if: env.SO_FAR_OK == '1' && steps.load-patches.outputs.has_patch == 'true'
+        run: |
+          echo "SO_FAR_OK=0" >> $GITHUB_ENV
+          echo "📦 Cloning from patch repository: ${{ steps.load-patches.outputs.patch_url }} @ ${{ steps.load-patches.outputs.patch_branch }}"
+          echo "::group::Cloning package repository"
+          git clone --depth 1 --branch ${{ steps.load-patches.outputs.patch_branch }} \
+            ${{ steps.load-patches.outputs.patch_url }} package-repo
+          echo "::endgroup::"
+          echo "✓ Package cloned from patch repository"
           echo "SO_FAR_OK=1" >> $GITHUB_ENV
 
       - name: Check if patch applies to this package
@@ -254,7 +257,7 @@ jobs:
           done
 
       - name: Run tests with patches
-        if: steps.check-patch.outputs.applies == 'true' && env.SO_FAR_OK == '1'
+        if: ( steps.check-patch.outputs.applies == 'true' || steps.load-patches.outputs.has_patch == 'true' ) && env.SO_FAR_OK == '1'
         id: test-with-patch
         continue-on-error: true
         run: |
@@ -515,44 +518,7 @@ jobs:
             fi
           done
 
-          if [ "$PATCHES_FOUND" = "true" ]; then
-            echo "| Package | Status |" >> report/README.md
-            echo "|---------|--------|" >> report/README.md
-            for pkg in "${!PATCH_LIST[@]}"; do
-              echo "| \`$pkg\` | Configured |" >> report/README.md
-            done
-          else
-            echo "_No patches configured._" >> report/README.md
-          fi
-          echo "" >> report/README.md
-
-          # Unpatched packages
-          echo "## 📦 Unpatched Packages" >> report/README.md
-          echo "" >> report/README.md
-          echo "| Package | Build Status |" >> report/README.md
-          echo "|---------|--------------|" >> report/README.md
-
-          for dir in artifacts/test-results-*/; do
-            if [ -f "$dir/result-summary.json" ]; then
-              APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
-              if [ "$APPLIES" != "true" ]; then
-                PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
-                BEFORE=$(jq -r '.before_status' "$dir/result-summary.json")
-                
-                case $BEFORE in
-                  success) STATUS="✅ Success" ;;
-                  failed) STATUS="❌ Failed" ;;
-                  skipped) STATUS="⏭️  Skipped" ;;
-                  *) STATUS="❓ Unknown" ;;
-                esac
-                
-                echo "| \`$PACKAGE\` | $STATUS |" >> report/README.md
-              fi
-            fi
-          done
-          echo "" >> report/README.md
-
-          # Patched packages
+          # Patches from patches.json
           echo "## 🔄 Patched Packages" >> report/README.md
           echo "" >> report/README.md
           echo "| Package | Patches Applied | Before | After | Result |" >> report/README.md
@@ -560,14 +526,26 @@ jobs:
 
           for dir in artifacts/test-results-*/; do
             if [ -f "$dir/result-summary.json" ]; then
-              APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
-              if [ "$APPLIES" = "true" ]; then
+              HAS_PATCH=$(jq -r '.has_patch' "$dir/result-summary.json")
+              if [ "$HAS_PATCH" = "true" ]; then
                 PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
                 PATCHED_PKGS=$(jq -r '.patched_packages' "$dir/result-summary.json" | tr '\n' ' ')
                 BEFORE=$(jq -r '.before_status' "$dir/result-summary.json")
                 AFTER=$(jq -r '.after_status' "$dir/result-summary.json")
                 RESULT_ICON=$(jq -r '.result_icon' "$dir/result-summary.json")
                 RESULT_TEXT=$(jq -r '.result_text' "$dir/result-summary.json")
+                
+                # Create package directory and copy test outputs
+                mkdir -p "report/$PACKAGE"
+                if [ -f "$dir/test-output-before.txt" ]; then
+                  cp "$dir/test-output-before.txt" "report/$PACKAGE/"
+                fi
+                if [ -f "$dir/test-output-after.txt" ]; then
+                  cp "$dir/test-output-after.txt" "report/$PACKAGE/"
+                fi
+                if [ -f "$dir/test-diff.txt" ]; then
+                  cp "$dir/test-diff.txt" "report/$PACKAGE/"
+                fi
                 
                 # Format status
                 case $BEFORE in
@@ -591,7 +569,144 @@ jobs:
                   RESULT_STATUS="❓ Unknown"
                 fi
                 
-                echo "| \`$PACKAGE\` | $PATCHED_PKGS | $BEFORE_STATUS | $AFTER_STATUS | $RESULT_STATUS |" >> report/README.md
+                # Create links for test outputs
+                LINKS=""
+                if [ -f "report/$PACKAGE/test-output-before.txt" ]; then
+                  LINKS="$LINKS [before]($PACKAGE/test-output-before.txt)"
+                fi
+                if [ -f "report/$PACKAGE/test-output-after.txt" ]; then
+                  [ -n "$LINKS" ] && LINKS="$LINKS "
+                  LINKS="$LINKS [after]($PACKAGE/test-output-after.txt)"
+                fi
+                if [ -f "report/$PACKAGE/test-diff.txt" ]; then
+                  [ -n "$LINKS" ] && LINKS="$LINKS "
+                  LINKS="$LINKS [diff]($PACKAGE/test-diff.txt)"
+                fi
+                
+                if [ -n "$LINKS" ]; then
+                  PACKAGE_DISPLAY="\`$PACKAGE\` <br/> $LINKS"
+                else
+                  PACKAGE_DISPLAY="\`$PACKAGE\`"
+                fi
+                
+                echo "| $PACKAGE_DISPLAY | $PATCHED_PKGS | $BEFORE_STATUS | $AFTER_STATUS | $RESULT_STATUS |" >> report/README.md
+              fi
+            fi
+          done
+          echo "" >> report/README.md
+
+          # Unpatched packages
+          echo "## 📦 Unpatched Packages" >> report/README.md
+          echo "" >> report/README.md
+          echo "| Package | Build Status |" >> report/README.md
+          echo "|---------|--------------|" >> report/README.md
+
+          for dir in artifacts/test-results-*/; do
+            if [ -f "$dir/result-summary.json" ]; then
+              APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
+              HAS_PATCH=$(jq -r '.has_patch' "$dir/result-summary.json")
+              if [ "$APPLIES" != "true" ] && [ "$HAS_PATCH" != "true" ]; then
+                PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
+                BEFORE=$(jq -r '.before_status' "$dir/result-summary.json")
+                
+                # Create package directory and copy test output
+                mkdir -p "report/$PACKAGE"
+                if [ -f "$dir/test-output-before.txt" ]; then
+                  cp "$dir/test-output-before.txt" "report/$PACKAGE/"
+                fi
+                
+                case $BEFORE in
+                  success) STATUS="✅ Success" ;;
+                  failed) STATUS="❌ Failed" ;;
+                  skipped) STATUS="⏭️  Skipped" ;;
+                  *) STATUS="❓ Unknown" ;;
+                esac
+                
+                # Create link for test output if it exists
+                if [ -f "report/$PACKAGE/test-output-before.txt" ]; then
+                  PACKAGE_DISPLAY="\`$PACKAGE\` <br/> [output]($PACKAGE/test-output-before.txt)"
+                else
+                  PACKAGE_DISPLAY="\`$PACKAGE\`"
+                fi
+                
+                echo "| $PACKAGE_DISPLAY | $STATUS |" >> report/README.md
+              fi
+            fi
+          done
+          echo "" >> report/README.md
+
+          # Patched packages
+          echo "## 🔄 Patched Packages" >> report/README.md
+          echo "" >> report/README.md
+          echo "| Package | Patches Applied | Before | After | Result |" >> report/README.md
+          echo "|---------|----------------|--------|-------|--------|" >> report/README.md
+
+          for dir in artifacts/test-results-*/; do
+            if [ -f "$dir/result-summary.json" ]; then
+              APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
+              if [ "$APPLIES" = "true" ]; then
+                PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
+                PATCHED_PKGS=$(jq -r '.patched_packages' "$dir/result-summary.json" | tr '\n' ' ')
+                BEFORE=$(jq -r '.before_status' "$dir/result-summary.json")
+                AFTER=$(jq -r '.after_status' "$dir/result-summary.json")
+                RESULT_ICON=$(jq -r '.result_icon' "$dir/result-summary.json")
+                RESULT_TEXT=$(jq -r '.result_text' "$dir/result-summary.json")
+                
+                # Create package directory and copy test outputs
+                mkdir -p "report/$PACKAGE"
+                if [ -f "$dir/test-output-before.txt" ]; then
+                  cp "$dir/test-output-before.txt" "report/$PACKAGE/"
+                fi
+                if [ -f "$dir/test-output-after.txt" ]; then
+                  cp "$dir/test-output-after.txt" "report/$PACKAGE/"
+                fi
+                if [ -f "$dir/test-diff.txt" ]; then
+                  cp "$dir/test-diff.txt" "report/$PACKAGE/"
+                fi
+                
+                # Format status
+                case $BEFORE in
+                  success) BEFORE_STATUS="✅ Pass" ;;
+                  failed) BEFORE_STATUS="❌ Fail" ;;
+                  skipped) BEFORE_STATUS="⏭️  Skip" ;;
+                  *) BEFORE_STATUS="❓ Unknown" ;;
+                esac
+                
+                case $AFTER in
+                  success) AFTER_STATUS="✅ Pass" ;;
+                  failed) AFTER_STATUS="❌ Fail" ;;
+                  skipped) AFTER_STATUS="⏭️  Skip" ;;
+                  *) AFTER_STATUS="❓ Unknown" ;;
+                esac
+                
+                # Use result_icon and result_text from artifacts
+                if [ -n "$RESULT_ICON" ] && [ "$RESULT_ICON" != "null" ]; then
+                  RESULT_STATUS="$RESULT_ICON $RESULT_TEXT"
+                else
+                  RESULT_STATUS="❓ Unknown"
+                fi
+                
+                # Create links for test outputs
+                LINKS=""
+                if [ -f "report/$PACKAGE/test-output-before.txt" ]; then
+                  LINKS="$LINKS [before]($PACKAGE/test-output-before.txt)"
+                fi
+                if [ -f "report/$PACKAGE/test-output-after.txt" ]; then
+                  [ -n "$LINKS" ] && LINKS="$LINKS "
+                  LINKS="$LINKS [after]($PACKAGE/test-output-after.txt)"
+                fi
+                if [ -f "report/$PACKAGE/test-diff.txt" ]; then
+                  [ -n "$LINKS" ] && LINKS="$LINKS "
+                  LINKS="$LINKS [diff]($PACKAGE/test-diff.txt)"
+                fi
+                
+                if [ -n "$LINKS" ]; then
+                  PACKAGE_DISPLAY="\`$PACKAGE\` <br/> $LINKS"
+                else
+                  PACKAGE_DISPLAY="\`$PACKAGE\`"
+                fi
+                
+                echo "| $PACKAGE_DISPLAY | $PATCHED_PKGS | $BEFORE_STATUS | $AFTER_STATUS | $RESULT_STATUS |" >> report/README.md
               fi
             fi
           done
@@ -607,7 +722,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: verification-readme
-          path: report/README.md
+          path: report/
           retention-days: 90
 
       - name: Add README to job summary

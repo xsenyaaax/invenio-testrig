@@ -4,10 +4,12 @@ This module provides tools for verifying bugfixes in Invenio-based applications.
 
 ## Usage
 
+0. Fork the repository to your own GitHub account.
+
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/mesemus/invenio-bug-verification.git
+   git clone https://github.com/<your github account>/invenio-bug-verification.git
    ```
 
 2. Edit the `patches.json` file to specify your patches:
@@ -21,7 +23,7 @@ This module provides tools for verifying bugfixes in Invenio-based applications.
     }
     ```
 
-3. Commit and push your changes either directly to a main branch or your branch of choice.
+3. Commit and push your changes either directly to the main branch.
 
 4. Wait for the CI pipeline to run the verification tests.
 
