@@ -763,6 +763,7 @@ jobs:
           cat report/README.md >> $GITHUB_STEP_SUMMARY
 
   deploy:
+    if: always()
     needs: generate-report
     runs-on: ubuntu-latest
     permissions:
