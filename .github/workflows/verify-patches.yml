@@ -292,39 +292,52 @@ jobs:
           if [ "$BEFORE_STATUS" == "failed" ] ; then
             if [ "$AFTER_STATUS" == "failed" ] ; then
               RESULT="still-failing"
-              echo "⚠️  Tests still failing after patch"
+              RESULT_ICON="⚠️"
+              RESULT_TEXT="Tests still failing after patch"
             elif [ "$AFTER_STATUS" == "success" ] ; then
               RESULT="fixed"
-              echo "✅ Patch fixed failing tests"
+              RESULT_ICON="✅"
+              RESULT_TEXT="Patch fixed failing tests"
             elif [ "$AFTER_STATUS" == "skipped" ] ; then
               RESULT="still-failing-skipped"
-              echo "⚠️ Tests still failing after patch (after tests skipped)"
+              RESULT_ICON="⚠️"
+              RESULT_TEXT="Tests still failing after patch (after tests skipped)"
             fi
           elif [ "$BEFORE_STATUS" == "success" ] ; then
             if [ "$AFTER_STATUS" == "failed" ] ; then
               RESULT="regression"
-              echo "❌ Patch introduced test failures"
+              RESULT_ICON="❌"              
+              RESULT_TEXT="Patch introduced test failures"
             elif [ "$AFTER_STATUS" == "success" ] ; then
               RESULT="ok"
-              echo "✅ Tests passed before and after patch"
+              RESULT_ICON="✅"
+              RESULT_TEXT="Tests passed before and after patch"
             elif [ "$AFTER_STATUS" == "skipped" ] ; then
               RESULT="no-change-skipped"
-              echo "✅ Tests passed before patch, after tests skipped"
+              RESULT_ICON="✅"
+              RESULT_TEXT="Tests passed before patch, after tests skipped"
             fi
           elif [ "$BEFORE_STATUS" == "skipped" ] ; then
             if [ "$AFTER_STATUS" == "failed" ] ; then
               RESULT="regression-skipped"
-              echo "❌ Patch introduced test failures (before tests skipped)"
+              RESULT_ICON="❌"
+              RESULT_TEXT="Patch introduced test failures (before tests skipped)"
             elif [ "$AFTER_STATUS" == "success" ] ; then
               RESULT="fixed-skipped"
-              echo "✅ Patch fixed failing tests (before tests skipped)"
+              RESULT_ICON="✅"
+              RESULT_TEXT="Patch fixed failing tests (before tests skipped)"
             elif [ "$AFTER_STATUS" == "skipped" ] ; then
               RESULT="no-change-both-skipped"
-              echo "ℹ️  Tests skipped before and after patch"
+              RESULT_ICON="ℹ️"
+              RESULT_TEXT="Tests skipped before and after patch"
             fi
           fi
 
+          echo "$RESULT_ICON $RESULT_TEXT"
+
           echo "result=$RESULT" >> $GITHUB_OUTPUT
+          echo "result_icon=$RESULT_ICON" >> $GITHUB_OUTPUT
+          echo "result_text=$RESULT_TEXT" >> $GITHUB_OUTPUT
           echo "before_status=$BEFORE_STATUS" >> $GITHUB_OUTPUT
           echo "after_status=$AFTER_STATUS" >> $GITHUB_OUTPUT
 
@@ -335,12 +348,6 @@ jobs:
           BEFORE_STATUS=$(cat test-output-before-status.txt || echo "skipped")
           AFTER_STATUS=$(cat test-output-after-status.txt || echo "skipped")
 
-          # Get result from compare step if available, otherwise set as skipped
-          RESULT="${{ steps.compare.outputs.result }}"
-          if [ -z "$RESULT" ]; then
-            RESULT="skipped"
-          fi
-
           cat > result-summary.json << EOF
           {
             "package": "${{ matrix.package }}",
@@ -348,7 +355,9 @@ jobs:
             "patch_applies": ${{ steps.check-patch.outputs.applies }},
             "before_status": "$BEFORE_STATUS",
             "after_status": "$AFTER_STATUS",
-            "result": "$RESULT",
+            "result": "${{ steps.compare.outputs.result }}",
+            "result_icon": "${{ steps.compare.outputs.result_icon }}",
+            "result_text": "${{ steps.compare.outputs.result_text }}",
             "patched_packages": "${{ steps.check-patch.outputs.patched_packages }}"
           }
           EOF
