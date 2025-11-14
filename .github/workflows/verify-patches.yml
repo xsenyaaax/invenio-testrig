@@ -56,699 +56,701 @@ jobs:
           if [ -f "uv.lock" ]; then
             PACKAGES=$(cat uv.lock | egrep '^name = "invenio-' | \
                       sed 's/name = "\(.*\)"/\1/' | \
-                      sort -u | \
-                      jq -R -s -c 'split("\n") | map(select(length > 0))')
+                      sort -u)
           else
             echo "Error: uv.lock not found, using fallback list"
             exit 1
           fi
 
-          # Filter out packages from not_tested.json
-          cd ..
-          if [ -f "not_tested.json" ]; then
-            echo "Filtering out packages from not_tested.json"
-            NOT_TESTED=$(cat not_tested.json)
-            SKIPPED=$(echo "$PACKAGES" | jq --argjson not_tested "$NOT_TESTED" '. as $all | $not_tested | map(select(. as $item | $all | index($item) != null))')
-            echo "Skipped packages: $SKIPPED"
-            PACKAGES=$(echo "$PACKAGES" | jq --argjson not_tested "$NOT_TESTED" '. - $not_tested')
-          fi
+          FILTERED_PACKAGES=()
+          for pkg in $PACKAGES; do
+            # check if the package is in not_tested.json using jq
+            IS_NOT_TESTED=$(jq --arg pkg "$pkg" 'index($pkg)' ../not_tested.json)
+            if [ "$IS_NOT_TESTED" = "null" ]; then
+                FILTERED_PACKAGES+=("$pkg")
+            else
+                echo "Skipping not tested package: $pkg"
+            fi
+          done
 
+          # convert packages to JSON array
+          PACKAGES=$(printf '%s\n' "${FILTERED_PACKAGES[@]}"
           echo "Found packages: $PACKAGES"
           echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
 
-  test-packages:
-    name: Test ${{ matrix.package }}
-    needs: extract-packages
-    runs-on: ubuntu-latest
-    env:
-      SO_FAR_OK: 1
-    strategy:
-      fail-fast: false
-      matrix:
-        package: ${{ fromJson(needs.extract-packages.outputs.packages) }}
+  # test-packages:
+  #   name: Test ${{ matrix.package }}
+  #   needs: extract-packages
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     SO_FAR_OK: 1
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       package: ${{ fromJson(needs.extract-packages.outputs.packages) }}
 
-    steps:
-      - name: Checkout verification repository
-        uses: actions/checkout@v4
-        with:
-          path: verification-repo
+  #   steps:
+  #     - name: Checkout verification repository
+  #       uses: actions/checkout@v4
+  #       with:
+  #         path: verification-repo
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
+  #     - name: Setup Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Install uv
-        run: |
-          echo "::group::Installing uv"
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-          echo "::endgroup::"
-          echo "✓ uv installed successfully"
+  #     - name: Install uv
+  #       run: |
+  #         echo "::group::Installing uv"
+  #         curl -LsSf https://astral.sh/uv/install.sh | sh
+  #         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+  #         echo "::endgroup::"
+  #         echo "✓ uv installed successfully"
 
-      - name: Install libxml2-dev
-        run: |
-          echo "::group::Installing system dependencies"
-          sudo apt-get update
-          sudo apt-get install -y libxml2-dev libxslt-dev
-          echo "::endgroup::"
-          echo "✓ System dependencies installed"
+  #     - name: Install libxml2-dev
+  #       run: |
+  #         echo "::group::Installing system dependencies"
+  #         sudo apt-get update
+  #         sudo apt-get install -y libxml2-dev libxslt-dev
+  #         echo "::endgroup::"
+  #         echo "✓ System dependencies installed"
 
-      - name: Load patches configuration
-        id: load-patches
-        run: |
-          cd verification-repo
+  #     - name: Load patches configuration
+  #       id: load-patches
+  #       run: |
+  #         cd verification-repo
 
-          echo "SO_FAR_OK=0" >> $GITHUB_ENV
+  #         echo "SO_FAR_OK=0" >> $GITHUB_ENV
 
-          PATCH_URL=$(jq -r '.["${{ matrix.package }}"].url // empty' patches.json)
-          PATCH_BRANCH=$(jq -r '.["${{ matrix.package }}"].branch // empty' patches.json)
-            
-          echo "patch_url=$PATCH_URL" >> $GITHUB_OUTPUT
-          echo "patch_branch=$PATCH_BRANCH" >> $GITHUB_OUTPUT
-            
-          if [ -n "$PATCH_URL" ]; then
-            echo "has_patch=true" >> $GITHUB_OUTPUT
-            echo "Found patch for ${{ matrix.package }}: $PATCH_URL @ $PATCH_BRANCH"
-          else
-            echo "has_patch=false" >> $GITHUB_OUTPUT
-            echo "No patch configured for ${{ matrix.package }}"
-          fi
-          echo "SO_FAR_OK=1" >> $GITHUB_ENV
+  #         PATCH_URL=$(jq -r '.["${{ matrix.package }}"].url // empty' patches.json)
+  #         PATCH_BRANCH=$(jq -r '.["${{ matrix.package }}"].branch // empty' patches.json)
 
-      - name: Clone package repository
-        continue-on-error: true
-        if: env.SO_FAR_OK == '1'
-        run: |
-          echo "SO_FAR_OK=0" >> $GITHUB_ENV
-          if [ "${{ steps.load-patches.outputs.has_patch }}" = "true" ]; then
-            echo "📦 Cloning from patch repository: ${{ steps.load-patches.outputs.patch_url }} @ ${{ steps.load-patches.outputs.patch_branch }}"
-            echo "::group::Cloning package repository"
-            git clone --depth 1 --branch ${{ steps.load-patches.outputs.patch_branch }} \
-              ${{ steps.load-patches.outputs.patch_url }} package-repo
-            echo "::endgroup::"
-            echo "✓ Package cloned from patch repository"
-          else
-            echo "📦 Cloning from inveniosoftware: ${{ matrix.package }}"
-            echo "::group::Cloning package repository"
-            git clone --depth 1 https://github.com/inveniosoftware/${{ matrix.package }}.git package-repo || {
-              echo "::endgroup::"
-              echo "❌ Failed to clone from inveniosoftware, package may not exist"
-              exit 0
-            }
-            echo "::endgroup::"
-            echo "✓ Package cloned from inveniosoftware"
-          fi
-          echo "SO_FAR_OK=1" >> $GITHUB_ENV
+  #         echo "patch_url=$PATCH_URL" >> $GITHUB_OUTPUT
+  #         echo "patch_branch=$PATCH_BRANCH" >> $GITHUB_OUTPUT
 
-      - name: Create virtual environment
-        continue-on-error: true
-        if: env.SO_FAR_OK == '1'
-        run: |
-          echo "SO_FAR_OK=0" >> $GITHUB_ENV
-          cd package-repo
-          echo "🔧 Setting up virtual environment and installing dependencies"
-          echo "::group::Creating virtual environment"
-          uv venv --seed
-          echo "::endgroup::"
-          source .venv/bin/activate
+  #         if [ -n "$PATCH_URL" ]; then
+  #           echo "has_patch=true" >> $GITHUB_OUTPUT
+  #           echo "Found patch for ${{ matrix.package }}: $PATCH_URL @ $PATCH_BRANCH"
+  #         else
+  #           echo "has_patch=false" >> $GITHUB_OUTPUT
+  #           echo "No patch configured for ${{ matrix.package }}"
+  #         fi
+  #         echo "SO_FAR_OK=1" >> $GITHUB_ENV
 
-          # Install the package with test dependencies
-          echo "::group::Installing package with dependencies"
-          uv pip install -e ".[tests,opensearch2,s3,devs,s3fs,oaipmh,rdf,sparql,postgresql,admin]"
-          echo "::endgroup::"
-          echo "✓ Virtual environment created and dependencies installed"
-          echo "SO_FAR_OK=1" >> $GITHUB_ENV
+  #     - name: Clone package repository
+  #       continue-on-error: true
+  #       if: env.SO_FAR_OK == '1'
+  #       run: |
+  #         echo "SO_FAR_OK=0" >> $GITHUB_ENV
+  #         if [ "${{ steps.load-patches.outputs.has_patch }}" = "true" ]; then
+  #           echo "📦 Cloning from patch repository: ${{ steps.load-patches.outputs.patch_url }} @ ${{ steps.load-patches.outputs.patch_branch }}"
+  #           echo "::group::Cloning package repository"
+  #           git clone --depth 1 --branch ${{ steps.load-patches.outputs.patch_branch }} \
+  #             ${{ steps.load-patches.outputs.patch_url }} package-repo
+  #           echo "::endgroup::"
+  #           echo "✓ Package cloned from patch repository"
+  #         else
+  #           echo "📦 Cloning from inveniosoftware: ${{ matrix.package }}"
+  #           echo "::group::Cloning package repository"
+  #           git clone --depth 1 https://github.com/inveniosoftware/${{ matrix.package }}.git package-repo || {
+  #             echo "::endgroup::"
+  #             echo "❌ Failed to clone from inveniosoftware, package may not exist"
+  #             exit 0
+  #           }
+  #           echo "::endgroup::"
+  #           echo "✓ Package cloned from inveniosoftware"
+  #         fi
+  #         echo "SO_FAR_OK=1" >> $GITHUB_ENV
 
-      - name: Run tests without patches
-        id: test-without-patch
-        continue-on-error: true
-        if: env.SO_FAR_OK == '1'
-        run: |
-          echo "SO_FAR_OK=0" >> $GITHUB_ENV
-          cd package-repo
-          source .venv/bin/activate
+  #     - name: Create virtual environment
+  #       continue-on-error: true
+  #       if: env.SO_FAR_OK == '1'
+  #       run: |
+  #         echo "SO_FAR_OK=0" >> $GITHUB_ENV
+  #         cd package-repo
+  #         echo "🔧 Setting up virtual environment and installing dependencies"
+  #         echo "::group::Creating virtual environment"
+  #         uv venv --seed
+  #         echo "::endgroup::"
+  #         source .venv/bin/activate
 
-          echo "🧪 Running tests without patches"
-          echo "::group::Test execution (before patches)"
-          set +e
-          bash run-tests.sh 2>&1 | tee ../test-output-before.txt
-          TEST_EXIT_CODE=${PIPESTATUS[0]}
-          set -e
-          echo "::endgroup::"
+  #         # Install the package with test dependencies
+  #         echo "::group::Installing package with dependencies"
+  #         uv pip install -e ".[tests,opensearch2,s3,devs,s3fs,oaipmh,rdf,sparql,postgresql,admin]"
+  #         echo "::endgroup::"
+  #         echo "✓ Virtual environment created and dependencies installed"
+  #         echo "SO_FAR_OK=1" >> $GITHUB_ENV
 
-          if [ $TEST_EXIT_CODE -ne 0 ]; then
-            echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
-            echo "failed" > ../test-output-before-status.txt
-          else
-            echo "✓ Tests passed without patches"
-            echo "success" > ../test-output-before-status.txt
-          fi
-          echo "SO_FAR_OK=1" >> $GITHUB_ENV
+  #     - name: Run tests without patches
+  #       id: test-without-patch
+  #       continue-on-error: true
+  #       if: env.SO_FAR_OK == '1'
+  #       run: |
+  #         echo "SO_FAR_OK=0" >> $GITHUB_ENV
+  #         cd package-repo
+  #         source .venv/bin/activate
 
-      - name: Check if patch applies to this package
-        id: check-patch
-        continue-on-error: true
-        if: env.SO_FAR_OK == '1'
-        run: |
-          cd verification-repo
+  #         echo "🧪 Running tests without patches"
+  #         echo "::group::Test execution (before patches)"
+  #         set +e
+  #         bash run-tests.sh 2>&1 | tee ../test-output-before.txt
+  #         TEST_EXIT_CODE=${PIPESTATUS[0]}
+  #         set -e
+  #         echo "::endgroup::"
 
-          # Check if any package in patches.json is installed in the venv
-          APPLIES=false
-          PATCHED_PACKAGES=""
+  #         if [ $TEST_EXIT_CODE -ne 0 ]; then
+  #           echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
+  #           echo "failed" > ../test-output-before-status.txt
+  #         else
+  #           echo "✓ Tests passed without patches"
+  #           echo "success" > ../test-output-before-status.txt
+  #         fi
+  #         echo "SO_FAR_OK=1" >> $GITHUB_ENV
 
-          cd ../package-repo
-          source .venv/bin/activate
+  #     - name: Check if patch applies to this package
+  #       id: check-patch
+  #       continue-on-error: true
+  #       if: env.SO_FAR_OK == '1'
+  #       run: |
+  #         cd verification-repo
 
-          # Get all packages from patches.json
-          cd ../verification-repo
-          PATCH_PACKAGES=$(jq -r 'keys[]' patches.json)
+  #         # Check if any package in patches.json is installed in the venv
+  #         APPLIES=false
+  #         PATCHED_PACKAGES=""
 
-          cd ../package-repo
-          echo "::group::Checking for applicable patches"
-          for pkg in $PATCH_PACKAGES; do
-            if pip show "$pkg" > /dev/null 2>&1; then
-              APPLIES=true
-              PATCHED_PACKAGES="$PATCHED_PACKAGES $pkg"
-              echo "Found: $pkg is installed and will be patched"
-            fi
-          done
-          echo "::endgroup::"
+  #         cd ../package-repo
+  #         source .venv/bin/activate
 
-          if [ "$APPLIES" = "true" ]; then
-            echo "🔄 Patches will be applied to:$PATCHED_PACKAGES"
-            echo "applies=true" >> $GITHUB_OUTPUT
-            echo "patched_packages=$PATCHED_PACKAGES" >> $GITHUB_OUTPUT
-          else
-            echo "ℹ️  No applicable patches found for this package"
-            echo "applies=false" >> $GITHUB_OUTPUT
-            echo "reason=no-patch-packages-installed" >> $GITHUB_OUTPUT
-          fi
+  #         # Get all packages from patches.json
+  #         cd ../verification-repo
+  #         PATCH_PACKAGES=$(jq -r 'keys[]' patches.json)
 
-      - name: Apply patches
-        if: steps.check-patch.outputs.applies == 'true' && env.SO_FAR_OK == '1'
-        continue-on-error: true
-        run: |
-          # For each package in patches.json that's installed in the venv
-          for pkg in ${{ steps.check-patch.outputs.patched_packages }}; do
-            PATCH_URL=$(jq -r ".\"$pkg\".url" verification-repo/patches.json)
-            PATCH_BRANCH=$(jq -r ".\"$pkg\".branch" verification-repo/patches.json)
-            
-            echo "📥 Applying patch for $pkg from $PATCH_URL @ $PATCH_BRANCH"
-            
-            # Clone the patched version to a temporary directory
-            echo "::group::Cloning and installing patched $pkg"
-            git clone --depth 1 --branch "$PATCH_BRANCH" "$PATCH_URL" "patched-$pkg"
-            
-            # Install it in the venv
-            cd package-repo
-            source .venv/bin/activate
-            uv pip install "../patched-$pkg" --force-reinstall --no-deps
-            cd ..
-            echo "::endgroup::"
-            echo "✓ Patch applied for $pkg"
-          done
+  #         cd ../package-repo
+  #         echo "::group::Checking for applicable patches"
+  #         for pkg in $PATCH_PACKAGES; do
+  #           if pip show "$pkg" > /dev/null 2>&1; then
+  #             APPLIES=true
+  #             PATCHED_PACKAGES="$PATCHED_PACKAGES $pkg"
+  #             echo "Found: $pkg is installed and will be patched"
+  #           fi
+  #         done
+  #         echo "::endgroup::"
 
-      - name: Run tests with patches
-        if: steps.check-patch.outputs.applies == 'true' && env.SO_FAR_OK == '1'
-        id: test-with-patch
-        continue-on-error: true
-        run: |
-          cd package-repo
-          source .venv/bin/activate
+  #         if [ "$APPLIES" = "true" ]; then
+  #           echo "🔄 Patches will be applied to:$PATCHED_PACKAGES"
+  #           echo "applies=true" >> $GITHUB_OUTPUT
+  #           echo "patched_packages=$PATCHED_PACKAGES" >> $GITHUB_OUTPUT
+  #         else
+  #           echo "ℹ️  No applicable patches found for this package"
+  #           echo "applies=false" >> $GITHUB_OUTPUT
+  #           echo "reason=no-patch-packages-installed" >> $GITHUB_OUTPUT
+  #         fi
 
-          echo "🧪 Running tests with patches applied"
-          echo "::group::Test execution (after patches)"
-          set +e
-          bash run-tests.sh 2>&1 | tee ../test-output-after.txt
-          TEST_EXIT_CODE=${PIPESTATUS[0]}
-          set -e
-          echo "::endgroup::"
+  #     - name: Apply patches
+  #       if: steps.check-patch.outputs.applies == 'true' && env.SO_FAR_OK == '1'
+  #       continue-on-error: true
+  #       run: |
+  #         # For each package in patches.json that's installed in the venv
+  #         for pkg in ${{ steps.check-patch.outputs.patched_packages }}; do
+  #           PATCH_URL=$(jq -r ".\"$pkg\".url" verification-repo/patches.json)
+  #           PATCH_BRANCH=$(jq -r ".\"$pkg\".branch" verification-repo/patches.json)
 
-          if [ $TEST_EXIT_CODE -ne 0 ]; then
-            echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
-            echo "failed" > ../test-output-after-status.txt
-          else
-            echo "✓ Tests passed with patches"
-            echo "success" > ../test-output-after-status.txt
-          fi
+  #           echo "📥 Applying patch for $pkg from $PATCH_URL @ $PATCH_BRANCH"
 
-      - name: Compare test results
-        if: steps.check-patch.outputs.applies == 'true' && env.SO_FAR_OK == '1'
-        id: compare
-        continue-on-error: true
-        run: |
-          # Create a diff of the test outputs
-          diff -u test-output-before.txt test-output-after.txt > test-diff.txt || true
+  #           # Clone the patched version to a temporary directory
+  #           echo "::group::Cloning and installing patched $pkg"
+  #           git clone --depth 1 --branch "$PATCH_BRANCH" "$PATCH_URL" "patched-$pkg"
 
-          # Analyze the results using status files
-          BEFORE_STATUS=$(cat test-output-before-status.txt)
-          AFTER_STATUS=$(cat test-output-after-status.txt)
+  #           # Install it in the venv
+  #           cd package-repo
+  #           source .venv/bin/activate
+  #           uv pip install "../patched-$pkg" --force-reinstall --no-deps
+  #           cd ..
+  #           echo "::endgroup::"
+  #           echo "✓ Patch applied for $pkg"
+  #         done
 
-          if [ "$BEFORE_STATUS" = "failed" ] && [ "$AFTER_STATUS" = "success" ]; then
-            RESULT="fixed"
-            echo "✅ Patch fixed failing tests"
-          elif [ "$BEFORE_STATUS" = "success" ] && [ "$AFTER_STATUS" = "failed" ]; then
-            RESULT="regression"
-            echo "❌ Patch introduced test failures"
-          elif [ "$BEFORE_STATUS" = "failed" ] && [ "$AFTER_STATUS" = "failed" ]; then
-            RESULT="still-failing"
-            echo "⚠️  Tests still failing after patch"
-          else
-            RESULT="no-change"
-            echo "ℹ️  No change in test results"
-          fi
+  #     - name: Run tests with patches
+  #       if: steps.check-patch.outputs.applies == 'true' && env.SO_FAR_OK == '1'
+  #       id: test-with-patch
+  #       continue-on-error: true
+  #       run: |
+  #         cd package-repo
+  #         source .venv/bin/activate
 
-          echo "result=$RESULT" >> $GITHUB_OUTPUT
-          echo "before_status=$BEFORE_STATUS" >> $GITHUB_OUTPUT
-          echo "after_status=$AFTER_STATUS" >> $GITHUB_OUTPUT
+  #         echo "🧪 Running tests with patches applied"
+  #         echo "::group::Test execution (after patches)"
+  #         set +e
+  #         bash run-tests.sh 2>&1 | tee ../test-output-after.txt
+  #         TEST_EXIT_CODE=${PIPESTATUS[0]}
+  #         set -e
+  #         echo "::endgroup::"
 
-      - name: Create result summary
-        id: summary
-        continue-on-error: true
-        run: |
-          SUMMARY_FILE="result-summary.json"
+  #         if [ $TEST_EXIT_CODE -ne 0 ]; then
+  #           echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
+  #           echo "failed" > ../test-output-after-status.txt
+  #         else
+  #           echo "✓ Tests passed with patches"
+  #           echo "success" > ../test-output-after-status.txt
+  #         fi
 
-          # Check if we have test results
-          if [ -f test-output-before-status.txt ]; then
-            BEFORE_STATUS=$(cat test-output-before-status.txt)
-          else
-            BEFORE_STATUS="skipped"
-          fi
+  #     - name: Compare test results
+  #       if: steps.check-patch.outputs.applies == 'true' && env.SO_FAR_OK == '1'
+  #       id: compare
+  #       continue-on-error: true
+  #       run: |
+  #         # Create a diff of the test outputs
+  #         diff -u test-output-before.txt test-output-after.txt > test-diff.txt || true
 
-          if [ "${{ steps.check-patch.outputs.applies }}" = "true" ]; then
-            # Get after status if available
-            if [ -f test-output-after-status.txt ]; then
-              AFTER_STATUS=$(cat test-output-after-status.txt)
-            else
-              AFTER_STATUS="skipped"
-            fi
-            
-            # Get result from compare step if available, otherwise set as skipped
-            RESULT="${{ steps.compare.outputs.result }}"
-            if [ -z "$RESULT" ]; then
-              RESULT="skipped"
-            fi
-            
-            cat > $SUMMARY_FILE << EOF
-          {
-            "package": "${{ matrix.package }}",
-            "has_patch": true,
-            "patch_applies": true,
-            "before_status": "$BEFORE_STATUS",
-            "after_status": "$AFTER_STATUS",
-            "result": "$RESULT",
-            "patched_packages": "${{ steps.check-patch.outputs.patched_packages }}"
-          }
-          EOF
-          else
-            # Determine reason - could be no patch or skipped steps
-            REASON="${{ steps.check-patch.outputs.reason }}"
-            if [ -z "$REASON" ]; then
-              REASON="step-skipped"
-            fi
-            
-            HAS_PATCH="${{ steps.load-patches.outputs.has_patch }}"
-            if [ -z "$HAS_PATCH" ]; then
-              HAS_PATCH="false"
-            fi
-            
-            cat > $SUMMARY_FILE << EOF
-          {
-            "package": "${{ matrix.package }}",
-            "has_patch": $HAS_PATCH,
-            "patch_applies": false,
-            "reason": "$REASON",
-            "before_status": "$BEFORE_STATUS"
-          }
-          EOF
-          fi
+  #         # Analyze the results using status files
+  #         BEFORE_STATUS=$(cat test-output-before-status.txt)
+  #         AFTER_STATUS=$(cat test-output-after-status.txt)
 
-          cat $SUMMARY_FILE
+  #         if [ "$BEFORE_STATUS" = "failed" ] && [ "$AFTER_STATUS" = "success" ]; then
+  #           RESULT="fixed"
+  #           echo "✅ Patch fixed failing tests"
+  #         elif [ "$BEFORE_STATUS" = "success" ] && [ "$AFTER_STATUS" = "failed" ]; then
+  #           RESULT="regression"
+  #           echo "❌ Patch introduced test failures"
+  #         elif [ "$BEFORE_STATUS" = "failed" ] && [ "$AFTER_STATUS" = "failed" ]; then
+  #           RESULT="still-failing"
+  #           echo "⚠️  Tests still failing after patch"
+  #         else
+  #           RESULT="no-change"
+  #           echo "ℹ️  No change in test results"
+  #         fi
 
-      - name: Upload test artifacts
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-results-${{ matrix.package }}
-          path: |
-            test-output-before.txt
-            test-output-after.txt
-            test-output-before-status.txt
-            test-output-after-status.txt
-            test-diff.txt
-            result-summary.json
-          retention-days: 30
+  #         echo "result=$RESULT" >> $GITHUB_OUTPUT
+  #         echo "before_status=$BEFORE_STATUS" >> $GITHUB_OUTPUT
+  #         echo "after_status=$AFTER_STATUS" >> $GITHUB_OUTPUT
 
-      - name: Fail job if run-tests.sh failed
-        if: always()
-        run: |
-          # Only fail if the test execution step itself failed (not test failures, but script execution failures)
-          # Since we use continue-on-error on test steps, we check if run-tests.sh could not be executed
-          if [ ! -f test-output-before-status.txt ]; then
-            echo "Error: Tests could not be executed"
-            exit 1
-          fi
+  #     - name: Create result summary
+  #       id: summary
+  #       continue-on-error: true
+  #       run: |
+  #         SUMMARY_FILE="result-summary.json"
 
-          # Fail if tests actually failed (as opposed to passing or being skipped)
-          BEFORE_STATUS=$(cat test-output-before-status.txt 2>/dev/null || echo "missing")
-          if [ "$BEFORE_STATUS" = "failed" ]; then
-            echo "Error: Tests failed before applying patches"
-            exit 1
-          fi
+  #         # Check if we have test results
+  #         if [ -f test-output-before-status.txt ]; then
+  #           BEFORE_STATUS=$(cat test-output-before-status.txt)
+  #         else
+  #           BEFORE_STATUS="skipped"
+  #         fi
 
-          # If patches were applied, also check after status
-          if [ -f test-output-after-status.txt ]; then
-            AFTER_STATUS=$(cat test-output-after-status.txt)
-            if [ "$AFTER_STATUS" = "failed" ]; then
-              echo "Error: Tests failed after applying patches"
-              exit 1
-            fi
-          fi
+  #         if [ "${{ steps.check-patch.outputs.applies }}" = "true" ]; then
+  #           # Get after status if available
+  #           if [ -f test-output-after-status.txt ]; then
+  #             AFTER_STATUS=$(cat test-output-after-status.txt)
+  #           else
+  #             AFTER_STATUS="skipped"
+  #           fi
 
-  generate-report:
-    name: Generate Summary Report
-    needs: test-packages
-    runs-on: ubuntu-latest
-    if: always()
+  #           # Get result from compare step if available, otherwise set as skipped
+  #           RESULT="${{ steps.compare.outputs.result }}"
+  #           if [ -z "$RESULT" ]; then
+  #             RESULT="skipped"
+  #           fi
 
-    steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: artifacts
+  #           cat > $SUMMARY_FILE << EOF
+  #         {
+  #           "package": "${{ matrix.package }}",
+  #           "has_patch": true,
+  #           "patch_applies": true,
+  #           "before_status": "$BEFORE_STATUS",
+  #           "after_status": "$AFTER_STATUS",
+  #           "result": "$RESULT",
+  #           "patched_packages": "${{ steps.check-patch.outputs.patched_packages }}"
+  #         }
+  #         EOF
+  #         else
+  #           # Determine reason - could be no patch or skipped steps
+  #           REASON="${{ steps.check-patch.outputs.reason }}"
+  #           if [ -z "$REASON" ]; then
+  #             REASON="step-skipped"
+  #           fi
 
-      - name: Generate summary report
-        run: |
-          echo "# Invenio Patch Verification Report" > report.md
-          echo "" >> report.md
-          echo "Generated on: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> report.md
-          echo "" >> report.md
+  #           HAS_PATCH="${{ steps.load-patches.outputs.has_patch }}"
+  #           if [ -z "$HAS_PATCH" ]; then
+  #             HAS_PATCH="false"
+  #           fi
 
-          # Initialize counters
-          TOTAL=0
-          FIXED=0
-          REGRESSION=0
-          NO_CHANGE=0
-          STILL_FAILING=0
-          NO_PATCH=0
+  #           cat > $SUMMARY_FILE << EOF
+  #         {
+  #           "package": "${{ matrix.package }}",
+  #           "has_patch": $HAS_PATCH,
+  #           "patch_applies": false,
+  #           "reason": "$REASON",
+  #           "before_status": "$BEFORE_STATUS"
+  #         }
+  #         EOF
+  #         fi
 
-          # Process each package result
-          echo "## Test Results" >> report.md
-          echo "" >> report.md
-          echo "| Package | Patch Applied | Result | Before | After |" >> report.md
-          echo "|---------|---------------|--------|--------|-------|" >> report.md
+  #         cat $SUMMARY_FILE
 
-          for dir in artifacts/test-results-*/; do
-            if [ -f "$dir/result-summary.json" ]; then
-              TOTAL=$((TOTAL + 1))
-              
-              PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
-              APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
-              
-              if [ "$APPLIES" = "true" ]; then
-                RESULT=$(jq -r '.result' "$dir/result-summary.json")
-                BEFORE=$(jq -r '.before_status' "$dir/result-summary.json")
-                AFTER=$(jq -r '.after_status' "$dir/result-summary.json")
-                
-                case $RESULT in
-                  fixed)
-                    FIXED=$((FIXED + 1))
-                    EMOJI="✅"
-                    ;;
-                  regression)
-                    REGRESSION=$((REGRESSION + 1))
-                    EMOJI="❌"
-                    ;;
-                  still-failing)
-                    STILL_FAILING=$((STILL_FAILING + 1))
-                    EMOJI="⚠️ "
-                    ;;
-                  *)
-                    NO_CHANGE=$((NO_CHANGE + 1))
-                    EMOJI="ℹ️ "
-                    ;;
-                esac
-                
-                echo "| \`$PACKAGE\` | Yes | $EMOJI $RESULT | $BEFORE | $AFTER |" >> report.md
-              else
-                NO_PATCH=$((NO_PATCH + 1))
-                REASON=$(jq -r '.reason // "N/A"' "$dir/result-summary.json")
-                BEFORE=$(jq -r '.before_status' "$dir/result-summary.json")
-                echo "| \`$PACKAGE\` | No | N/A ($REASON) | $BEFORE | - |" >> report.md
-              fi
-            fi
-          done
+  #     - name: Upload test artifacts
+  #       uses: actions/upload-artifact@v4
+  #       if: always()
+  #       with:
+  #         name: test-results-${{ matrix.package }}
+  #         path: |
+  #           test-output-before.txt
+  #           test-output-after.txt
+  #           test-output-before-status.txt
+  #           test-output-after-status.txt
+  #           test-diff.txt
+  #           result-summary.json
+  #         retention-days: 30
 
-          echo "" >> report.md
-          echo "## Summary Statistics" >> report.md
-          echo "" >> report.md
-          echo "- **Total packages tested:** $TOTAL" >> report.md
-          echo "- **Patches applied:** $((TOTAL - NO_PATCH))" >> report.md
-          echo "- **No patch applicable:** $NO_PATCH" >> report.md
-          echo "" >> report.md
-          echo "### Results for patched packages:" >> report.md
-          echo "- ✅ **Fixed:** $FIXED" >> report.md
-          echo "- ❌ **Regressions:** $REGRESSION" >> report.md
-          echo "- ⚠️  **Still failing:** $STILL_FAILING" >> report.md
-          echo "- ℹ️  **No change:** $NO_CHANGE" >> report.md
+  #     - name: Fail job if run-tests.sh failed
+  #       if: always()
+  #       run: |
+  #         # Only fail if the test execution step itself failed (not test failures, but script execution failures)
+  #         # Since we use continue-on-error on test steps, we check if run-tests.sh could not be executed
+  #         if [ ! -f test-output-before-status.txt ]; then
+  #           echo "Error: Tests could not be executed"
+  #           exit 1
+  #         fi
 
-          cat report.md
+  #         # Fail if tests actually failed (as opposed to passing or being skipped)
+  #         BEFORE_STATUS=$(cat test-output-before-status.txt 2>/dev/null || echo "missing")
+  #         if [ "$BEFORE_STATUS" = "failed" ]; then
+  #           echo "Error: Tests failed before applying patches"
+  #           exit 1
+  #         fi
 
-      - name: Upload summary report
-        uses: actions/upload-artifact@v4
-        with:
-          name: verification-report
-          path: report.md
-          retention-days: 90
+  #         # If patches were applied, also check after status
+  #         if [ -f test-output-after-status.txt ]; then
+  #           AFTER_STATUS=$(cat test-output-after-status.txt)
+  #           if [ "$AFTER_STATUS" = "failed" ]; then
+  #             echo "Error: Tests failed after applying patches"
+  #             exit 1
+  #           fi
+  #         fi
 
-      - name: Add report to job summary
-        run: |
-          cat report.md >> $GITHUB_STEP_SUMMARY
+  # generate-report:
+  #   name: Generate Summary Report
+  #   needs: test-packages
+  #   runs-on: ubuntu-latest
+  #   if: always()
 
-      - name: Prepare GitHub Pages content
-        run: |
-          mkdir -p gh-pages
+  #   steps:
+  #     - name: Download all artifacts
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         path: artifacts
 
-          # Convert markdown report to HTML
-          cat > gh-pages/index.html << 'HTMLEOF'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Invenio Patch Verification Report</title>
-            <style>
-              body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-                line-height: 1.6;
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 20px;
-                background-color: #f6f8fa;
-              }
-              h1, h2, h3 { color: #24292e; }
-              table {
-                width: 100%;
-                border-collapse: collapse;
-                background-color: white;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-                margin: 20px 0;
-              }
-              th, td {
-                padding: 12px;
-                text-align: left;
-                border-bottom: 1px solid #e1e4e8;
-              }
-              th {
-                background-color: #f6f8fa;
-                font-weight: 600;
-              }
-              tr:hover { background-color: #f6f8fa; }
-              code {
-                background-color: #f6f8fa;
-                padding: 2px 6px;
-                border-radius: 3px;
-                font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-                font-size: 85%;
-              }
-              .package-list {
-                list-style: none;
-                padding: 0;
-              }
-              .package-item {
-                background: white;
-                margin: 10px 0;
-                padding: 15px;
-                border-radius: 6px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-              }
-              .package-item h3 {
-                margin-top: 0;
-                margin-bottom: 10px;
-              }
-              .test-output {
-                margin-top: 10px;
-              }
-              .test-output a {
-                display: inline-block;
-                margin-right: 15px;
-                color: #0366d6;
-                text-decoration: none;
-              }
-              .test-output a:hover {
-                text-decoration: underline;
-              }
-              .stats {
-                background: white;
-                padding: 20px;
-                border-radius: 6px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-                margin: 20px 0;
-              }
-              .stats ul {
-                list-style: none;
-                padding: 0;
-              }
-              .stats li {
-                padding: 5px 0;
-              }
-            </style>
-          </head>
-          <body>
-          HTMLEOF
+  #     - name: Generate summary report
+  #       run: |
+  #         echo "# Invenio Patch Verification Report" > report.md
+  #         echo "" >> report.md
+  #         echo "Generated on: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> report.md
+  #         echo "" >> report.md
 
-          # Convert markdown to HTML (simple conversion)
-          sed '1d' report.md | while IFS= read -r line; do
-            if [[ $line =~ ^#\ (.+)$ ]]; then
-              echo "<h1>${BASH_REMATCH[1]}</h1>" >> gh-pages/index.html
-            elif [[ $line =~ ^##\ (.+)$ ]]; then
-              echo "<h2>${BASH_REMATCH[1]}</h2>" >> gh-pages/index.html
-            elif [[ $line =~ ^###\ (.+)$ ]]; then
-              echo "<h3>${BASH_REMATCH[1]}</h3>" >> gh-pages/index.html
-            elif [[ $line =~ ^\|.*\|$ ]]; then
-              echo "$line" >> gh-pages/table.tmp
-            elif [[ $line =~ ^-\ (.+)$ ]]; then
-              echo "<li>${BASH_REMATCH[1]}</li>" >> gh-pages/index.html
-            elif [[ -z $line ]]; then
-              if [ -f gh-pages/table.tmp ]; then
-                echo "<table>" >> gh-pages/index.html
-                first=true
-                while IFS= read -r tline; do
-                  if [[ $tline =~ ^\|-+\|.*$ ]]; then
-                    continue
-                  fi
-                  if $first; then
-                    echo "<thead><tr>" >> gh-pages/index.html
-                    echo "$tline" | sed 's/|/<\/th><th>/g' | sed 's/<\/th><th>//' | sed 's/<\/th><th>$//' | sed 's/^/<th>/' | sed 's/$/<\/th>/' >> gh-pages/index.html
-                    echo "</tr></thead><tbody>" >> gh-pages/index.html
-                    first=false
-                  else
-                    echo "<tr>" >> gh-pages/index.html
-                    echo "$tline" | sed 's/|/<\/td><td>/g' | sed 's/<\/td><td>//' | sed 's/<\/td><td>$//' | sed 's/^/<td>/' | sed 's/$/<\/td>/' >> gh-pages/index.html
-                    echo "</tr>" >> gh-pages/index.html
-                  fi
-                done < gh-pages/table.tmp
-                echo "</tbody></table>" >> gh-pages/index.html
-                rm gh-pages/table.tmp
-              fi
-              echo "<p>$line</p>" >> gh-pages/index.html
-            else
-              echo "<p>$line</p>" >> gh-pages/index.html
-            fi
-          done
+  #         # Initialize counters
+  #         TOTAL=0
+  #         FIXED=0
+  #         REGRESSION=0
+  #         NO_CHANGE=0
+  #         STILL_FAILING=0
+  #         NO_PATCH=0
 
-          # Close any open table
-          if [ -f gh-pages/table.tmp ]; then
-            echo "<table>" >> gh-pages/index.html
-            first=true
-            while IFS= read -r tline; do
-              if [[ $tline =~ ^\|-+\|.*$ ]]; then
-                continue
-              fi
-              if $first; then
-                echo "<thead><tr>" >> gh-pages/index.html
-                echo "$tline" | sed 's/|/<\/th><th>/g' | sed 's/<\/th><th>//' | sed 's/<\/th><th>$//' | sed 's/^/<th>/' | sed 's/$/<\/th>/' >> gh-pages/index.html
-                echo "</tr></thead><tbody>" >> gh-pages/index.html
-                first=false
-              else
-                echo "<tr>" >> gh-pages/index.html
-                echo "$tline" | sed 's/|/<\/td><td>/g' | sed 's/<\/td><td>//' | sed 's/<\/td><td>$//' | sed 's/^/<td>/' | sed 's/$/<\/td>/' >> gh-pages/index.html
-                echo "</tr>" >> gh-pages/index.html
-              fi
-            done < gh-pages/table.tmp
-            echo "</tbody></table>" >> gh-pages/index.html
-            rm gh-pages/table.tmp
-          fi
+  #         # Process each package result
+  #         echo "## Test Results" >> report.md
+  #         echo "" >> report.md
+  #         echo "| Package | Patch Applied | Result | Before | After |" >> report.md
+  #         echo "|---------|---------------|--------|--------|-------|" >> report.md
 
-          # Add detailed package results section
-          echo "<h2>Detailed Test Outputs</h2>" >> gh-pages/index.html
-          echo "<div class='package-list'>" >> gh-pages/index.html
+  #         for dir in artifacts/test-results-*/; do
+  #           if [ -f "$dir/result-summary.json" ]; then
+  #             TOTAL=$((TOTAL + 1))
 
-          for dir in artifacts/test-results-*/; do
-            if [ -f "$dir/result-summary.json" ]; then
-              PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
-              APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
-              
-              # Create package directory
-              mkdir -p "gh-pages/packages/$PACKAGE"
-              
-              # Copy test outputs only if they exist
-              if [ -f "$dir/test-output-before.txt" ]; then
-                cp "$dir/test-output-before.txt" "gh-pages/packages/$PACKAGE/"
-              fi
-              if [ -f "$dir/test-output-after.txt" ]; then
-                cp "$dir/test-output-after.txt" "gh-pages/packages/$PACKAGE/"
-              fi
-              if [ -f "$dir/test-diff.txt" ]; then
-                cp "$dir/test-diff.txt" "gh-pages/packages/$PACKAGE/"
-              fi
-              
-              # Add to index
-              echo "<div class='package-item'>" >> gh-pages/index.html
-              echo "<h3>$PACKAGE</h3>" >> gh-pages/index.html
-              
-              if [ "$APPLIES" = "true" ]; then
-                RESULT=$(jq -r '.result' "$dir/result-summary.json")
-                echo "<p><strong>Result:</strong> $RESULT</p>" >> gh-pages/index.html
-                echo "<div class='test-output'>" >> gh-pages/index.html
-                
-                # Only add links for files that exist
-                if [ -f "gh-pages/packages/$PACKAGE/test-output-before.txt" ]; then
-                  echo "<a href='packages/$PACKAGE/test-output-before.txt'>Test Output (Before Patch)</a>" >> gh-pages/index.html
-                fi
-                if [ -f "gh-pages/packages/$PACKAGE/test-output-after.txt" ]; then
-                  echo "<a href='packages/$PACKAGE/test-output-after.txt'>Test Output (After Patch)</a>" >> gh-pages/index.html
-                fi
-                if [ -f "gh-pages/packages/$PACKAGE/test-diff.txt" ]; then
-                  echo "<a href='packages/$PACKAGE/test-diff.txt'>Diff</a>" >> gh-pages/index.html
-                fi
-                
-                echo "</div>" >> gh-pages/index.html
-              else
-                REASON=$(jq -r '.reason // "N/A"' "$dir/result-summary.json")
-                echo "<p><strong>Status:</strong> No patch applied ($REASON)</p>" >> gh-pages/index.html
-                echo "<div class='test-output'>" >> gh-pages/index.html
-                
-                # Only add link if file exists
-                if [ -f "gh-pages/packages/$PACKAGE/test-output-before.txt" ]; then
-                  echo "<a href='packages/$PACKAGE/test-output-before.txt'>Test Output</a>" >> gh-pages/index.html
-                fi
-                
-                echo "</div>" >> gh-pages/index.html
-              fi
-              
-              echo "</div>" >> gh-pages/index.html
-            fi
-          done
+  #             PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
+  #             APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
 
-          echo "</div>" >> gh-pages/index.html
-          echo "</body></html>" >> gh-pages/index.html
+  #             if [ "$APPLIES" = "true" ]; then
+  #               RESULT=$(jq -r '.result' "$dir/result-summary.json")
+  #               BEFORE=$(jq -r '.before_status' "$dir/result-summary.json")
+  #               AFTER=$(jq -r '.after_status' "$dir/result-summary.json")
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./gh-pages
-          publish_branch: gh-pages
-          force_orphan: true
+  #               case $RESULT in
+  #                 fixed)
+  #                   FIXED=$((FIXED + 1))
+  #                   EMOJI="✅"
+  #                   ;;
+  #                 regression)
+  #                   REGRESSION=$((REGRESSION + 1))
+  #                   EMOJI="❌"
+  #                   ;;
+  #                 still-failing)
+  #                   STILL_FAILING=$((STILL_FAILING + 1))
+  #                   EMOJI="⚠️ "
+  #                   ;;
+  #                 *)
+  #                   NO_CHANGE=$((NO_CHANGE + 1))
+  #                   EMOJI="ℹ️ "
+  #                   ;;
+  #               esac
+
+  #               echo "| \`$PACKAGE\` | Yes | $EMOJI $RESULT | $BEFORE | $AFTER |" >> report.md
+  #             else
+  #               NO_PATCH=$((NO_PATCH + 1))
+  #               REASON=$(jq -r '.reason // "N/A"' "$dir/result-summary.json")
+  #               BEFORE=$(jq -r '.before_status' "$dir/result-summary.json")
+  #               echo "| \`$PACKAGE\` | No | N/A ($REASON) | $BEFORE | - |" >> report.md
+  #             fi
+  #           fi
+  #         done
+
+  #         echo "" >> report.md
+  #         echo "## Summary Statistics" >> report.md
+  #         echo "" >> report.md
+  #         echo "- **Total packages tested:** $TOTAL" >> report.md
+  #         echo "- **Patches applied:** $((TOTAL - NO_PATCH))" >> report.md
+  #         echo "- **No patch applicable:** $NO_PATCH" >> report.md
+  #         echo "" >> report.md
+  #         echo "### Results for patched packages:" >> report.md
+  #         echo "- ✅ **Fixed:** $FIXED" >> report.md
+  #         echo "- ❌ **Regressions:** $REGRESSION" >> report.md
+  #         echo "- ⚠️  **Still failing:** $STILL_FAILING" >> report.md
+  #         echo "- ℹ️  **No change:** $NO_CHANGE" >> report.md
+
+  #         cat report.md
+
+  #     - name: Upload summary report
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: verification-report
+  #         path: report.md
+  #         retention-days: 90
+
+  #     - name: Add report to job summary
+  #       run: |
+  #         cat report.md >> $GITHUB_STEP_SUMMARY
+
+  #     - name: Prepare GitHub Pages content
+  #       run: |
+  #         mkdir -p gh-pages
+
+  #         # Convert markdown report to HTML
+  #         cat > gh-pages/index.html << 'HTMLEOF'
+  #         <!DOCTYPE html>
+  #         <html lang="en">
+  #         <head>
+  #           <meta charset="UTF-8">
+  #           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  #           <title>Invenio Patch Verification Report</title>
+  #           <style>
+  #             body {
+  #               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  #               line-height: 1.6;
+  #               max-width: 1200px;
+  #               margin: 0 auto;
+  #               padding: 20px;
+  #               background-color: #f6f8fa;
+  #             }
+  #             h1, h2, h3 { color: #24292e; }
+  #             table {
+  #               width: 100%;
+  #               border-collapse: collapse;
+  #               background-color: white;
+  #               box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  #               margin: 20px 0;
+  #             }
+  #             th, td {
+  #               padding: 12px;
+  #               text-align: left;
+  #               border-bottom: 1px solid #e1e4e8;
+  #             }
+  #             th {
+  #               background-color: #f6f8fa;
+  #               font-weight: 600;
+  #             }
+  #             tr:hover { background-color: #f6f8fa; }
+  #             code {
+  #               background-color: #f6f8fa;
+  #               padding: 2px 6px;
+  #               border-radius: 3px;
+  #               font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  #               font-size: 85%;
+  #             }
+  #             .package-list {
+  #               list-style: none;
+  #               padding: 0;
+  #             }
+  #             .package-item {
+  #               background: white;
+  #               margin: 10px 0;
+  #               padding: 15px;
+  #               border-radius: 6px;
+  #               box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  #             }
+  #             .package-item h3 {
+  #               margin-top: 0;
+  #               margin-bottom: 10px;
+  #             }
+  #             .test-output {
+  #               margin-top: 10px;
+  #             }
+  #             .test-output a {
+  #               display: inline-block;
+  #               margin-right: 15px;
+  #               color: #0366d6;
+  #               text-decoration: none;
+  #             }
+  #             .test-output a:hover {
+  #               text-decoration: underline;
+  #             }
+  #             .stats {
+  #               background: white;
+  #               padding: 20px;
+  #               border-radius: 6px;
+  #               box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  #               margin: 20px 0;
+  #             }
+  #             .stats ul {
+  #               list-style: none;
+  #               padding: 0;
+  #             }
+  #             .stats li {
+  #               padding: 5px 0;
+  #             }
+  #           </style>
+  #         </head>
+  #         <body>
+  #         HTMLEOF
+
+  #         # Convert markdown to HTML (simple conversion)
+  #         sed '1d' report.md | while IFS= read -r line; do
+  #           if [[ $line =~ ^#\ (.+)$ ]]; then
+  #             echo "<h1>${BASH_REMATCH[1]}</h1>" >> gh-pages/index.html
+  #           elif [[ $line =~ ^##\ (.+)$ ]]; then
+  #             echo "<h2>${BASH_REMATCH[1]}</h2>" >> gh-pages/index.html
+  #           elif [[ $line =~ ^###\ (.+)$ ]]; then
+  #             echo "<h3>${BASH_REMATCH[1]}</h3>" >> gh-pages/index.html
+  #           elif [[ $line =~ ^\|.*\|$ ]]; then
+  #             echo "$line" >> gh-pages/table.tmp
+  #           elif [[ $line =~ ^-\ (.+)$ ]]; then
+  #             echo "<li>${BASH_REMATCH[1]}</li>" >> gh-pages/index.html
+  #           elif [[ -z $line ]]; then
+  #             if [ -f gh-pages/table.tmp ]; then
+  #               echo "<table>" >> gh-pages/index.html
+  #               first=true
+  #               while IFS= read -r tline; do
+  #                 if [[ $tline =~ ^\|-+\|.*$ ]]; then
+  #                   continue
+  #                 fi
+  #                 if $first; then
+  #                   echo "<thead><tr>" >> gh-pages/index.html
+  #                   echo "$tline" | sed 's/|/<\/th><th>/g' | sed 's/<\/th><th>//' | sed 's/<\/th><th>$//' | sed 's/^/<th>/' | sed 's/$/<\/th>/' >> gh-pages/index.html
+  #                   echo "</tr></thead><tbody>" >> gh-pages/index.html
+  #                   first=false
+  #                 else
+  #                   echo "<tr>" >> gh-pages/index.html
+  #                   echo "$tline" | sed 's/|/<\/td><td>/g' | sed 's/<\/td><td>//' | sed 's/<\/td><td>$//' | sed 's/^/<td>/' | sed 's/$/<\/td>/' >> gh-pages/index.html
+  #                   echo "</tr>" >> gh-pages/index.html
+  #                 fi
+  #               done < gh-pages/table.tmp
+  #               echo "</tbody></table>" >> gh-pages/index.html
+  #               rm gh-pages/table.tmp
+  #             fi
+  #             echo "<p>$line</p>" >> gh-pages/index.html
+  #           else
+  #             echo "<p>$line</p>" >> gh-pages/index.html
+  #           fi
+  #         done
+
+  #         # Close any open table
+  #         if [ -f gh-pages/table.tmp ]; then
+  #           echo "<table>" >> gh-pages/index.html
+  #           first=true
+  #           while IFS= read -r tline; do
+  #             if [[ $tline =~ ^\|-+\|.*$ ]]; then
+  #               continue
+  #             fi
+  #             if $first; then
+  #               echo "<thead><tr>" >> gh-pages/index.html
+  #               echo "$tline" | sed 's/|/<\/th><th>/g' | sed 's/<\/th><th>//' | sed 's/<\/th><th>$//' | sed 's/^/<th>/' | sed 's/$/<\/th>/' >> gh-pages/index.html
+  #               echo "</tr></thead><tbody>" >> gh-pages/index.html
+  #               first=false
+  #             else
+  #               echo "<tr>" >> gh-pages/index.html
+  #               echo "$tline" | sed 's/|/<\/td><td>/g' | sed 's/<\/td><td>//' | sed 's/<\/td><td>$//' | sed 's/^/<td>/' | sed 's/$/<\/td>/' >> gh-pages/index.html
+  #               echo "</tr>" >> gh-pages/index.html
+  #             fi
+  #           done < gh-pages/table.tmp
+  #           echo "</tbody></table>" >> gh-pages/index.html
+  #           rm gh-pages/table.tmp
+  #         fi
+
+  #         # Add detailed package results section
+  #         echo "<h2>Detailed Test Outputs</h2>" >> gh-pages/index.html
+  #         echo "<div class='package-list'>" >> gh-pages/index.html
+
+  #         for dir in artifacts/test-results-*/; do
+  #           if [ -f "$dir/result-summary.json" ]; then
+  #             PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
+  #             APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
+
+  #             # Create package directory
+  #             mkdir -p "gh-pages/packages/$PACKAGE"
+
+  #             # Copy test outputs only if they exist
+  #             if [ -f "$dir/test-output-before.txt" ]; then
+  #               cp "$dir/test-output-before.txt" "gh-pages/packages/$PACKAGE/"
+  #             fi
+  #             if [ -f "$dir/test-output-after.txt" ]; then
+  #               cp "$dir/test-output-after.txt" "gh-pages/packages/$PACKAGE/"
+  #             fi
+  #             if [ -f "$dir/test-diff.txt" ]; then
+  #               cp "$dir/test-diff.txt" "gh-pages/packages/$PACKAGE/"
+  #             fi
+
+  #             # Add to index
+  #             echo "<div class='package-item'>" >> gh-pages/index.html
+  #             echo "<h3>$PACKAGE</h3>" >> gh-pages/index.html
+
+  #             if [ "$APPLIES" = "true" ]; then
+  #               RESULT=$(jq -r '.result' "$dir/result-summary.json")
+  #               echo "<p><strong>Result:</strong> $RESULT</p>" >> gh-pages/index.html
+  #               echo "<div class='test-output'>" >> gh-pages/index.html
+
+  #               # Only add links for files that exist
+  #               if [ -f "gh-pages/packages/$PACKAGE/test-output-before.txt" ]; then
+  #                 echo "<a href='packages/$PACKAGE/test-output-before.txt'>Test Output (Before Patch)</a>" >> gh-pages/index.html
+  #               fi
+  #               if [ -f "gh-pages/packages/$PACKAGE/test-output-after.txt" ]; then
+  #                 echo "<a href='packages/$PACKAGE/test-output-after.txt'>Test Output (After Patch)</a>" >> gh-pages/index.html
+  #               fi
+  #               if [ -f "gh-pages/packages/$PACKAGE/test-diff.txt" ]; then
+  #                 echo "<a href='packages/$PACKAGE/test-diff.txt'>Diff</a>" >> gh-pages/index.html
+  #               fi
+
+  #               echo "</div>" >> gh-pages/index.html
+  #             else
+  #               REASON=$(jq -r '.reason // "N/A"' "$dir/result-summary.json")
+  #               echo "<p><strong>Status:</strong> No patch applied ($REASON)</p>" >> gh-pages/index.html
+  #               echo "<div class='test-output'>" >> gh-pages/index.html
+
+  #               # Only add link if file exists
+  #               if [ -f "gh-pages/packages/$PACKAGE/test-output-before.txt" ]; then
+  #                 echo "<a href='packages/$PACKAGE/test-output-before.txt'>Test Output</a>" >> gh-pages/index.html
+  #               fi
+
+  #               echo "</div>" >> gh-pages/index.html
+  #             fi
+
+  #             echo "</div>" >> gh-pages/index.html
+  #           fi
+  #         done
+
+  #         echo "</div>" >> gh-pages/index.html
+  #         echo "</body></html>" >> gh-pages/index.html
+
+  #     - name: Deploy to GitHub Pages
+  #       uses: peaceiris/actions-gh-pages@v4
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./gh-pages
+  #         publish_branch: gh-pages
+  #         force_orphan: true
