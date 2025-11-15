@@ -320,6 +320,19 @@ jobs:
 
           cat artifacts/result-summary.json
 
+      - name: Extract warnings from test logs
+        if: always()
+        run: |
+          # Extract warnings from original test log if it exists
+          if [ -f artifacts/test-output-original.txt ]; then
+            python3 scripts/extract_warnings.py artifacts/test-output-original.txt original artifacts/result-summary.json
+          fi
+
+          # Extract warnings from patched test log if it exists
+          if [ -f artifacts/test-output-patched.txt ]; then
+            python3 scripts/extract_warnings.py artifacts/test-output-patched.txt patched artifacts/result-summary.json
+          fi
+
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
         if: always()
@@ -378,10 +391,10 @@ jobs:
           REGRESSION=0
           NO_CHANGE=0
           STILL_FAILING=0
-          SUCCESS_BEFORE=0
-          FAILED_BEFORE=0
-          SUCCESS_AFTER=0
-          FAILED_AFTER=0
+          SUCCESS_ORIGINAL=0
+          FAILED_ORIGINAL=0
+          SUCCESS_PATCHED=0
+          FAILED_PATCHED=0
 
           for dir in artifacts/test-results-*/; do
             if [ -f "$dir/result-summary.json" ]; then
@@ -400,15 +413,15 @@ jobs:
 
                 ORIGINAL_TESTS_OUTCOME=$(jq -r '.original_tests_outcome' "$dir/result-summary.json")
                 PATCHED_TESTS_OUTCOME=$(jq -r '.patched_tests_outcome' "$dir/result-summary.json")
-                [ "$ORIGINAL_TESTS_OUTCOME" = "success" ] && SUCCESS_BEFORE=$((SUCCESS_BEFORE + 1))
-                [ "$ORIGINAL_TESTS_OUTCOME" = "failed" ] && FAILED_BEFORE=$((FAILED_BEFORE + 1))
-                [ "$PATCHED_TESTS_OUTCOME" = "success" ] && SUCCESS_AFTER=$((SUCCESS_AFTER + 1))
-                [ "$PATCHED_TESTS_OUTCOME" = "failed" ] && FAILED_AFTER=$((FAILED_AFTER + 1))
+                [ "$ORIGINAL_TESTS_OUTCOME" = "success" ] && SUCCESS_ORIGINAL=$((SUCCESS_ORIGINAL + 1))
+                [ "$ORIGINAL_TESTS_OUTCOME" = "failed" ] && FAILED_ORIGINAL=$((FAILED_ORIGINAL + 1))
+                [ "$PATCHED_TESTS_OUTCOME" = "success" ] && SUCCESS_PATCHED=$((SUCCESS_PATCHED + 1))
+                [ "$PATCHED_TESTS_OUTCOME" = "failed" ] && FAILED_PATCHED=$((FAILED_PATCHED + 1))
               else
                 UNPATCHED=$((UNPATCHED + 1))
                 ORIGINAL_TESTS_OUTCOME=$(jq -r '.original_tests_outcome' "$dir/result-summary.json")
-                [ "$ORIGINAL_TESTS_OUTCOME" = "success" ] && SUCCESS_BEFORE=$((SUCCESS_BEFORE + 1))
-                [ "$ORIGINAL_TESTS_OUTCOME" = "failed" ] && FAILED_BEFORE=$((FAILED_BEFORE + 1))
+                [ "$ORIGINAL_TESTS_OUTCOME" = "success" ] && SUCCESS_ORIGINAL=$((SUCCESS_ORIGINAL + 1))
+                [ "$ORIGINAL_TESTS_OUTCOME" = "failed" ] && FAILED_ORIGINAL=$((FAILED_ORIGINAL + 1))
               fi
             fi
           done
@@ -456,7 +469,7 @@ jobs:
           # Patches from patches.json
           echo "## 🔄 Patched Packages" >> ${REPORT_DIR}/README.md
           echo "" >> ${REPORT_DIR}/README.md
-          echo "| Package | Patches Applied | Before | After | Result |" >> ${REPORT_DIR}/README.md
+          echo "| Package | Patches Applied | Original | Patched | Result |" >> ${REPORT_DIR}/README.md
           echo "|---------|----------------|--------|-------|--------|" >> ${REPORT_DIR}/README.md
 
           for dir in artifacts/test-results-*/; do
@@ -570,88 +583,89 @@ jobs:
           done
           echo "" >> ${REPORT_DIR}/README.md
 
-  #         # Packages that depend on patched packages
-  #         echo "## 🔄 Packages that depend on patched packages" >> ${REPORT_DIR}/README.md
-  #         echo "" >> ${REPORT_DIR}/README.md
-  #         echo "| Package | Patches Applied | Before | After | Result |" >> ${REPORT_DIR}/README.md
-  #         echo "|---------|----------------|--------|-------|--------|" >> ${REPORT_DIR}/README.md
+          # newly uncommented
+          # Packages that depend on patched packages
+          echo "## 🔄 Packages that depend on patched packages" >> ${REPORT_DIR}/README.md
+          echo "" >> ${REPORT_DIR}/README.md
+          echo "| Package | Patches Applied | Original | Patched | Result |" >> ${REPORT_DIR}/README.md
+          echo "|---------|----------------|--------|-------|--------|" >> ${REPORT_DIR}/README.md
 
-  #         for dir in artifacts/test-results-*/; do
-  #           if [ -f "$dir/result-summary.json" ]; then
-  #             APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
-  #             if [ "$APPLIES" = "true" ]; then
-  #               PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
-  #               PATCHED_PKGS=$(jq -r '.patched_packages' "$dir/result-summary.json" | tr '\n' ' ')
-  #               BEFORE=$(jq -r '.ORIGINAL_TESTS_OUTCOME' "$dir/result-summary.json")
-  #               AFTER=$(jq -r '.PATCHED_TESTS_OUTCOME' "$dir/result-summary.json")
-  #               RESULT_ICON=$(jq -r '.result_icon' "$dir/result-summary.json")
-  #               RESULT_TEXT=$(jq -r '.result_text' "$dir/result-summary.json")
+          for dir in artifacts/test-results-*/; do
+            if [ -f "$dir/result-summary.json" ]; then
+              APPLIES=$(jq -r '.patch_applies' "$dir/result-summary.json")
+              if [ "$APPLIES" = "true" ]; then
+                PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
+                PATCHED_PKGS=$(jq -r '.patched_packages' "$dir/result-summary.json" | tr '\n' ' ')
+                ORIGINAL_TESTS_OUTCOME=$(jq -r '.original_tests_outcome' "$dir/result-summary.json")
+                PATCHED_TESTS_OUTCOME=$(jq -r '.patched_tests_outcome' "$dir/result-summary.json")
+                RESULT_ICON=$(jq -r '.result_icon' "$dir/result-summary.json")
+                RESULT_TEXT=$(jq -r '.result_text' "$dir/result-summary.json")
 
-  #               # Create package directory and copy test outputs
-  #               mkdir -p "${REPORT_DIR}/$PACKAGE"
-  #               if [ -f "$dir/test-output-before.txt" ]; then
-  #                 cp "$dir/test-output-before.txt" "${REPORT_DIR}/$PACKAGE/"
-  #               fi
-  #               if [ -f "$dir/test-output-after.txt" ]; then
-  #                 cp "$dir/test-output-after.txt" "${REPORT_DIR}/$PACKAGE/"
-  #               fi
-  #               if [ -f "$dir/test-diff.txt" ]; then
-  #                 cp "$dir/test-diff.txt" "${REPORT_DIR}/$PACKAGE/"
-  #               fi
+                # Create package directory and copy test outputs
+                mkdir -p "${REPORT_DIR}/$PACKAGE"
+                if [ -f "$dir/test-output-original.txt" ]; then
+                  cp "$dir/test-output-original.txt" "${REPORT_DIR}/$PACKAGE/"
+                fi
+                if [ -f "$dir/test-output-patched.txt" ]; then
+                  cp "$dir/test-output-patched.txt" "${REPORT_DIR}/$PACKAGE/"
+                fi
+                if [ -f "$dir/test-diff.txt" ]; then
+                  cp "$dir/test-diff.txt" "${REPORT_DIR}/$PACKAGE/"
+                fi
 
-  #               # Format status
-  #               case $BEFORE in
-  #                 success) ORIGINAL_TESTS_OUTCOME="✅ Pass" ;;
-  #                 failed) ORIGINAL_TESTS_OUTCOME="❌ Fail" ;;
-  #                 skipped) ORIGINAL_TESTS_OUTCOME="⏭️  Skip" ;;
-  #                 *) ORIGINAL_TESTS_OUTCOME="❓ Unknown" ;;
-  #               esac
+                # Format status
+                case $ORIGINAL_TESTS_OUTCOME in
+                  success) ORIGINAL_STATUS="✅ Pass" ;;
+                  failed) ORIGINAL_STATUS="❌ Fail" ;;
+                  skipped) ORIGINAL_STATUS="⏭️  Skip" ;;
+                  *) ORIGINAL_STATUS="❓ Unknown" ;;
+                esac
 
-  #               case $AFTER in
-  #                 success) PATCHED_TESTS_OUTCOME="✅ Pass" ;;
-  #                 failed) PATCHED_TESTS_OUTCOME="❌ Fail" ;;
-  #                 skipped) PATCHED_TESTS_OUTCOME="⏭️  Skip" ;;
-  #                 *) PATCHED_TESTS_OUTCOME="❓ Unknown" ;;
-  #               esac
+                case $PATCHED_TESTS_OUTCOME in
+                  success) PATCHED_STATUS="✅ Pass" ;;
+                  failed) PATCHED_STATUS="❌ Fail" ;;
+                  skipped) PATCHED_STATUS="⏭️  Skip" ;;
+                  *) PATCHED_STATUS="❓ Unknown" ;;
+                esac
 
-  #               # Use result_icon and result_text from artifacts
-  #               if [ -n "$RESULT_ICON" ] && [ "$RESULT_ICON" != "null" ]; then
-  #                 RESULT_STATUS="$RESULT_ICON $RESULT_TEXT"
-  #               else
-  #                 RESULT_STATUS="❓ Unknown"
-  #               fi
+                # Use result_icon and result_text from artifacts
+                if [ -n "$RESULT_ICON" ] && [ "$RESULT_ICON" != "null" ]; then
+                  RESULT_STATUS="$RESULT_ICON $RESULT_TEXT"
+                else
+                  RESULT_STATUS="❓ Unknown"
+                fi
 
-  #               # Create links for test outputs
-  #               LINKS=""
-  #               if [ -f "${REPORT_DIR}/$PACKAGE/test-output-before.txt" ]; then
-  #                 LINKS="$LINKS [before]($PACKAGE/test-output-before.txt)"
-  #               fi
-  #               if [ -f "${REPORT_DIR}/$PACKAGE/test-output-after.txt" ]; then
-  #                 [ -n "$LINKS" ] && LINKS="$LINKS "
-  #                 LINKS="$LINKS [after]($PACKAGE/test-output-after.txt)"
-  #               fi
-  #               if [ -f "${REPORT_DIR}/$PACKAGE/test-diff.txt" ]; then
-  #                 [ -n "$LINKS" ] && LINKS="$LINKS "
-  #                 LINKS="$LINKS [diff]($PACKAGE/test-diff.txt)"
-  #               fi
+                # Create links for test outputs
+                LINKS=""
+                if [ -f "${REPORT_DIR}/$PACKAGE/test-output-original.txt" ]; then
+                  LINKS="$LINKS [original]($PACKAGE/test-output-original.txt)"
+                fi
+                if [ -f "${REPORT_DIR}/$PACKAGE/test-output-patched.txt" ]; then
+                  [ -n "$LINKS" ] && LINKS="$LINKS "
+                  LINKS="$LINKS [patched]($PACKAGE/test-output-patched.txt)"
+                fi
+                if [ -f "${REPORT_DIR}/$PACKAGE/test-diff.txt" ]; then
+                  [ -n "$LINKS" ] && LINKS="$LINKS "
+                  LINKS="$LINKS [diff]($PACKAGE/test-diff.txt)"
+                fi
 
-  #               if [ -n "$LINKS" ]; then
-  #                 PACKAGE_DISPLAY="\`$PACKAGE\` <br/> $LINKS"
-  #               else
-  #                 PACKAGE_DISPLAY="\`$PACKAGE\`"
-  #               fi
+                if [ -n "$LINKS" ]; then
+                  PACKAGE_DISPLAY="\`$PACKAGE\` <br/> $LINKS"
+                else
+                  PACKAGE_DISPLAY="\`$PACKAGE\`"
+                fi
 
-  #               echo "| $PACKAGE_DISPLAY | $PATCHED_PKGS | $ORIGINAL_TESTS_OUTCOME | $PATCHED_TESTS_OUTCOME | $RESULT_STATUS |" >> ${REPORT_DIR}/README.md
-  #             fi
-  #           fi
-  #         done
-  #         echo "" >> ${REPORT_DIR}/README.md
+                echo "| $PACKAGE_DISPLAY | $PATCHED_PKGS | $ORIGINAL_STATUS | $PATCHED_STATUS | $RESULT_STATUS |" >> ${REPORT_DIR}/README.md
+              fi
+            fi
+          done
+          echo "" >> ${REPORT_DIR}/README.md
 
-  #         echo "---" >> ${REPORT_DIR}/README.md
-  #         echo "" >> ${REPORT_DIR}/README.md
-  #         echo "_For detailed test outputs and diffs, see the [full report](https://mesemus.github.io/invenio-bug-verification/)._" >> ${REPORT_DIR}/README.md
+          echo "---" >> ${REPORT_DIR}/README.md
+          echo "" >> ${REPORT_DIR}/README.md
+          echo "_For detailed test outputs and diffs, see the [full report](https://mesemus.github.io/invenio-bug-verification/)._" >> ${REPORT_DIR}/README.md
 
-  #         cat ${REPORT_DIR}/README.md
+          cat ${REPORT_DIR}/README.md
 
   #     - name: Convert markdown to HTML
   #       uses: wranders/markdown-to-pages-action@v1
