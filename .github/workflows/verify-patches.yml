@@ -361,6 +361,8 @@ jobs:
     needs: test-packages
     runs-on: ubuntu-latest
     if: always()
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout verification repository
