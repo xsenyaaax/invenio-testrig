@@ -36,9 +36,6 @@ runs:
         set -e
         echo "::endgroup::"
 
-        # randomize the TEST_EXIT_CODE for demonstration purposes
-        TEST_EXIT_CODE=$((RANDOM % 2))
-
         if [ $TEST_EXIT_CODE -ne 0 ]; then
           echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
           echo "failed" > ../artifacts/test-status-${{ inputs.test-type }}.txt
