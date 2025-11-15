@@ -752,16 +752,12 @@ jobs:
 
           # Get report timestamp from REPORT_DIR
           REPORT_TIMESTAMP=$(basename ${REPORT_DIR})
-          REPORT_LINK="./results/${REPORT_TIMESTAMP}/"
 
           # Create status string
           STATUS="${TOTAL_PASSED} ✅ passed, ${TOTAL_FAILED} ❌ failed, ${TOTAL_WARNINGS} warnings"
 
-          # Add new entry to reports.md
-          # Insert new row after the table separator line
-          NEW_ROW="| [${REPORT_TIMESTAMP//_/ }](${REPORT_LINK}) | ${STATUS} |"
-          awk -v new_row="$NEW_ROW" '/^|--*--|--*--|$/ {print; print new_row; next} {print}' reports/reports.md > reports/reports.md.tmp
-          mv reports/reports.md.tmp reports/reports.md
+          # Add new entry to reports.md using Python script
+          python3 scripts/add_summary_line.py reports/reports.md "$REPORT_TIMESTAMP" "$STATUS"
           cat reports/reports.md
 
       - name: Commit and push reports index
