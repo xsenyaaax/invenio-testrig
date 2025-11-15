@@ -667,40 +667,9 @@ jobs:
 
           cat ${REPORT_DIR}/README.md
 
-  #     - name: Convert markdown to HTML
-  #       uses: wranders/markdown-to-pages-action@v1
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         files: |-
-  #           ${REPORT_DIR}/README.md
-
-  #     - run: cp -rf ${REPORT_DIR}/* ./dist/
-  #     - run: mv ./dist/${REPORT_DIR}/index.html ./dist/index.html
-  #     - uses: actions/upload-pages-artifact@v3
-  #       with:
-  #         path: dist
-
-  #     - name: Upload README as artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: verification-readme
-  #         path: ${REPORT_DIR}/
-  #         retention-days: 90
-
-  #     - name: Add README to job summary
-  #       run: |
-  #         cat ${REPORT_DIR}/README.md >> $GITHUB_STEP_SUMMARY
-
-  # deploy:
-  #   if: always()
-  #   needs: generate-report
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     pages: write
-  #     id-token: write
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   steps:
-  #     - uses: actions/deploy-pages@v4
-  #       id: deployment
+      - name: Upload the report dir as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-report
+          path: ${REPORT_DIR}/
+          retention-days: 90
