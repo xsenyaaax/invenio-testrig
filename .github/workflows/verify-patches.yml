@@ -165,77 +165,40 @@ jobs:
         id: test-with-patch
         continue-on-error: true
         if: env.SO_FAR_OK == '1' && ( steps.check-patch.outputs.applies == 'true' || steps.load-patches.outputs.has_patch == 'true' )
-        run: |
-          echo "SO_FAR_OK=0" >> $GITHUB_ENV
-          cd package-repo
-          source .venv/bin/activate
+        uses: ./.github/actions/run-tests
+        with:
+          package-path: package-repo
+          package-name: ${{ matrix.package }}
+          test-type: patched
 
-          echo "🧪 Running tests on patched package / with patched dependencies"
-          echo "::group::Test execution"
-          set +e
-          bash run-tests.sh 2>&1 | tee ../test-output-patched.txt
-          TEST_EXIT_CODE=${PIPESTATUS[0]}
-          set -e
-          echo "::endgroup::"
+      # if the previous step failed, we will try to run the tests without patches
+      - name: Clone package repository for tests without patches
+        continue-on-error: true
+        if: env.SO_FAR_OK == '1' && steps.test-with-patch.conclusion == 'failure'
+        uses: ./.github/actions/clone-package
+        with:
+          repository-url: ${{ steps.load-patches.outputs.original_repository_url }}
+          repository-branch: ${{ steps.load-patches.outputs.original_repository_branch }}
+          destination: package-repo
 
-          if [ $TEST_EXIT_CODE -ne 0 ]; then
-            echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
-            echo "failed" > ../test-status-patched.txt
-          else
-            echo "✓ Tests passed"
-            echo "success" > ../test-status-patched.txt
-          fi
-          echo "SO_FAR_OK=1" >> $GITHUB_ENV
+      - name: Setup virtual environment and install dependencies for original package tests
+        if: env.SO_FAR_OK == '1' && steps.test-with-patch.conclusion == 'failure'
+        continue-on-error: true
+        uses: ./.github/actions/setup-venv
+        with:
+          package-path: package-repo
+          extras: ${{ env.EXTRAS }}
+          python-version: ${{ env.PYTHON_VERSION }}
 
-      #     - name: Clone package repository if it is patched
-      #       if: env.SO_FAR_OK == '1' && steps.load-patches.outputs.has_patch == 'true'
-      #       uses: ./.github/actions/clone-package
-      #       with:
-      #         repository-url: ${{ steps.load-patches.outputs.patched_repository_url }}
-      #         repository-branch: ${{ steps.load-patches.outputs.patched_repository_branch }}
-      #         destination: package-repo
-
-      #     - name: Create virtual environment for patched package
-      #       continue-on-error: true
-      #       if: env.SO_FAR_OK == '1' && steps.load-patches.outputs.has_patch == 'true'
-      #       run: |
-      #         echo "SO_FAR_OK=0" >> $GITHUB_ENV
-
-      #     - name: Setup virtual environment for patched package
-      #       if: env.SO_FAR_OK == '1' && steps.load-patches.outputs.has_patch == 'true'
-      #       uses: ./.github/actions/setup-venv
-      #       with:
-      #         package-path: package-repo
-      #         extras: tests,opensearch2,s3,devs,s3fs,oaipmh,rdf,sparql,postgresql,admin
-
-      #     - name: Mark patched environment setup complete
-      #       if: env.SO_FAR_OK == '1' && steps.load-patches.outputs.has_patch == 'true'
-      #       run: |
-      #         echo "SO_FAR_OK=1" >> $GITHUB_ENV
-
-      #     - name: Run tests with patches
-      #       if: ( steps.check-patch.outputs.applies == 'true' || steps.load-patches.outputs.has_patch == 'true' ) && env.SO_FAR_OK == '1'
-      #       id: test-with-patch
-      #       continue-on-error: true
-      #       run: |
-      #         cd package-repo
-      #         source .venv/bin/activate
-
-      #         echo "🧪 Running tests with patches applied"
-      #         echo "::group::Test execution (after patches)"
-      #         set +e
-      #         bash run-tests.sh 2>&1 | tee ../test-output-after.txt
-      #         TEST_EXIT_CODE=${PIPESTATUS[0]}
-      #         set -e
-      #         echo "::endgroup::"
-
-      #         if [ $TEST_EXIT_CODE -ne 0 ]; then
-      #           echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
-      #           echo "failed" > ../test-output-after-status.txt
-      #         else
-      #           echo "✓ Tests passed with patches"
-      #           echo "success" > ../test-output-after-status.txt
-      #         fi
+      - name: Run tests on original package without patches
+        id: test-without-patch
+        continue-on-error: true
+        if: env.SO_FAR_OK == '1' && ( steps.check-patch.outputs.applies == 'true' || steps.load-patches.outputs.has_patch == 'true' ) && steps.test-with-patch.conclusion == 'failure'
+        uses: ./.github/actions/run-tests
+        with:
+          package-path: package-repo
+          package-name: ${{ matrix.package }}
+          test-type: original
 
       #     - name: Compare test results
       #       if: env.SO_FAR_OK == '1'

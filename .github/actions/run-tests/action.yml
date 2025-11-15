@@ -1,0 +1,48 @@
+name: 'Run Tests'
+description: 'Run tests in a package repository and record results'
+inputs:
+  package-path:
+    description: 'Path to the package directory containing .venv'
+    required: true
+  package-name:
+    description: 'Name of the package being tested'
+    required: true
+  test-type:
+    description: 'Type of test run (original or patched)'
+    required: true
+outputs:
+  conclusion:
+    description: 'Test conclusion (success or failure)'
+    value: ${{ steps.run-tests.outputs.conclusion }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Run tests on ${{ inputs.test-type }} package
+      id: run-tests
+      shell: bash
+      run: |
+        echo "SO_FAR_OK=0" >> $GITHUB_ENV
+        cd ${{ inputs.package-path }}
+        source .venv/bin/activate
+
+        # Create artifacts directory
+        mkdir -p ../artifacts
+
+        echo "🧪 Running tests on ${{ inputs.test-type }} package"
+        echo "::group::Test execution (${{ inputs.test-type }})"
+        set +e
+        bash run-tests.sh 2>&1 | tee ../artifacts/test-output-${{ inputs.test-type }}.txt
+        TEST_EXIT_CODE=${PIPESTATUS[0]}
+        set -e
+        echo "::endgroup::"
+
+        if [ $TEST_EXIT_CODE -ne 0 ]; then
+          echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
+          echo "failed" > ../artifacts/test-status-${{ inputs.test-type }}.txt
+          echo "conclusion=failure" >> $GITHUB_OUTPUT
+        else
+          echo "✓ Tests passed"
+          echo "success" > ../artifacts/test-status-${{ inputs.test-type }}.txt
+          echo "conclusion=success" >> $GITHUB_OUTPUT
+        fi
+        echo "SO_FAR_OK=1" >> $GITHUB_ENV
