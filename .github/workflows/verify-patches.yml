@@ -71,7 +71,7 @@ jobs:
       - name: Load patches configuration
         # determine if there is a patch for the current package
         # outputs:
-        #   has_patch (true if there is a patch for the current package)
+        #   has_patch (true if the current package's sources are patched)
         #   original_repository_url
         #   original_repository_branch (currently always empty as default branch is used)
         #   patched_repository_url (equal to original_repository_url if not patched, otherwise the patch URL)
@@ -116,6 +116,19 @@ jobs:
           package-path: package-repo
           extras: ${{ env.EXTRAS }}
           python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Dump original requirements
+        if: env.SO_FAR_OK == '1' && ( steps.load-patches.outputs.has_patch == 'false' )
+        uses: ./.github/actions/dump-requirements
+        with:
+          package-path: package-repo
+          requirement-type: original
+
+      - name: Dump requirements of original package with sources patched
+        if: env.SO_FAR_OK == '1' && ( steps.load-patches.outputs.has_patch == 'true' )
+        uses: ./.github/actions/dump-requirements
+        with:
+          package-path: package-repo
           requirement-type: patched
 
       - name: Apply patches if applicable
@@ -140,6 +153,13 @@ jobs:
             echo "ℹ️  No applicable patches found for this package"
             echo "reason=no-patch-packages-installed" >> $GITHUB_OUTPUT
           fi
+
+      - name: Dump requirements for package with patched dependencies
+        if: env.SO_FAR_OK == '1' && ( steps.check-patch.outputs.applies == 'true' )
+        uses: ./.github/actions/dump-requirements
+        with:
+          package-path: package-repo
+          requirement-type: patched-dependencies
 
       #     - name: Run tests without patches
       #       id: test-without-patch
