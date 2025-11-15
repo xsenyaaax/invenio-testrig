@@ -1,0 +1,10 @@
+{
+    "repositories": [
+        {
+            "base_url": "https://github.com/inveniosoftware",
+            "branch": "",
+            "package-regex": "^invenio-",
+            "exclude-package-regex": ""
+        }
+    ]
+}
