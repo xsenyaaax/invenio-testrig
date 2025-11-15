@@ -309,8 +309,8 @@ jobs:
             "package": "${{ matrix.package }}",
             "has_patch": ${{ steps.load-patches.outputs.has_patch }},
             "patch_applies": $APPLIES,
-            "ORIGINAL_TESTS_OUTCOME": "$ORIGINAL_TESTS_OUTCOME",
-            "PATCHED_TESTS_OUTCOME": "$PATCHED_TESTS_OUTCOME",
+            "original_tests_outcome": "$ORIGINAL_TESTS_OUTCOME",
+            "patched_tests_outcome": "$PATCHED_TESTS_OUTCOME",
             "result": "${{ steps.compare.outputs.result }}",
             "result_icon": "${{ steps.compare.outputs.result_icon }}",
             "result_text": "${{ steps.compare.outputs.result_text }}",
@@ -398,17 +398,17 @@ jobs:
                   *) NO_CHANGE=$((NO_CHANGE + 1)) ;;
                 esac
 
-                BEFORE=$(jq -r '.ORIGINAL_TESTS_OUTCOME' "$dir/result-summary.json")
-                AFTER=$(jq -r '.PATCHED_TESTS_OUTCOME' "$dir/result-summary.json")
-                [ "$BEFORE" = "success" ] && SUCCESS_BEFORE=$((SUCCESS_BEFORE + 1))
-                [ "$BEFORE" = "failed" ] && FAILED_BEFORE=$((FAILED_BEFORE + 1))
-                [ "$AFTER" = "success" ] && SUCCESS_AFTER=$((SUCCESS_AFTER + 1))
-                [ "$AFTER" = "failed" ] && FAILED_AFTER=$((FAILED_AFTER + 1))
+                ORIGINAL_TESTS_OUTCOME=$(jq -r '.original_tests_outcome' "$dir/result-summary.json")
+                PATCHED_TESTS_OUTCOME=$(jq -r '.patched_tests_outcome' "$dir/result-summary.json")
+                [ "$ORIGINAL_TESTS_OUTCOME" = "success" ] && SUCCESS_BEFORE=$((SUCCESS_BEFORE + 1))
+                [ "$ORIGINAL_TESTS_OUTCOME" = "failed" ] && FAILED_BEFORE=$((FAILED_BEFORE + 1))
+                [ "$PATCHED_TESTS_OUTCOME" = "success" ] && SUCCESS_AFTER=$((SUCCESS_AFTER + 1))
+                [ "$PATCHED_TESTS_OUTCOME" = "failed" ] && FAILED_AFTER=$((FAILED_AFTER + 1))
               else
                 UNPATCHED=$((UNPATCHED + 1))
-                BEFORE=$(jq -r '.ORIGINAL_TESTS_OUTCOME' "$dir/result-summary.json")
-                [ "$BEFORE" = "success" ] && SUCCESS_BEFORE=$((SUCCESS_BEFORE + 1))
-                [ "$BEFORE" = "failed" ] && FAILED_BEFORE=$((FAILED_BEFORE + 1))
+                ORIGINAL_TESTS_OUTCOME=$(jq -r '.original_tests_outcome' "$dir/result-summary.json")
+                [ "$ORIGINAL_TESTS_OUTCOME" = "success" ] && SUCCESS_BEFORE=$((SUCCESS_BEFORE + 1))
+                [ "$ORIGINAL_TESTS_OUTCOME" = "failed" ] && FAILED_BEFORE=$((FAILED_BEFORE + 1))
               fi
             fi
           done
@@ -465,36 +465,36 @@ jobs:
               if [ "$HAS_PATCH" = "true" ]; then
                 PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
                 PATCHED_PKGS=$(jq -r '.patched_packages' "$dir/result-summary.json" | tr '\n' ' ')
-                BEFORE=$(jq -r '.ORIGINAL_TESTS_OUTCOME' "$dir/result-summary.json")
-                AFTER=$(jq -r '.PATCHED_TESTS_OUTCOME' "$dir/result-summary.json")
+                ORIGINAL_TESTS_OUTCOME=$(jq -r '.original_tests_outcome' "$dir/result-summary.json")
+                PATCHED_TESTS_OUTCOME=$(jq -r '.patched_tests_outcome' "$dir/result-summary.json")
                 RESULT_ICON=$(jq -r '.result_icon' "$dir/result-summary.json")
                 RESULT_TEXT=$(jq -r '.result_text' "$dir/result-summary.json")
 
                 # Create package directory and copy test outputs
                 mkdir -p "${REPORT_DIR}/$PACKAGE"
-                if [ -f "$dir/test-output-before.txt" ]; then
-                  cp "$dir/test-output-before.txt" "${REPORT_DIR}/$PACKAGE/"
+                if [ -f "$dir/test-output-original.txt" ]; then
+                  cp "$dir/test-output-original.txt" "${REPORT_DIR}/$PACKAGE/"
                 fi
-                if [ -f "$dir/test-output-after.txt" ]; then
-                  cp "$dir/test-output-after.txt" "${REPORT_DIR}/$PACKAGE/"
+                if [ -f "$dir/test-output-patched.txt" ]; then
+                  cp "$dir/test-output-patched.txt" "${REPORT_DIR}/$PACKAGE/"
                 fi
                 if [ -f "$dir/test-diff.txt" ]; then
                   cp "$dir/test-diff.txt" "${REPORT_DIR}/$PACKAGE/"
                 fi
 
                 # Format status
-                case $BEFORE in
-                  success) ORIGINAL_TESTS_OUTCOME="✅ Pass" ;;
-                  failed) ORIGINAL_TESTS_OUTCOME="❌ Fail" ;;
-                  skipped) ORIGINAL_TESTS_OUTCOME="⏭️  Skip" ;;
-                  *) ORIGINAL_TESTS_OUTCOME="❓ Unknown" ;;
+                case $ORIGINAL_TESTS_OUTCOME in
+                  success) ORIGINAL_STATUS="✅ Pass" ;;
+                  failed) ORIGINAL_STATUS="❌ Fail" ;;
+                  skipped) ORIGINAL_STATUS="⏭️  Skip" ;;
+                  *) ORIGINAL_STATUS="❓ Unknown" ;;
                 esac
 
-                case $AFTER in
-                  success) PATCHED_TESTS_OUTCOME="✅ Pass" ;;
-                  failed) PATCHED_TESTS_OUTCOME="❌ Fail" ;;
-                  skipped) PATCHED_TESTS_OUTCOME="⏭️  Skip" ;;
-                  *) PATCHED_TESTS_OUTCOME="❓ Unknown" ;;
+                case $PATCHED_TESTS_OUTCOME in
+                  success) PATCHED_STATUS="✅ Pass" ;;
+                  failed) PATCHED_STATUS="❌ Fail" ;;
+                  skipped) PATCHED_STATUS="⏭️  Skip" ;;
+                  *) PATCHED_STATUS="❓ Unknown" ;;
                 esac
 
                 # Use result_icon and result_text from artifacts
@@ -506,12 +506,12 @@ jobs:
 
                 # Create links for test outputs
                 LINKS=""
-                if [ -f "${REPORT_DIR}/$PACKAGE/test-output-before.txt" ]; then
-                  LINKS="$LINKS [before]($PACKAGE/test-output-before.txt)"
+                if [ -f "${REPORT_DIR}/$PACKAGE/test-output-original.txt" ]; then
+                  LINKS="$LINKS [original]($PACKAGE/test-output-original.txt)"
                 fi
-                if [ -f "${REPORT_DIR}/$PACKAGE/test-output-after.txt" ]; then
+                if [ -f "${REPORT_DIR}/$PACKAGE/test-output-patched.txt" ]; then
                   [ -n "$LINKS" ] && LINKS="$LINKS "
-                  LINKS="$LINKS [after]($PACKAGE/test-output-after.txt)"
+                  LINKS="$LINKS [patched]($PACKAGE/test-output-patched.txt)"
                 fi
                 if [ -f "${REPORT_DIR}/$PACKAGE/test-diff.txt" ]; then
                   [ -n "$LINKS" ] && LINKS="$LINKS "
@@ -524,7 +524,7 @@ jobs:
                   PACKAGE_DISPLAY="\`$PACKAGE\`"
                 fi
 
-                echo "| $PACKAGE_DISPLAY | $PATCHED_PKGS | $ORIGINAL_TESTS_OUTCOME | $PATCHED_TESTS_OUTCOME | $RESULT_STATUS |" >> ${REPORT_DIR}/README.md
+                echo "| $PACKAGE_DISPLAY | $PATCHED_PKGS | $ORIGINAL_STATUS | $PATCHED_STATUS | $RESULT_STATUS |" >> ${REPORT_DIR}/README.md
               fi
             fi
           done
@@ -542,15 +542,15 @@ jobs:
               HAS_PATCH=$(jq -r '.has_patch' "$dir/result-summary.json")
               if [ "$APPLIES" != "true" ] && [ "$HAS_PATCH" != "true" ]; then
                 PACKAGE=$(jq -r '.package' "$dir/result-summary.json")
-                BEFORE=$(jq -r '.ORIGINAL_TESTS_OUTCOME' "$dir/result-summary.json")
+                ORIGINAL_TESTS_OUTCOME=$(jq -r '.original_tests_outcome' "$dir/result-summary.json")
 
                 # Create package directory and copy test output
                 mkdir -p "${REPORT_DIR}/$PACKAGE"
-                if [ -f "$dir/test-output-before.txt" ]; then
-                  cp "$dir/test-output-before.txt" "${REPORT_DIR}/$PACKAGE/"
+                if [ -f "$dir/test-output-original.txt" ]; then
+                  cp "$dir/test-output-original.txt" "${REPORT_DIR}/$PACKAGE/"
                 fi
 
-                case $BEFORE in
+                case $ORIGINAL_TESTS_OUTCOME in
                   success) STATUS="✅ Success" ;;
                   failed) STATUS="❌ Failed" ;;
                   skipped) STATUS="⏭️  Skipped" ;;
@@ -558,8 +558,8 @@ jobs:
                 esac
 
                 # Create link for test output if it exists
-                if [ -f "${REPORT_DIR}/$PACKAGE/test-output-before.txt" ]; then
-                  PACKAGE_DISPLAY="\`$PACKAGE\` <br/> [output]($PACKAGE/test-output-before.txt)"
+                if [ -f "${REPORT_DIR}/$PACKAGE/test-output-original.txt" ]; then
+                  PACKAGE_DISPLAY="\`$PACKAGE\` <br/> [output]($PACKAGE/test-output-original.txt)"
                 else
                   PACKAGE_DISPLAY="\`$PACKAGE\`"
                 fi

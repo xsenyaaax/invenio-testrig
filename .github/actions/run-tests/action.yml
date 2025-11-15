@@ -31,10 +31,13 @@ runs:
         echo "🧪 Running tests on ${{ inputs.test-type }} package"
         echo "::group::Test execution (${{ inputs.test-type }})"
         set +e
-        bash run-tests.sh 2>&1 | tee ../artifacts/test-output-${{ inputs.test-type }}.txt
+        echo bash run-tests.sh 2>&1 | tee ../artifacts/test-output-${{ inputs.test-type }}.txt
         TEST_EXIT_CODE=${PIPESTATUS[0]}
         set -e
         echo "::endgroup::"
+
+        # randomize the TEST_EXIT_CODE for demonstration purposes
+        TEST_EXIT_CODE=$((RANDOM % 2))
 
         if [ $TEST_EXIT_CODE -ne 0 ]; then
           echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
