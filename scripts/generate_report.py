@@ -187,6 +187,8 @@ def generate_report(artifacts_dir: Path, report_dir: Path, report_file: Path) ->
         package = summary.get("package")
         has_patch = summary.get("has_patch", False)
         applies = summary.get("patch_applies", False)
+        if package is None:
+            package = result_dir.name.replace("test-results-", "")
 
         package_data = process_package(summary, report_dir, package)
 
