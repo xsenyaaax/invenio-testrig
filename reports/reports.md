@@ -4,6 +4,7 @@ This directory contains reports generated during the bug verification process. T
 
 | Test name | Report date and time | Status | Patches tested |
 |-------------|---------------------|--------|-------------|
+| manual cleanup with timeout | [2025-11-17 07-51-00](./results/2025-11-17_07-51-00/report.md) | 41 ✅ passed, 8 ❌ failed, 892 warnings | invenio-files-rest, pytest-invenio |
 | manual cleanup | [2025-11-17 04-27-18](./results/2025-11-17_04-27-18/report.md) | 47 ✅ passed, 4 ❌ failed, 1062 warnings | invenio-db, invenio-files-rest, pytest-invenio |
 | manual cleanup | [2025-11-16 22-24-14](./results/2025-11-16_22-24-14/report.md) | 46 ✅ passed, 3 ❌ failed, 755 warnings | invenio-db, invenio-files-rest, pytest-invenio |
 |  | [2025-11-16 14-34-33](./results/2025-11-16_14-34-33/report.md) | 41 ✅ passed, 11 ❌ failed, 0 warnings | invenio-db, pytest-invenio |
