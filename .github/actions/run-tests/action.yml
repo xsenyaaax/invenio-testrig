@@ -11,9 +11,13 @@ inputs:
     description: 'Type of test run (original or patched)'
     required: true
   timeout:
-    description: 'Timeout in seconds for test execution (0 = no timeout)'
+    description: 'Timeout in minutes for test execution (0 = no timeout)'
     required: false
-    default: '3600'
+    default: '90'
+  stall-timeout:
+    description: 'Stall timeout in minutes - kill if no output changes (0 = disabled)'
+    required: false
+    default: '5'
   verbose-pytest:
     description: 'Run pytest with verbose output (-vv -s)'
     required: false
@@ -37,7 +41,10 @@ runs:
         mkdir -p ../artifacts
 
         TIMEOUT=${{ inputs.timeout }}
+        STALL_TIMEOUT=${{ inputs.stall-timeout }}
         TIMEOUT_TRIGGERED=0
+        STALL_TRIGGERED=0
+        OUTPUT_FILE="../artifacts/test-output-${{ inputs.test-type }}.txt"
 
         # Modify run-tests.sh for verbose pytest if requested
         if [ "${{ inputs.verbose-pytest }}" = "true" ]; then
@@ -47,12 +54,50 @@ runs:
           fi
         fi
 
+        # Start stall detection watchdog in background if enabled
+        if [ "$STALL_TIMEOUT" -gt 0 ]; then
+          (
+            STALL_CHECK_INTERVAL=$((STALL_TIMEOUT * 60))
+            PREVIOUS_MD5=""
+            
+            while true; do
+              sleep "$STALL_CHECK_INTERVAL"
+              
+              # Check if output file exists
+              if [ ! -f "$OUTPUT_FILE" ]; then
+                continue
+              fi
+              
+              # Calculate current MD5 of output file
+              CURRENT_MD5=$(md5sum "$OUTPUT_FILE" 2>/dev/null | cut -d' ' -f1)
+              
+              # If we have a previous MD5 and it hasn't changed, tests are stalled
+              if [ -n "$PREVIOUS_MD5" ] && [ "$CURRENT_MD5" = "$PREVIOUS_MD5" ]; then
+                echo ""
+                echo "🔴 Test output has not changed in the last ${STALL_TIMEOUT} minutes"
+                echo "🔴 Tests appear to be stalled - terminating..."
+                # Kill all python processes
+                killall -9 python || true
+                killall -9 python3 || true
+                # Create a marker file to indicate stall
+                touch ../artifacts/stall-triggered-${{ inputs.test-type }}.marker
+                break
+              fi
+              
+              PREVIOUS_MD5="$CURRENT_MD5"
+            done
+          ) &
+          STALL_WATCHDOG_PID=$!
+          echo "Started stall watchdog (PID: $STALL_WATCHDOG_PID) with ${STALL_TIMEOUT}m check interval"
+        fi
+
         # Start timeout watchdog in background if timeout is set
         if [ "$TIMEOUT" -gt 0 ]; then
           (
-            sleep "$TIMEOUT"
+            TIMEOUT_SECONDS=$((TIMEOUT * 60))
+            sleep "$TIMEOUT_SECONDS"
             echo ""
-            echo "⏱️  Test execution exceeded timeout of ${TIMEOUT} seconds"
+            echo "⏱️  Test execution exceeded timeout of ${TIMEOUT} minutes"
             echo "🔴 Killing all Python processes..."
             # Kill all python processes
             killall -9 python || true
@@ -61,18 +106,26 @@ runs:
             touch ../artifacts/timeout-triggered-${{ inputs.test-type }}.marker
           ) &
           WATCHDOG_PID=$!
-          echo "Started timeout watchdog (PID: $WATCHDOG_PID) with ${TIMEOUT}s timeout"
+          echo "Started timeout watchdog (PID: $WATCHDOG_PID) with ${TIMEOUT}m timeout"
         fi
 
         echo "🧪 Running tests on ${{ inputs.test-type }} package"
         echo "::group::Test execution (${{ inputs.test-type }})"
         set +e
-        bash run-tests.sh 2>&1 | tee ../artifacts/test-output-${{ inputs.test-type }}.txt
+        bash run-tests.sh 2>&1 | tee "$OUTPUT_FILE"
         TEST_EXIT_CODE=${PIPESTATUS[0]}
         set -e
         echo "::endgroup::"
 
-        # Kill the watchdog if it's still running
+        # Kill the stall watchdog if it's still running
+        if [ "$STALL_TIMEOUT" -gt 0 ] && [ -n "$STALL_WATCHDOG_PID" ]; then
+          if kill -0 "$STALL_WATCHDOG_PID" 2>/dev/null; then
+            kill "$STALL_WATCHDOG_PID" 2>/dev/null || true
+            echo "✓ Stopped stall watchdog"
+          fi
+        fi
+
+        # Kill the timeout watchdog if it's still running
         if [ "$TIMEOUT" -gt 0 ] && [ -n "$WATCHDOG_PID" ]; then
           if kill -0 "$WATCHDOG_PID" 2>/dev/null; then
             kill "$WATCHDOG_PID" 2>/dev/null || true
@@ -80,19 +133,34 @@ runs:
           fi
         fi
 
+        # Check if stall was triggered
+        if [ -f ../artifacts/stall-triggered-${{ inputs.test-type }}.marker ]; then
+          STALL_TRIGGERED=1
+          rm ../artifacts/stall-triggered-${{ inputs.test-type }}.marker
+          echo "" >> "$OUTPUT_FILE"
+          echo "========================================" >> "$OUTPUT_FILE"
+          echo "🔴 STALL DETECTED: Test output has not changed in ${STALL_TIMEOUT} minutes" >> "$OUTPUT_FILE"
+          echo "🔴 Tests appear to be stuck or deadlocked" >> "$OUTPUT_FILE"
+          echo "🔴 All Python processes were terminated" >> "$OUTPUT_FILE"
+          echo "========================================" >> "$OUTPUT_FILE"
+        fi
+
         # Check if timeout was triggered
         if [ -f ../artifacts/timeout-triggered-${{ inputs.test-type }}.marker ]; then
           TIMEOUT_TRIGGERED=1
-          echo "" >> ../artifacts/test-output-${{ inputs.test-type }}.txt
-          echo "========================================" >> ../artifacts/test-output-${{ inputs.test-type }}.txt
-          echo "⏱️  TIMEOUT: Test execution exceeded ${TIMEOUT} seconds" >> ../artifacts/test-output-${{ inputs.test-type }}.txt
-          echo "🔴 All Python processes were terminated" >> ../artifacts/test-output-${{ inputs.test-type }}.txt
-          echo "========================================" >> ../artifacts/test-output-${{ inputs.test-type }}.txt
+          rm ../artifacts/timeout-triggered-${{ inputs.test-type }}.marker
+          echo "" >> "$OUTPUT_FILE"
+          echo "========================================" >> "$OUTPUT_FILE"
+          echo "⏱️  TIMEOUT: Test execution exceeded ${TIMEOUT} minutes" >> "$OUTPUT_FILE"
+          echo "🔴 All Python processes were terminated" >> "$OUTPUT_FILE"
+          echo "========================================" >> "$OUTPUT_FILE"
         fi
 
-        if [ $TEST_EXIT_CODE -ne 0 ] || [ $TIMEOUT_TRIGGERED -eq 1 ]; then
-          if [ $TIMEOUT_TRIGGERED -eq 1 ]; then
-            echo "❌ Tests failed due to timeout (${TIMEOUT}s)"
+        if [ $TEST_EXIT_CODE -ne 0 ] || [ $TIMEOUT_TRIGGERED -eq 1 ] || [ $STALL_TRIGGERED -eq 1 ]; then
+          if [ $STALL_TRIGGERED -eq 1 ]; then
+            echo "❌ Tests failed due to stall (no output change in ${STALL_TIMEOUT}m)"
+          elif [ $TIMEOUT_TRIGGERED -eq 1 ]; then
+            echo "❌ Tests failed due to timeout (${TIMEOUT}m)"
           else
             echo "❌ Tests failed (exit code: $TEST_EXIT_CODE)"
           fi

@@ -18,10 +18,10 @@ on:
         type: boolean
         default: true
       test_timeout:
-        description: "Timeout in seconds for each test run (0 = no timeout)"
+        description: "Timeout in minutes for each test run (0 = no timeout)"
         required: false
         type: number
-        default: 3600
+        default: 90
       verbose_pytest:
         description: "Run pytest with verbose output (-vv -s)"
         required: false
