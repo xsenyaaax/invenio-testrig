@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import json5
 from jinja2 import Environment, FileSystemLoader
 
 
@@ -167,14 +168,15 @@ def calculate_statistics(artifacts_dir: Path) -> dict[str, int]:
     return stats
 
 
-def load_configured_patches(patches_json_path: Path) -> list[dict[str, str]]:
-    """Load configured patches from patches.json."""
-    if not patches_json_path.exists():
+def load_configured_patches(config_path: Path) -> list[dict[str, str]]:
+    """Load configured patches from config.json5."""
+    if not config_path.exists():
         return []
 
     try:
-        with patches_json_path.open("r") as f:
-            patches_data = json.load(f)
+        with config_path.open("r") as f:
+            config = json5.load(f)
+        patches_data = config.get("patches", {})
 
         configured_patches = []
         for package, info in patches_data.items():
@@ -198,7 +200,7 @@ def load_configured_patches(patches_json_path: Path) -> list[dict[str, str]]:
 
         return configured_patches
     except Exception as e:
-        print(f"Warning: Could not read patches.json: {e}", file=sys.stderr)
+        print(f"Warning: Could not read config.json5: {e}", file=sys.stderr)
         return []
 
 
@@ -247,9 +249,9 @@ def generate_report(
     if warnings_file.exists():
         warnings_content = warnings_file.read_text()
 
-    # Load configured patches from patches.json
-    patches_json_path = Path(__file__).parent.parent / "patches.json"
-    configured_patches = load_configured_patches(patches_json_path)
+    # Load configured patches from config.json5
+    config_path = Path(__file__).parent.parent / "config.json5"
+    configured_patches = load_configured_patches(config_path)
 
     # Setup Jinja2 environment
     template_dir = Path(__file__).parent / "templates"

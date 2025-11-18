@@ -22,19 +22,7 @@ echo "Report status: $REPORT_STATUS"
 git config user.name "github-actions[bot]" > /dev/null 2>&1
 git config user.email "github-actions[bot]@users.noreply.github.com" > /dev/null 2>&1
 
-# Setup virtual environment for report generation
-setup_venv() {
-  if [ ! -d ".report-venv" ]; then
-    echo "Creating virtual environment for report generation..."
-    uv venv .report-venv
-    echo "Installing jinja2..."
-    uv pip install --python .report-venv/bin/python jinja2
-  fi
-}
-
-# Setup venv once at the beginning
-setup_venv
-PYTHON_CMD=".report-venv/bin/python"
+PYTHON_CMD=".tools-venv/bin/python"
 
 # Function to copy file only if MD5 differs
 copy_if_changed() {
@@ -127,7 +115,7 @@ generate_report() {
   STATUS="${TOTAL_PASSED} ✅ passed, ${TOTAL_FAILED} ❌ failed, ${TOTAL_WARNINGS} warnings"
   
   # Update reports index
-  $PYTHON_CMD scripts/add_summary_line.py reports/reports.md patches.json "$TEST_NAME" "$REPORT_TIMESTAMP" "$STATUS"
+  $PYTHON_CMD scripts/add_summary_line.py reports/reports.md config.json5 "$TEST_NAME" "$REPORT_TIMESTAMP" "$STATUS"
   echo "Updated reports index:"
   cat reports/reports.md
 }

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Apply patches to packages installed in a virtual environment.
+Apply patches from config.json5 to packages in a virtual environment.
 
-Usage: apply_patches.py <package_name> <venv_path> <patches.json> <variables.sh>
+Usage: apply_patches.py <package_name> <venv_path> <config.json5> <variables.sh>
 
-Checks which packages from patches.json are installed in the virtual environment,
+Checks which packages from config (patches key) are installed in the virtual environment,
 installs patched versions (excluding the package being tested), and outputs results to variables.sh.
 """
 
@@ -12,6 +12,8 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+
+import json5
 
 
 def get_venv_python(venv_path: Path) -> Path:
@@ -35,13 +37,14 @@ def list_installed_packages(venv_python: Path) -> set[str]:
 
 
 def apply_patches(
-    current_package: str, venv_path: Path, patches_path: Path, output_path: Path
+    current_package: str, venv_path: Path, config_path: Path, output_path: Path
 ) -> None:
     """Apply patches to installed packages and write results to variables.sh."""
 
-    # Load patches configuration
-    with patches_path.open("r") as f:
-        patches = json.load(f)
+    # Load config and get patches
+    with config_path.open("r") as f:
+        config = json5.load(f)
+    patches = config.get("patches", {})
 
     # Get Python executable and installed packages
     venv_python = get_venv_python(venv_path)
@@ -112,18 +115,18 @@ def apply_patches(
 if __name__ == "__main__":
     if len(sys.argv) != 5:
         print(
-            "Usage: apply_patches.py <package_name> <venv_path> <patches.json> <variables.sh>",
+            "Usage: apply_patches.py <package_name> <venv_path> <config.json5> <variables.sh>",
             file=sys.stderr,
         )
         sys.exit(1)
 
-    current_package = sys.argv[1]
+    package_name = sys.argv[1]
     venv_path = Path(sys.argv[2])
-    patches_path = Path(sys.argv[3])
+    config_path = Path(sys.argv[3])
     output_path = Path(sys.argv[4])
 
     try:
-        apply_patches(current_package, venv_path, patches_path, output_path)
+        apply_patches(package_name, venv_path, config_path, output_path)
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)

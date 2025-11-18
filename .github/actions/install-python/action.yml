@@ -20,3 +20,12 @@ runs:
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
         echo "::endgroup::"
         echo "✓ uv installed successfully"
+
+    - name: Create tools virtualenv
+      shell: bash
+      run: |
+        echo "::group::Creating tools virtualenv"
+        uv venv .tools-venv
+        uv pip install --python .tools-venv/bin/python jinja2 json5
+        echo "::endgroup::"
+        echo "✓ Tools virtualenv created with jinja2 and json5"

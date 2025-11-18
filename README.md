@@ -18,22 +18,32 @@ This repository provides tools for verifying bugfixes in Invenio-based applicati
    git switch -c my-bugfix-verification
    ```
 
-3. Edit the `patches.json` file to specify your patches:
+3. Edit the `config.json5` file to specify your patches:
 
     ```json
     {
-         "invenio-db": {
-            "url": "https://github.com/oarepo/invenio-db.git",
-            "branch": "fix-uow"
+         "repositories": [
+            {
+                "base_url": "https://github.com/inveniosoftware",
+                "branch": "",
+                "package-regexes": ["invenio-.*"],
+                "exclude-package-regexes": ["invenio-xrootd", "invenio-swh"]
+            }
+         ],
+         "patches": {
+             "invenio-db": {
+                "url": "https://github.com/oarepo/invenio-db.git",
+                "branch": "fix-uow"
+             }
          }
     }
     ```
 
-4. Optionally, adjust the `config.json` file to change global parameters.
+    The `patches` section contains the patches to apply. The `repositories` section specifies where to find the original packages.
 
-5. Commit and push your changes to your fork.
+4. Commit and push your changes to your fork.
 
-6. Go to the Actions tab and start the workflow manually:
+5. Go to the Actions tab and start the workflow manually:
 
    - Click on the "Verify Invenio Patches" workflow.
    - Click "Run workflow".
@@ -58,12 +68,12 @@ The CI pipeline performs the following steps:
 
 2. **Test each package** (runs in parallel as a matrix build):
    a. **Clone the package**:
-      - If the package is listed in `patches.json`, clone the specified repository and branch.
-      - Otherwise, clone the package from `github.com/inveniosoftware`.
+      - If the package is listed in the `patches` section of `config.json5`, clone the specified repository and branch.
+      - Otherwise, clone the package from the repository specified in the `repositories` section.
    b. **Set up environment**: Create a virtual environment using `uv --seed`.
-   c. **Apply patches**: For each module listed in `patches.json` that is installed in the virtual environment, install the patched version. If no patches apply, skip to step e.
+   c. **Apply patches**: For each module listed in the `patches` section of `config.json5` that is installed in the virtual environment, install the patched version. If no patches apply, skip to step e.
    d. **Run tests with patches**: Execute the test suite using the `run-tests.sh` script.
-   e. **Run original tests (if needed)**: If the patched tests fail and "Run original tests" is enabled, clone the original package from `inveniosoftware` and run its tests.
+   e. **Run original tests (if needed)**: If the patched tests fail and "Run original tests" is enabled, clone the original package from the configured repository and run its tests.
    f. **Compare results**: Compare test results before and after applying patches. Store test outputs and diffs as artifacts.
 
 3. **Generate report**: Create a summary report of all tested packages, indicating which patches fixed issues, which introduced regressions, and which had no effect.
