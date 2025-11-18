@@ -29,3 +29,8 @@ runs:
         uv pip install --python .tools-venv/bin/python jinja2 json5
         echo "::endgroup::"
         echo "✓ Tools virtualenv created with jinja2 and json5"
+        
+        # Set environment variable for tools Python
+        TOOLS_PYTHON="$(pwd)/.tools-venv/bin/python"
+        echo "TOOLS_PYTHON=$TOOLS_PYTHON" >> $GITHUB_ENV
+        echo "Tools Python available at: $TOOLS_PYTHON"

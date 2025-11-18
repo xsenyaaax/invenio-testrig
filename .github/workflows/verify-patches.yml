@@ -188,7 +188,7 @@ jobs:
             opts+=("--filter-packages" ${{ inputs.packages }})
           fi
 
-          .tools-venv/bin/python scripts/extract_packages_to_test.py zenodo-rdm/uv.lock config.json5 packages.sh ${opts[@]}
+          $TOOLS_PYTHON scripts/extract_packages_to_test.py zenodo-rdm/uv.lock config.json5 packages.sh ${opts[@]}
 
           # Source the output variables
           source packages.sh
@@ -237,7 +237,7 @@ jobs:
         run: |
 
           # Use lookup_package.py to get repository information
-          eval $(.tools-venv/bin/python scripts/lookup_package.py config.json5 ${{ matrix.package }})
+          eval $($TOOLS_PYTHON scripts/lookup_package.py config.json5 ${{ matrix.package }})
 
           # Set outputs
           echo "original_repository_url=$original_repository_url" >> $GITHUB_OUTPUT
@@ -295,7 +295,7 @@ jobs:
         run: |
 
           # Use apply_patches.py to check and apply patches
-          .tools-venv/bin/python scripts/apply_patches.py ${{ matrix.package }} package-repo/.venv config.json5 patch-variables.sh
+          $TOOLS_PYTHON scripts/apply_patches.py ${{ matrix.package }} package-repo/.venv config.json5 patch-variables.sh
 
           # Source the output variables
           source patch-variables.sh
@@ -461,12 +461,12 @@ jobs:
         run: |
           # Extract warnings from original test log if it exists
           if [ -f artifacts/test-output-original.txt ]; then
-            .tools-venv/bin/python scripts/extract_warnings.py artifacts/test-output-original.txt original artifacts/result-summary.json artifacts/warnings-original.md
+            $TOOLS_PYTHON scripts/extract_warnings.py artifacts/test-output-original.txt original artifacts/result-summary.json artifacts/warnings-original.md
           fi
 
           # Extract warnings from patched test log if it exists
           if [ -f artifacts/test-output-patched.txt ]; then
-            .tools-venv/bin/python scripts/extract_warnings.py artifacts/test-output-patched.txt patched artifacts/result-summary.json artifacts/warnings-patched.md
+            $TOOLS_PYTHON scripts/extract_warnings.py artifacts/test-output-patched.txt patched artifacts/result-summary.json artifacts/warnings-patched.md
           fi
 
       - name: Upload test artifacts

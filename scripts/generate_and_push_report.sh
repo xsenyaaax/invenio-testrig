@@ -22,7 +22,14 @@ echo "Report status: $REPORT_STATUS"
 git config user.name "github-actions[bot]" > /dev/null 2>&1
 git config user.email "github-actions[bot]@users.noreply.github.com" > /dev/null 2>&1
 
-PYTHON_CMD=".tools-venv/bin/python"
+# Use TOOLS_PYTHON environment variable set by install-python action
+if [ -z "$TOOLS_PYTHON" ]; then
+  echo "Error: TOOLS_PYTHON environment variable is not set"
+  exit 1
+fi
+
+PYTHON_CMD="$TOOLS_PYTHON"
+echo "Using Python: $PYTHON_CMD"
 
 # Function to copy file only if MD5 differs
 copy_if_changed() {
