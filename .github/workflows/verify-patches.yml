@@ -77,6 +77,26 @@ jobs:
           git commit -m "[skip ci] Create report directory ${{ steps.create-dir.outputs.report_dir }}"
           git push
 
+      - name: Create report artifact metadata
+        run: |
+          mkdir -p artifacts/
+          echo "{\"report_directory\": \"${{ steps.create-dir.outputs.report_dir }}\"}" > artifacts/report.json
+
+      - name: Upload report artifact metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: create-report-directory
+          path: artifacts/
+          retention-days: 1
+
+      - name: Generate initial report
+        uses: ./.github/actions/generate-report
+        with:
+          report-dir: ${{ steps.create-dir.outputs.report_dir }}
+          report-file: ${{ steps.create-dir.outputs.report_file }}
+          report-timestamp: ${{ steps.create-dir.outputs.report_timestamp }}
+          test-name: ${{ inputs.test_name }}
+
   extract-tested-packages:
     name: Extract Invenio Packages
     runs-on: ubuntu-latest
