@@ -1,13 +1,13 @@
 # Invenio Bugfix Verification Results
 
-_Last updated: 2025-11-18 18:33:55 UTC_
+_Last updated: 2025-11-18 18:33:59 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 23 |
-| **Patched Packages** | 23 |
+| **Total Packages** | 24 |
+| **Patched Packages** | 24 |
 | **Unpatched Packages** | 0 |
 
 ### Patch Results
@@ -16,7 +16,7 @@ _Last updated: 2025-11-18 18:33:55 UTC_
 | ✅ Fixed | 0 |
 | ❌ Regressions | 0 |
 | ⚠️  Still Failing | 1 |
-| ℹ️  No Change | 22 |
+| ℹ️  No Change | 23 |
 
 ## 🔧 Configured Patches
 
@@ -48,6 +48,7 @@ _Last updated: 2025-11-18 18:33:55 UTC_
 | `invenio-assets` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-assets/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-assets/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-assets/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
 | `invenio-celery` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-celery/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-celery/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-celery/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
 | `invenio-pidstore` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-pidstore/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-pidstore/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-pidstore/test-report-patched.xml)<br>[warnings](packages/invenio-pidstore/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
+| `invenio-indexer` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-indexer/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-indexer/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-indexer/test-report-patched.xml)<br>[warnings](packages/invenio-indexer/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-drafts-resources` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-drafts-resources/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-drafts-resources/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-drafts-resources/test-report-patched.xml)<br>[warnings](packages/invenio-drafts-resources/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-access` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-access/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-access/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-access/test-report-patched.xml)<br>[warnings](packages/invenio-access/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-collections` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-collections/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-collections/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-collections/test-report-patched.xml)<br>[warnings](packages/invenio-collections/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
@@ -66,7 +67,7 @@ _Last updated: 2025-11-18 18:33:55 UTC_
 
 ### Patched
 
-#### Warning 1 - 67 occurrences
+#### Warning 1 - 69 occurrences
 
 DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
 
@@ -82,10 +83,11 @@ DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for r
 | `invenio-access` | 3 |
 | `invenio-administration` | 3 |
 | `invenio-previewer` | 3 |
+| `invenio-indexer` | 2 |
 | `invenio-pidstore` | 2 |
 | `invenio-formatter` | 1 |
 
-#### Warning 2 - 16 occurrences
+#### Warning 2 - 18 occurrences
 
 DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
 
@@ -96,6 +98,7 @@ DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor
 | `invenio-audit-logs` | 2 |
 | `invenio-banners` | 2 |
 | `invenio-drafts-resources` | 2 |
+| `invenio-indexer` | 2 |
 | `invenio-jobs` | 2 |
 | `invenio-previewer` | 2 |
 | `invenio-jsonschemas` | 1 |
@@ -182,7 +185,22 @@ DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; us
 |---------|-------|
 | `invenio-mail` | 8 |
 
-#### Warning 9 - 7 occurrences
+#### Warning 9 - 8 occurrences
+
+DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+
+| Package | Count |
+|---------|-------|
+| `invenio-administration` | 1 |
+| `invenio-audit-logs` | 1 |
+| `invenio-banners` | 1 |
+| `invenio-collections` | 1 |
+| `invenio-drafts-resources` | 1 |
+| `invenio-indexer` | 1 |
+| `invenio-jobs` | 1 |
+| `invenio-previewer` | 1 |
+
+#### Warning 10 - 7 occurrences
 
 DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('fs.opener')`.
 
@@ -196,7 +214,7 @@ DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('fs.open
 | `invenio-jobs` | 1 |
 | `invenio-previewer` | 1 |
 
-#### Warning 10 - 7 occurrences
+#### Warning 11 - 7 occurrences
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
@@ -209,20 +227,6 @@ DeprecationWarning: Using the initialization functions in flask_caching.backend 
 | `invenio-collections` | 1 |
 | `invenio-drafts-resources` | 1 |
 | `invenio-jobs` | 1 |
-
-#### Warning 11 - 7 occurrences
-
-DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
-
-| Package | Count |
-|---------|-------|
-| `invenio-administration` | 1 |
-| `invenio-audit-logs` | 1 |
-| `invenio-banners` | 1 |
-| `invenio-collections` | 1 |
-| `invenio-drafts-resources` | 1 |
-| `invenio-jobs` | 1 |
-| `invenio-previewer` | 1 |
 
 #### Warning 12 - 7 occurrences
 
@@ -285,7 +289,17 @@ DeprecationWarning: Link is deprecated and will be removed in v14.0. Use `Extern
 | `invenio-drafts-resources` | 1 |
 | `invenio-jobs` | 1 |
 
-#### Warning 17 - 4 occurrences
+#### Warning 17 - 5 occurrences
+
+SAWarning: nested transaction already deassociated from connection
+
+| Package | Count |
+|---------|-------|
+| `invenio-collections` | 2 |
+| `invenio-indexer` | 2 |
+| `invenio-previewer` | 1 |
+
+#### Warning 18 - 4 occurrences
 
 SyntaxWarning: invalid escape sequence '\_'
 
@@ -293,7 +307,7 @@ SyntaxWarning: invalid escape sequence '\_'
 |---------|-------|
 | `invenio-mail` | 4 |
 
-#### Warning 18 - 3 occurrences
+#### Warning 19 - 3 occurrences
 
 DeprecationWarning: The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version("marshmallow")' instead.
 
@@ -303,7 +317,7 @@ DeprecationWarning: The '__version__' attribute is deprecated and will be remove
 | `invenio-collections` | 1 |
 | `invenio-previewer` | 1 |
 
-#### Warning 19 - 3 occurrences
+#### Warning 20 - 3 occurrences
 
 DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
 
@@ -313,7 +327,7 @@ DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
 | `invenio-logging` | 1 |
 | `invenio-oauth2server` | 1 |
 
-#### Warning 20 - 3 occurrences
+#### Warning 21 - 3 occurrences
 
 DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
 
@@ -323,7 +337,7 @@ DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and sched
 | `invenio-banners` | 1 |
 | `invenio-oauth2server` | 1 |
 
-#### Warning 21 - 3 occurrences
+#### Warning 22 - 3 occurrences
 
 DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_user_by_id
 
@@ -333,7 +347,7 @@ DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_us
 | `invenio-banners` | 1 |
 | `invenio-oauth2server` | 1 |
 
-#### Warning 22 - 3 occurrences
+#### Warning 23 - 3 occurrences
 
 LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
 
@@ -341,15 +355,6 @@ LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x seri
 |---------|-------|
 | `invenio-collections` | 2 |
 | `invenio-jobs` | 1 |
-
-#### Warning 23 - 3 occurrences
-
-SAWarning: nested transaction already deassociated from connection
-
-| Package | Count |
-|---------|-------|
-| `invenio-collections` | 2 |
-| `invenio-previewer` | 1 |
 
 #### Warning 24 - 3 occurrences
 
@@ -638,15 +643,15 @@ RuntimeWarning: You are overriding the default OAuthlib "URL encoded" set of val
 
 #### Warning 59 - 1 occurrence
 
-SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('08159b16-8c1f-4c46-a406-0a5eaeda17bf'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+SADeprecationWarning: Query.values() is deprecated and will be removed in a future release.  Please use Query.with_entities() (deprecated since: 1.4)
 
 | Package | Count |
 |---------|-------|
-| `invenio-jobs` | 1 |
+| `invenio-indexer` | 1 |
 
 #### Warning 60 - 1 occurrence
 
-SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('19bc5a20-07b0-4723-8ac8-ba9c50600333'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('08159b16-8c1f-4c46-a406-0a5eaeda17bf'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
 
 | Package | Count |
 |---------|-------|
@@ -654,7 +659,7 @@ SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models
 
 #### Warning 61 - 1 occurrence
 
-SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('3631eb65-c94e-462a-8d54-79c84efc2ec9'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('19bc5a20-07b0-4723-8ac8-ba9c50600333'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
 
 | Package | Count |
 |---------|-------|
@@ -662,7 +667,7 @@ SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models
 
 #### Warning 62 - 1 occurrence
 
-SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('898bf60a-1d6b-4255-9708-fa519950be95'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('3631eb65-c94e-462a-8d54-79c84efc2ec9'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
 
 | Package | Count |
 |---------|-------|
@@ -670,7 +675,7 @@ SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models
 
 #### Warning 63 - 1 occurrence
 
-SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('b12dd972-aa76-45a0-9a73-a52c6c71a889'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('898bf60a-1d6b-4255-9708-fa519950be95'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
 
 | Package | Count |
 |---------|-------|
@@ -678,7 +683,7 @@ SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models
 
 #### Warning 64 - 1 occurrence
 
-SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('d4ed9204-d4bc-4405-9632-5e159252c38e'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('b12dd972-aa76-45a0-9a73-a52c6c71a889'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
 
 | Package | Count |
 |---------|-------|
@@ -686,7 +691,7 @@ SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models
 
 #### Warning 65 - 1 occurrence
 
-SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('e8552bf9-be8a-4fa9-bc06-880ab9c6ee84'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('d4ed9204-d4bc-4405-9632-5e159252c38e'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
 
 | Package | Count |
 |---------|-------|
@@ -694,13 +699,21 @@ SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models
 
 #### Warning 66 - 1 occurrence
 
+SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('e8552bf9-be8a-4fa9-bc06-880ab9c6ee84'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+
+| Package | Count |
+|---------|-------|
+| `invenio-jobs` | 1 |
+
+#### Warning 67 - 1 occurrence
+
 SAWarning: Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed
 
 | Package | Count |
 |---------|-------|
 | `invenio-oauth2server` | 1 |
 
-#### Warning 67 - 1 occurrence
+#### Warning 68 - 1 occurrence
 
 SAWarning: Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
 
@@ -708,7 +721,7 @@ SAWarning: Object of type <ObjectVersion> not in session, add operation along 'B
 |---------|-------|
 | `invenio-drafts-resources` | 1 |
 
-#### Warning 68 - 1 occurrence
+#### Warning 69 - 1 occurrence
 
 SAWarning: Object of type <Token> not in session, add operation along 'User.oauth2tokens' will not proceed
 
@@ -716,7 +729,7 @@ SAWarning: Object of type <Token> not in session, add operation along 'User.oaut
 |---------|-------|
 | `invenio-oauth2server` | 1 |
 
-#### Warning 69 - 1 occurrence
+#### Warning 70 - 1 occurrence
 
 SyntaxWarning: "is" with 'str' literal. Did you mean "=="?
 
@@ -724,7 +737,7 @@ SyntaxWarning: "is" with 'str' literal. Did you mean "=="?
 |---------|-------|
 | `invenio-mail` | 1 |
 
-#### Warning 70 - 1 occurrence
+#### Warning 71 - 1 occurrence
 
 SyntaxWarning: invalid escape sequence '\ '
 
@@ -732,7 +745,7 @@ SyntaxWarning: invalid escape sequence '\ '
 |---------|-------|
 | `invenio-mail` | 1 |
 
-#### Warning 71 - 1 occurrence
+#### Warning 72 - 1 occurrence
 
 UserWarning: Please specify the OAISERVER_ID_PREFIX configuration.default value is: oai:runnervmg1sw1:
 
@@ -740,7 +753,7 @@ UserWarning: Please specify the OAISERVER_ID_PREFIX configuration.default value 
 |---------|-------|
 | `invenio-collections` | 1 |
 
-#### Warning 72 - 1 occurrence
+#### Warning 73 - 1 occurrence
 
 UserWarning: Set configuration variable SECRET_KEY with random string
 
@@ -748,7 +761,7 @@ UserWarning: Set configuration variable SECRET_KEY with random string
 |---------|-------|
 | `invenio-app` | 1 |
 
-#### Warning 73 - 1 occurrence
+#### Warning 74 - 1 occurrence
 
 UserWarning: Test
 
@@ -756,7 +769,7 @@ UserWarning: Test
 |---------|-------|
 | `invenio-base` | 1 |
 
-#### Warning 74 - 1 occurrence
+#### Warning 75 - 1 occurrence
 
 UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
 
