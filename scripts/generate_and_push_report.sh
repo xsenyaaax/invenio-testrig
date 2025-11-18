@@ -9,7 +9,7 @@ REPORT_FILE="$2"
 REPORT_TIMESTAMP="$3"
 TEST_NAME="$4"
 ARTIFACTS_DIR="${5:-artifacts}"
-MAX_ATTEMPTS="${6:-10}"
+MAX_ATTEMPTS="${6:-20}"
 
 echo "Report directory: $REPORT_DIR"
 echo "Report file: $REPORT_FILE"
@@ -159,14 +159,16 @@ while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
     break
   else
     echo "⚠️  Push failed, another process updated the repository"
-    echo "Retrying in 2 seconds..."
-    sleep $((10 + ( RANDOM % 20 )))  # Randomized backoff between 10-30 seconds
+    JITTER=$(( RANDOM % ( ( $ATTEMPT + 1) * 5 ) ))
+    RETRY_TIME=$(( 10 + $JITTER ))
+    echo "Retrying in $RETRY_TIME seconds..."
+    sleep $RETRY_TIME  # Randomized backoff with progressively longer wait
   fi
 done
 
 if [ "$SUCCESS" = "false" ]; then
   echo "❌ Failed to push report after $MAX_ATTEMPTS attempts"
-  exit 1
+  exit 0 # exiting 0 as we don't want to fail the whole workflow and the last report will take care of this one
 fi
 
 echo "✓ Report generation completed successfully"
