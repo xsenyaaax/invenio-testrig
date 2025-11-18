@@ -63,15 +63,15 @@ DeprecationWarning: Please use hash_password instead of encrypt_password.
 
 #### Warning 8 - 1 occurrence
 
-DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
 
 | Package | Count |
 |---------|-------|
-| `invenio-records-ui` | 1 |
+| `invenio-logging` | 1 |
 
 #### Warning 9 - 1 occurrence
 
-DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
 
 | Package | Count |
 |---------|-------|
@@ -79,13 +79,29 @@ DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of
 
 #### Warning 10 - 1 occurrence
 
+DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+
+| Package | Count |
+|---------|-------|
+| `invenio-records-ui` | 1 |
+
+#### Warning 11 - 1 occurrence
+
 PendingDeprecationWarning: The WSGI_PROXIES configuration is deprecated and it will be removed, use PROXYFIX_CONFIG instead
 
 | Package | Count |
 |---------|-------|
 | `invenio-base` | 1 |
 
-#### Warning 11 - 1 occurrence
+#### Warning 12 - 1 occurrence
+
+PendingDeprecationWarning: This feature is deprecated.
+
+| Package | Count |
+|---------|-------|
+| `invenio-logging` | 1 |
+
+#### Warning 13 - 1 occurrence
 
 PytestConfigWarning: Unknown config option: pep8ignore
 
@@ -93,7 +109,7 @@ PytestConfigWarning: Unknown config option: pep8ignore
 |---------|-------|
 | `invenio-records-ui` | 1 |
 
-#### Warning 12 - 1 occurrence
+#### Warning 14 - 1 occurrence
 
 SAWarning: nested transaction already deassociated from connection
 
@@ -101,7 +117,7 @@ SAWarning: nested transaction already deassociated from connection
 |---------|-------|
 | `invenio-records-ui` | 1 |
 
-#### Warning 13 - 1 occurrence
+#### Warning 15 - 1 occurrence
 
 UserWarning: Set configuration variable SECRET_KEY with random string
 
@@ -109,7 +125,7 @@ UserWarning: Set configuration variable SECRET_KEY with random string
 |---------|-------|
 | `invenio-app` | 1 |
 
-#### Warning 14 - 1 occurrence
+#### Warning 16 - 1 occurrence
 
 UserWarning: Test
 
@@ -117,7 +133,7 @@ UserWarning: Test
 |---------|-------|
 | `invenio-base` | 1 |
 
-#### Warning 15 - 1 occurrence
+#### Warning 17 - 1 occurrence
 
 UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
 
