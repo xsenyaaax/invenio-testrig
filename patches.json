@@ -1,6 +1,6 @@
 {
     "flask-iiif": {
-        "git": "https://github.com/utnapischtim/flask-iiif",
+        "url": "https://github.com/utnapischtim/flask-iiif",
         "branch": "fix-utcnow-with-custom-type"
     },
     "flask-kvsession-invenio": {
