@@ -1,188 +1,148 @@
 #!/usr/bin/env python3
 """
-Extract packages to test from uv.lock file based on config.json rules.
+Extract Invenio packages to test from uv.lock file.
 
-Usage: extract_packages_to_test.py <uv_lock_path> <config.json> <variables.sh> [previous_report_dir]
-
-Extracts package names from uv.lock that match the regex patterns in config.json
-and don't match exclude patterns, then outputs them to variables.sh.
-
-If previous_report_dir is provided, packages with successful test results in that
-report will be moved to done_packages instead of packages.
+This script extracts package names from a uv.lock file, filters them based on
+configuration, and outputs them as a JSON array for GitHub Actions matrix.
 """
 
+import argparse
 import json
 import re
 import sys
 from pathlib import Path
 
 
-def package_matches(package_name: str, regexes: list[str]) -> bool:
-    """Check if package name matches any of the given regex patterns."""
-    for pattern in regexes:
-        # Add anchors to ensure full string match
-        full_pattern = f"^{pattern}$"
-        if re.fullmatch(full_pattern, package_name):
-            return True
-    return False
+def parse_uv_lock(lock_file_path):
+    """Parse uv.lock file and extract package names."""
+    packages = set()
 
+    with open(lock_file_path, "r") as f:
+        content = f.read()
 
-def extract_packages_from_uv_lock(uv_lock_path: Path) -> list[str]:
-    """Extract all package names from uv.lock file."""
-    packages: list[str] = []
-
-    with uv_lock_path.open("r") as f:
-        for line in f:
-            line = line.strip()
-            if line.startswith('name = "'):
-                # Extract package name from: name = "package-name"
-                package_name = line[8:-1]  # Remove 'name = "' and trailing '"'
-                packages.append(package_name)
+    # Extract package names from [[package]] sections
+    # Looking for lines like: name = "package-name"
+    pattern = r'name\s*=\s*"([^"]+)"'
+    matches = re.findall(pattern, content)
+    packages.update(matches)
 
     return packages
 
 
-def filter_packages(packages: list[str], config_path: Path) -> list[str]:
-    """Filter packages based on config.json rules."""
-
-    # Load config
-    with config_path.open("r") as f:
-        config = json.load(f)
-
-    filtered_packages: list[str] = []
-
-    for package_name in packages:
-        matched = False
-
-        # Check each repository configuration
-        for repo in config.get("repositories", []):
-            package_regexes = repo.get("package-regexes", [])
-            exclude_package_regexes = repo.get("exclude-package-regexes", [])
-
-            # Check if package matches any include regex
-            if not package_matches(package_name, package_regexes):
-                continue
-
-            # Check if package matches any exclude regex
-            if package_matches(package_name, exclude_package_regexes):
-                print(f"⏭️  Excluding {package_name} (matches exclude pattern)")
-                matched = False
-                break
-
-            matched = True
-            break
-
-        if matched:
-            filtered_packages.append(package_name)
-
-    return filtered_packages
+def load_config(config_path):
+    """Load repository configuration."""
+    with open(config_path, "r") as f:
+        return json.load(f)
 
 
-def check_previous_results(
-    packages: list[str], previous_report_dir: Path | None
-) -> tuple[list[str], list[str]]:
-    """
-    Split packages into those to test and those already done.
+def filter_packages(packages, config):
+    """Filter packages based on configuration rules."""
+    filtered = set()
 
-    Returns:
-        Tuple of (packages_to_test, done_packages)
-    """
-    if not previous_report_dir or not previous_report_dir.exists():
-        return packages, []
+    for repo_config in config.get("repositories", []):
+        include_patterns = [
+            re.compile(pattern) for pattern in repo_config.get("package-regexes", [])
+        ]
+        exclude_patterns = [
+            re.compile(pattern)
+            for pattern in repo_config.get("exclude-package-regexes", [])
+        ]
 
-    packages_to_test: list[str] = []
-    done_packages: list[str] = []
+        for package in packages:
+            # Check if package matches include patterns
+            if any(pattern.match(package) for pattern in include_patterns):
+                # Check if package doesn't match exclude patterns
+                if not any(pattern.match(package) for pattern in exclude_patterns):
+                    filtered.add(package)
 
-    for package in packages:
-        summary_file = (
-            previous_report_dir / "packages" / package / "result-summary.json"
-        )
-
-        if summary_file.exists():
-            try:
-                with summary_file.open("r") as f:
-                    summary = json.load(f)
-
-                # Check if tests were successful
-                original = summary.get("original_tests_outcome")
-                patched = summary.get("patched_tests_outcome")
-
-                if patched is not None:
-                    is_success = patched == "success"
-                else:
-                    is_success = original == "success"
-
-                if is_success:
-                    print(f"✓ {package} already passed in previous report")
-                    done_packages.append(package)
-                else:
-                    packages_to_test.append(package)
-            except (json.JSONDecodeError, KeyError) as e:
-                print(f"⚠️  Could not read previous result for {package}: {e}")
-                packages_to_test.append(package)
-        else:
-            packages_to_test.append(package)
-
-    return packages_to_test, done_packages
+    return sorted(filtered)
 
 
-def extract_packages(
-    uv_lock_path: Path,
-    config_path: Path,
-    output_path: Path,
-    previous_report_dir: Path | None = None,
-) -> None:
-    """Extract and filter packages, then write to variables.sh."""
+def get_already_tested_packages(previous_report_path):
+    """Get list of packages that were already tested in a previous run."""
+    if not previous_report_path:
+        return []
 
-    # Extract all packages from uv.lock
-    all_packages = extract_packages_from_uv_lock(uv_lock_path)
-    print(f"Found {len(all_packages)} packages in uv.lock")
+    packages_dir = Path(previous_report_path) / "packages"
+    if not packages_dir.exists():
+        return []
 
-    # Filter based on config
-    filtered_packages = filter_packages(all_packages, config_path)
-    print(f"Filtered to {len(filtered_packages)} packages")
+    # List all subdirectories in the packages directory
+    tested = [d.name for d in packages_dir.iterdir() if d.is_dir()]
+    return sorted(tested)
 
-    # Check previous results if provided
-    packages_to_test, done_packages = check_previous_results(
-        filtered_packages, previous_report_dir
+
+def filter_by_package_list(packages, filter_list):
+    """Filter packages to only include those in the filter list."""
+    if not filter_list:
+        return packages
+
+    # Parse the filter list (can be comma or space separated)
+    filter_packages = set()
+    for item in filter_list:
+        # Split by comma and/or spaces
+        parts = re.split(r"[,\s]+", item.strip())
+        filter_packages.update(p.strip() for p in parts if p.strip())
+
+    # Only keep packages that are in the filter list
+    return sorted([pkg for pkg in packages if pkg in filter_packages])
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Extract Invenio packages to test from uv.lock"
+    )
+    parser.add_argument("lock_file", help="Path to uv.lock file")
+    parser.add_argument("config_file", help="Path to config.json file")
+    parser.add_argument("output_file", help="Path to output shell script file")
+    parser.add_argument(
+        "--previous-report", help="Path to previous report directory to continue from"
+    )
+    parser.add_argument(
+        "--filter-packages",
+        nargs="*",
+        help="Space or comma separated list of packages to test",
     )
 
-    # Sort for consistency
-    packages_to_test.sort()
-    done_packages.sort()
+    args = parser.parse_args()
 
-    # Write to variables.sh as JSON arrays
+    # Extract packages from lock file
+    all_packages = parse_uv_lock(args.lock_file)
+
+    # Load configuration and filter packages
+    config = load_config(args.config_file)
+    filtered_packages = filter_packages(all_packages, config)
+
+    # Apply package filter if provided
+    if args.filter_packages:
+        filtered_packages = filter_by_package_list(
+            filtered_packages, args.filter_packages
+        )
+
+    # Get already tested packages if continuing from previous run
+    already_tested = get_already_tested_packages(args.previous_report)
+
+    # Determine which packages to test
+    packages_to_test = [pkg for pkg in filtered_packages if pkg not in already_tested]
+    # Output as JSON arrays
     packages_json = json.dumps(packages_to_test)
-    done_packages_json = json.dumps(done_packages)
+    done_packages_json = json.dumps(already_tested)
 
-    with output_path.open("w") as f:
+    # Write to shell script file
+    with open(args.output_file, "w") as f:
         f.write(f"packages='{packages_json}'\n")
         f.write(f"done_packages='{done_packages_json}'\n")
 
-    print(f"\n✓ {len(packages_to_test)} packages to test")
-    if packages_to_test:
-        print(f"To test: {', '.join(packages_to_test)}")
+    print(f"Total packages found: {len(all_packages)}")
+    print(f"Filtered packages: {len(filtered_packages)}")
+    print(f"Already tested: {len(already_tested)}")
+    print(f"To test: {len(packages_to_test)}")
 
-    if done_packages:
-        print(f"\n✓ {len(done_packages)} packages already completed")
-        print(f"Done: {', '.join(done_packages)}")
+    if args.filter_packages:
+        print(f"Package filter applied: {args.filter_packages}")
+
+    return 0
 
 
 if __name__ == "__main__":
-    if len(sys.argv) not in (4, 5):
-        print(
-            "Usage: extract_packages_to_test.py <uv_lock_path> <config.json> <variables.sh> [previous_report_dir]",
-            file=sys.stderr,
-        )
-        sys.exit(1)
-
-    uv_lock_path = Path(sys.argv[1])
-    config_path = Path(sys.argv[2])
-    output_path = Path(sys.argv[3])
-    previous_report_dir = Path(sys.argv[4]) if len(sys.argv) == 5 else None
-
-    try:
-        extract_packages(uv_lock_path, config_path, output_path, previous_report_dir)
-    except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
-        sys.exit(1)
+    sys.exit(main())

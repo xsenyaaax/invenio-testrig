@@ -12,6 +12,10 @@ on:
         required: false
         type: boolean
         default: false
+      packages:
+        description: "Space or comma separated list of packages to test (leave empty for all)"
+        required: false
+        default: ""
       run_original_tests:
         description: "Run original tests (when patched tests fail)"
         required: false
@@ -57,20 +61,25 @@ jobs:
         id: extract
         run: |
           # Determine if we should continue from previous run
+          opts=()
+
           if [ "${{ inputs.continue_from_previous }}" = "true" ]; then
             # Find the most recent report directory
-            PREVIOUS_REPORT=$(ls reports/results/*/ 2>/dev/null | sort -r | head -n 1 || echo "")
+            PREVIOUS_REPORT=$(ls -d reports/results/*/ 2>/dev/null | sort -r | head -n 1 || echo "")
+
             if [ -n "$PREVIOUS_REPORT" ]; then
               echo "Continuing from previous report: $PREVIOUS_REPORT"
-              python3 scripts/extract_packages_to_test.py zenodo-rdm/uv.lock config.json packages.sh "$PREVIOUS_REPORT"
-            else
-              echo "No previous report found, running all packages"
-              python3 scripts/extract_packages_to_test.py zenodo-rdm/uv.lock config.json packages.sh
+              opts+=("--previous-report" "$PREVIOUS_REPORT")
             fi
-          else
-            # Use extract_packages_to_test.py to extract packages
-            python3 scripts/extract_packages_to_test.py zenodo-rdm/uv.lock config.json packages.sh
           fi
+
+          # Add package filter if provided
+          if [ -n "${{ inputs.packages }}" ]; then
+            echo "Filtering packages: ${{ inputs.packages }}"
+            opts+=("--filter-packages" ${{ inputs.packages }})
+          fi
+
+          python3 scripts/extract_packages_to_test.py zenodo-rdm/uv.lock config.json packages.sh ${opts[@]}
 
           # Source the output variables
           source packages.sh
