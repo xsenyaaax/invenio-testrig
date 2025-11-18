@@ -57,6 +57,13 @@ runs:
         # Add json report
         sed -i "s#^python -m pytest#python -m pytest --junit-xml=../artifacts/test-report-${{ inputs.test-type }}.xml #g" run-tests.sh
 
+        # Remove docs Tests - lines starting with the following - we do not need them for python tests
+        # python -m check_manifest
+        # python -m sphinx.cmd.build
+        sed -i '/^python -m check_manifest/d' run-tests.sh
+        sed -i '/^python -m sphinx.cmd.build/d' run-tests.sh
+
+
         # Start stall detection watchdog in background if enabled
         if [ "$STALL_TIMEOUT" -gt 0 ]; then
           (
