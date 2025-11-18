@@ -10,5 +10,9 @@
     "pytest": {
         "url": "https://github.com/mesemus/pytest",
         "branch": "debug-fixture-call"
+    },
+    "invenio-pages": {
+        "url": "https://github.com/mesemus/invenio-pages",
+        "branch": "debug-deadlock"
     }
 }
