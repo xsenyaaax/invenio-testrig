@@ -114,13 +114,28 @@ DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxc
 
 #### Warning 8 - 8 occurrences
 
+DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
+
+| Package | Count |
+|---------|-------|
+| `invenio-administration` | 1 |
+| `invenio-app` | 1 |
+| `invenio-audit-logs` | 1 |
+| `invenio-banners` | 1 |
+| `invenio-collections` | 1 |
+| `invenio-drafts-resources` | 1 |
+| `invenio-jobs` | 1 |
+| `invenio-sitemap` | 1 |
+
+#### Warning 9 - 8 occurrences
+
 DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
 
 | Package | Count |
 |---------|-------|
 | `invenio-mail` | 8 |
 
-#### Warning 9 - 8 occurrences
+#### Warning 10 - 8 occurrences
 
 DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
 
@@ -135,7 +150,7 @@ DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of
 | `invenio-jobs` | 1 |
 | `invenio-previewer` | 1 |
 
-#### Warning 10 - 7 occurrences
+#### Warning 11 - 7 occurrences
 
 DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('fs.opener')`.
 
@@ -148,20 +163,6 @@ DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('fs.open
 | `invenio-drafts-resources` | 1 |
 | `invenio-jobs` | 1 |
 | `invenio-previewer` | 1 |
-
-#### Warning 11 - 7 occurrences
-
-DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
-
-| Package | Count |
-|---------|-------|
-| `invenio-administration` | 1 |
-| `invenio-app` | 1 |
-| `invenio-audit-logs` | 1 |
-| `invenio-banners` | 1 |
-| `invenio-collections` | 1 |
-| `invenio-drafts-resources` | 1 |
-| `invenio-jobs` | 1 |
 
 #### Warning 12 - 7 occurrences
 
