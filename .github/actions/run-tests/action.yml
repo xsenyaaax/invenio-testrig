@@ -191,6 +191,11 @@ runs:
           sed -i -E '/^[[:space:]]*--.*warnings/d' "$OUTPUT_FILE_NO_WARNINGS"
           sed -i -E '/[0-9]+ warnings?$/d' "$OUTPUT_FILE_NO_WARNINGS"
           
+          # Remove Docker pull output lines (image pulls, waiting, downloading, etc.)
+          # Match patterns like: "91d2729fa4d5 Waiting", "710e142705f8 Pulling fs layer"
+          # "44fc29a25beb Downloading [====>    ]  935B/1.105kB"
+          sed -i -E '/^[[:space:]]*[0-9a-f]{12}[[:space:]]+(Waiting|Pulling|Downloading|Verifying|Download|Extracting|Pull complete)/d' "$OUTPUT_FILE_NO_WARNINGS"
+          
           # Remove warning separator lines
           sed -i -E '/^[=\-]{10,}$/d' "$OUTPUT_FILE_NO_WARNINGS"
           
