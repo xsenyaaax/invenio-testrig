@@ -1,13 +1,13 @@
 # Invenio Bugfix Verification Results
 
-_Last updated: 2025-11-18 18:32:08 UTC_
+_Last updated: 2025-11-18 18:32:26 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 9 |
-| **Patched Packages** | 9 |
+| **Total Packages** | 10 |
+| **Patched Packages** | 10 |
 | **Unpatched Packages** | 0 |
 
 ### Patch Results
@@ -16,7 +16,7 @@ _Last updated: 2025-11-18 18:32:08 UTC_
 | ✅ Fixed | 0 |
 | ❌ Regressions | 0 |
 | ⚠️  Still Failing | 0 |
-| ℹ️  No Change | 9 |
+| ℹ️  No Change | 10 |
 
 ## 🔧 Configured Patches
 
@@ -46,22 +46,42 @@ _Last updated: 2025-11-18 18:32:08 UTC_
 | `invenio-pidstore` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-pidstore/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-pidstore/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-pidstore/test-report-patched.xml)<br>[warnings](packages/invenio-pidstore/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-logging` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-logging/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-logging/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-logging/test-report-patched.xml)<br>[warnings](packages/invenio-logging/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-formatter` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-formatter/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-formatter/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-formatter/test-report-patched.xml)<br>[warnings](packages/invenio-formatter/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
+| `invenio-oauth2server` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-oauth2server/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-oauth2server/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-oauth2server/test-report-patched.xml)<br>[warnings](packages/invenio-oauth2server/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-jsonschemas` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-jsonschemas/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-jsonschemas/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-jsonschemas/test-report-patched.xml)<br>[warnings](packages/invenio-jsonschemas/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 
 ## Collected Warnings
 
 ### Patched
 
-#### Warning 1 - 3 occurrences
+#### Warning 1 - 13 occurrences
 
 DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
 
 | Package | Count |
 |---------|-------|
+| `invenio-oauth2server` | 10 |
 | `invenio-pidstore` | 2 |
 | `invenio-formatter` | 1 |
 
 #### Warning 2 - 2 occurrences
+
+DeprecationWarning: 'crypt' is deprecated and slated for removal in Python 3.13
+
+| Package | Count |
+|---------|-------|
+| `invenio-oauth2server` | 1 |
+| `invenio-pidstore` | 1 |
+
+#### Warning 3 - 2 occurrences
+
+DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
+
+| Package | Count |
+|---------|-------|
+| `invenio-logging` | 1 |
+| `invenio-oauth2server` | 1 |
+
+#### Warning 4 - 2 occurrences
 
 PytestDeprecationWarning: @pytest.yield_fixture is deprecated.
 
@@ -69,15 +89,15 @@ PytestDeprecationWarning: @pytest.yield_fixture is deprecated.
 |---------|-------|
 | `invenio-pidstore` | 2 |
 
-#### Warning 3 - 1 occurrence
+#### Warning 5 - 2 occurrences
 
-DeprecationWarning: 'crypt' is deprecated and slated for removal in Python 3.13
+SAWarning: Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
 
 | Package | Count |
 |---------|-------|
-| `invenio-pidstore` | 1 |
+| `invenio-oauth2server` | 2 |
 
-#### Warning 4 - 1 occurrence
+#### Warning 6 - 1 occurrence
 
 DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;') might be removed in the next major version. Please use explicit imports (e.g., 'from idutils import function;') instead.
 
@@ -85,15 +105,7 @@ DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;')
 |---------|-------|
 | `invenio-pidstore` | 1 |
 
-#### Warning 5 - 1 occurrence
-
-DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
-
-| Package | Count |
-|---------|-------|
-| `invenio-logging` | 1 |
-
-#### Warning 6 - 1 occurrence
+#### Warning 7 - 1 occurrence
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
@@ -101,7 +113,23 @@ DeprecationWarning: Using the initialization functions in flask_caching.backend 
 |---------|-------|
 | `invenio-app` | 1 |
 
-#### Warning 7 - 1 occurrence
+#### Warning 8 - 1 occurrence
+
+DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+
+| Package | Count |
+|---------|-------|
+| `invenio-oauth2server` | 1 |
+
+#### Warning 9 - 1 occurrence
+
+DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_user_by_id
+
+| Package | Count |
+|---------|-------|
+| `invenio-oauth2server` | 1 |
+
+#### Warning 10 - 1 occurrence
 
 DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
 
@@ -109,7 +137,7 @@ DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor
 |---------|-------|
 | `invenio-jsonschemas` | 1 |
 
-#### Warning 8 - 1 occurrence
+#### Warning 11 - 1 occurrence
 
 PendingDeprecationWarning: The WSGI_PROXIES configuration is deprecated and it will be removed, use PROXYFIX_CONFIG instead
 
@@ -117,7 +145,7 @@ PendingDeprecationWarning: The WSGI_PROXIES configuration is deprecated and it w
 |---------|-------|
 | `invenio-base` | 1 |
 
-#### Warning 9 - 1 occurrence
+#### Warning 12 - 1 occurrence
 
 PendingDeprecationWarning: This feature is deprecated.
 
@@ -125,7 +153,7 @@ PendingDeprecationWarning: This feature is deprecated.
 |---------|-------|
 | `invenio-logging` | 1 |
 
-#### Warning 10 - 1 occurrence
+#### Warning 13 - 1 occurrence
 
 PytestConfigWarning: Unknown config option: pep8ignore
 
@@ -133,7 +161,31 @@ PytestConfigWarning: Unknown config option: pep8ignore
 |---------|-------|
 | `invenio-jsonschemas` | 1 |
 
-#### Warning 11 - 1 occurrence
+#### Warning 14 - 1 occurrence
+
+RuntimeWarning: You are overriding the default OAuthlib "URL encoded" set of valid characters. Make sure that the characters defined in oauthlib.common.urlencoded are indeed limitting your needs.
+
+| Package | Count |
+|---------|-------|
+| `invenio-oauth2server` | 1 |
+
+#### Warning 15 - 1 occurrence
+
+SAWarning: Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed
+
+| Package | Count |
+|---------|-------|
+| `invenio-oauth2server` | 1 |
+
+#### Warning 16 - 1 occurrence
+
+SAWarning: Object of type <Token> not in session, add operation along 'User.oauth2tokens' will not proceed
+
+| Package | Count |
+|---------|-------|
+| `invenio-oauth2server` | 1 |
+
+#### Warning 17 - 1 occurrence
 
 UserWarning: Set configuration variable SECRET_KEY with random string
 
@@ -141,7 +193,7 @@ UserWarning: Set configuration variable SECRET_KEY with random string
 |---------|-------|
 | `invenio-app` | 1 |
 
-#### Warning 12 - 1 occurrence
+#### Warning 18 - 1 occurrence
 
 UserWarning: Test
 
@@ -149,7 +201,7 @@ UserWarning: Test
 |---------|-------|
 | `invenio-base` | 1 |
 
-#### Warning 13 - 1 occurrence
+#### Warning 19 - 1 occurrence
 
 UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
 
