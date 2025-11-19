@@ -1,6 +1,8 @@
 # invenio-testrig
 
-This repository provides tools for verifying bugfixes in Invenio-based applications.
+This repository provides tools for verifying patches for invenio libraries.
+
+It does not run a repository itself at this point, pytests are run for all influenced invenio packages.
 
 ## Usage
 
