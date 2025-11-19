@@ -2,14 +2,14 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-11-19 12:25:40 UTC_
+_Last updated: 2025-11-19 12:25:48 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 34 |
-| **Patched Packages** | 34 |
+| **Total Packages** | 36 |
+| **Patched Packages** | 36 |
 | **Unpatched Packages** | 0 |
 
 ### Patch Results
@@ -18,7 +18,7 @@ _Last updated: 2025-11-19 12:25:40 UTC_
 | ✅ Fixed | 0 |
 | ❌ Regressions | 0 |
 | ⚠️  Still Failing | 0 |
-| ℹ️  No Change | 34 |
+| ℹ️  No Change | 36 |
 
 ## 🔧 Configured Patches
 
@@ -47,6 +47,7 @@ _Last updated: 2025-11-19 12:25:40 UTC_
 | `invenio-cache` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-cache/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-cache/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-cache/test-report-patched.xml)<br>[warnings](packages/invenio-cache/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-notifications` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-notifications/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-notifications/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-notifications/test-report-patched.xml)<br>[warnings](packages/invenio-notifications/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-base` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-base/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-base/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-base/test-report-patched.xml)<br>[warnings](packages/invenio-base/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
+| `invenio-app` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-app/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-app/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-app/test-report-patched.xml)<br>[warnings](packages/invenio-app/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-jobs` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-jobs/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-jobs/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-jobs/test-report-patched.xml)<br>[warnings](packages/invenio-jobs/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-theme` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-theme/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-theme/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-theme/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
 | `invenio-assets` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-assets/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-assets/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-assets/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
@@ -64,6 +65,7 @@ _Last updated: 2025-11-19 12:25:40 UTC_
 | `invenio-userprofiles` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-userprofiles/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-userprofiles/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-userprofiles/test-report-patched.xml)<br>[warnings](packages/invenio-userprofiles/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-search-ui` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-search-ui/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-search-ui/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-search-ui/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
 | `invenio-records-files` | pytest-invenio | ⏭️  Skip | ❌ Fail<br>[output](packages/invenio-records-files/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-records-files/test-output-no-warnings-patched.txt) | ❌ Patch introduced test failures |
+| `invenio-formatter` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-formatter/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-formatter/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-formatter/test-report-patched.xml)<br>[warnings](packages/invenio-formatter/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-audit-logs` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-audit-logs/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-audit-logs/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-audit-logs/test-report-patched.xml)<br>[warnings](packages/invenio-audit-logs/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-records-rest` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-records-rest/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-records-rest/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-records-rest/test-report-patched.xml)<br>[warnings](packages/invenio-records-rest/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-administration` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-administration/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-administration/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-administration/test-report-patched.xml)<br>[warnings](packages/invenio-administration/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
@@ -79,7 +81,7 @@ _Last updated: 2025-11-19 12:25:40 UTC_
 
 ### Patched
 
-#### Warning 1 - 114 occurrences
+#### Warning 1 - 115 occurrences
 
 DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
 
@@ -105,6 +107,7 @@ DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for r
 | `invenio-indexer` | 2 |
 | `invenio-pidstore` | 2 |
 | `invenio-cache` | 1 |
+| `invenio-formatter` | 1 |
 
 #### Warning 2 - 33 occurrences
 
@@ -221,13 +224,14 @@ DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of
 | `invenio-stats` | 1 |
 | `invenio-users-resources` | 1 |
 
-#### Warning 8 - 12 occurrences
+#### Warning 8 - 13 occurrences
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
 | Package | Count |
 |---------|-------|
 | `invenio-administration` | 1 |
+| `invenio-app` | 1 |
 | `invenio-audit-logs` | 1 |
 | `invenio-cache` | 1 |
 | `invenio-collections` | 1 |
@@ -458,6 +462,16 @@ DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;')
 
 #### Warning 26 - 3 occurrences
 
+UserWarning: Set configuration variable SECRET_KEY with random string
+
+| Package | Count |
+|---------|-------|
+| `invenio-app` | 1 |
+| `invenio-config` | 1 |
+| `invenio-records-rest` | 1 |
+
+#### Warning 27 - 3 occurrences
+
 UserWarning: autoincrement and existing_autoincrement only make sense for MySQL
 
 | Package | Count |
@@ -466,7 +480,7 @@ UserWarning: autoincrement and existing_autoincrement only make sense for MySQL
 | `invenio-audit-logs` | 1 |
 | `invenio-requests` | 1 |
 
-#### Warning 27 - 2 occurrences
+#### Warning 28 - 2 occurrences
 
 ChangedInMarshmallow4Warning: `Field` should not be instantiated. Use `fields.Raw` or  another field subclass instead.
 
@@ -475,7 +489,7 @@ ChangedInMarshmallow4Warning: `Field` should not be instantiated. Use `fields.Ra
 | `invenio-collections` | 1 |
 | `invenio-jobs` | 1 |
 
-#### Warning 28 - 2 occurrences
+#### Warning 29 - 2 occurrences
 
 DeprecationWarning: Remember me support has been removed.
 
@@ -484,7 +498,7 @@ DeprecationWarning: Remember me support has been removed.
 | `invenio-audit-logs` | 1 |
 | `invenio-requests` | 1 |
 
-#### Warning 29 - 2 occurrences
+#### Warning 30 - 2 occurrences
 
 DeprecationWarning: The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version("marshmallow")' instead.
 
@@ -493,7 +507,7 @@ DeprecationWarning: The '__version__' attribute is deprecated and will be remove
 | `invenio-collections` | 1 |
 | `invenio-records-rest` | 1 |
 
-#### Warning 30 - 2 occurrences
+#### Warning 31 - 2 occurrences
 
 DeprecationWarning: The 'record_to_index' function is no longer expected to return a tuple (index, doc_type), instead it should only return the index. Support for the tuple will be removed in a future version of 'invenio-indexer'.
 
@@ -502,7 +516,7 @@ DeprecationWarning: The 'record_to_index' function is no longer expected to retu
 | `invenio-drafts-resources` | 1 |
 | `invenio-records-resources` | 1 |
 
-#### Warning 31 - 2 occurrences
+#### Warning 32 - 2 occurrences
 
 DeprecationWarning: The patch() method is deprecated and will be removed.
 
@@ -511,7 +525,7 @@ DeprecationWarning: The patch() method is deprecated and will be removed.
 | `invenio-records` | 1 |
 | `invenio-records-rest` | 1 |
 
-#### Warning 32 - 2 occurrences
+#### Warning 33 - 2 occurrences
 
 DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_user_by_id
 
@@ -520,7 +534,7 @@ DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_us
 | `invenio-stats` | 1 |
 | `invenio-users-resources` | 1 |
 
-#### Warning 33 - 2 occurrences
+#### Warning 34 - 2 occurrences
 
 PytestConfigWarning: Unknown config option: pep8ignore
 
@@ -529,7 +543,7 @@ PytestConfigWarning: Unknown config option: pep8ignore
 | `invenio-jsonschemas` | 1 |
 | `invenio-records-ui` | 1 |
 
-#### Warning 34 - 2 occurrences
+#### Warning 35 - 2 occurrences
 
 PytestDeprecationWarning: @pytest.yield_fixture is deprecated.
 
@@ -537,7 +551,7 @@ PytestDeprecationWarning: @pytest.yield_fixture is deprecated.
 |---------|-------|
 | `invenio-pidstore` | 2 |
 
-#### Warning 35 - 2 occurrences
+#### Warning 36 - 2 occurrences
 
 SAWarning: Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
 
@@ -546,22 +560,13 @@ SAWarning: Object of type <ObjectVersion> not in session, add operation along 'B
 | `invenio-drafts-resources` | 1 |
 | `invenio-records-resources` | 1 |
 
-#### Warning 36 - 2 occurrences
+#### Warning 37 - 2 occurrences
 
 SAWarning: On mapper Mapper[RecordMetadataVersion(records_metadata_version)], primary key column 'records_metadata_version.transaction_id' is being combined with distinct primary key column 'records_metadata_version.transaction_id' in attribute 'transaction_id'. Use explicit properties to give each column its own mapped attribute name. (This warning originated from the `configure_mappers()` process, which was invoked automatically in response to a user-initiated operation.)
 
 | Package | Count |
 |---------|-------|
 | `invenio-records` | 2 |
-
-#### Warning 37 - 2 occurrences
-
-UserWarning: Set configuration variable SECRET_KEY with random string
-
-| Package | Count |
-|---------|-------|
-| `invenio-config` | 1 |
-| `invenio-records-rest` | 1 |
 
 #### Warning 38 - 1 occurrence
 
@@ -898,6 +903,14 @@ UserWarning: Test
 | Package | Count |
 |---------|-------|
 | `invenio-base` | 1 |
+
+#### Warning 80 - 1 occurrence
+
+UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+
+| Package | Count |
+|---------|-------|
+| `invenio-app` | 1 |
 
 
 
