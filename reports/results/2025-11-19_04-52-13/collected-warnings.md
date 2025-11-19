@@ -338,6 +338,17 @@ DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;')
 
 #### Warning 22 - 4 occurrences
 
+DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+
+| Package | Count |
+|---------|-------|
+| `invenio-access` | 1 |
+| `invenio-audit-logs` | 1 |
+| `invenio-db` | 1 |
+| `invenio-requests` | 1 |
+
+#### Warning 23 - 4 occurrences
+
 DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_user_by_id
 
 | Package | Count |
@@ -347,7 +358,7 @@ DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_us
 | `invenio-pages` | 1 |
 | `invenio-webhooks` | 1 |
 
-#### Warning 23 - 4 occurrences
+#### Warning 24 - 4 occurrences
 
 PytestMockWarning: Mocks returned by pytest-mock do not need to be used as context managers. The mocker fixture automatically undoes mocking at the end of a test. This warning can be ignored if it was triggered by mocking a context manager. https://pytest-mock.readthedocs.io/en/latest/usage.html#usage-as-context-manager
 
@@ -355,7 +366,7 @@ PytestMockWarning: Mocks returned by pytest-mock do not need to be used as conte
 |---------|-------|
 | `invenio-cache` | 4 |
 
-#### Warning 24 - 4 occurrences
+#### Warning 25 - 4 occurrences
 
 SADeprecationWarning: The from_engine() method on Inspector is deprecated and will be removed in a future release.  Please use the sqlalchemy.inspect() function on an Engine or Connection in order to acquire an Inspector. (deprecated since: 1.4)
 
@@ -365,7 +376,7 @@ SADeprecationWarning: The from_engine() method on Inspector is deprecated and wi
 | `invenio-access` | 1 |
 | `invenio-audit-logs` | 1 |
 
-#### Warning 25 - 3 occurrences
+#### Warning 26 - 3 occurrences
 
 ChangedInMarshmallow4Warning: `Field` should not be instantiated. Use `fields.Raw` or  another field subclass instead.
 
@@ -374,16 +385,6 @@ ChangedInMarshmallow4Warning: `Field` should not be instantiated. Use `fields.Ra
 | `invenio-checks` | 1 |
 | `invenio-collections` | 1 |
 | `invenio-jobs` | 1 |
-
-#### Warning 26 - 3 occurrences
-
-DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
-
-| Package | Count |
-|---------|-------|
-| `invenio-access` | 1 |
-| `invenio-audit-logs` | 1 |
-| `invenio-requests` | 1 |
 
 #### Warning 27 - 3 occurrences
 
