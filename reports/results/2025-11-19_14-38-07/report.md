@@ -2,20 +2,20 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-11-19 14:44:07 UTC_
+_Last updated: 2025-11-19 14:44:21 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 42 |
-| **Patched Packages** | 42 |
+| **Total Packages** | 43 |
+| **Patched Packages** | 43 |
 | **Unpatched Packages** | 0 |
 
 ### Patch Results
 | Result | Count |
 |--------|-------|
-| ✅ Fixed | 40 |
+| ✅ Fixed | 41 |
 | ❌ Regressions | 2 |
 | ⚠️  Still Failing | 0 |
 | ℹ️  No Change | 0 |
@@ -69,6 +69,7 @@ _Last updated: 2025-11-19 14:44:07 UTC_
 | `invenio-search-ui` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-search-ui/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-search-ui/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-search-ui/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
 | `invenio-records-files` | pytest-invenio | ⏭️  Skip | ❌ Fail<br>[output](packages/invenio-records-files/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-records-files/test-output-no-warnings-patched.txt) | ❌ Patch introduced test failures |
 | `invenio-logging` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-logging/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-logging/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-logging/test-report-patched.xml)<br>[warnings](packages/invenio-logging/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
+| `invenio-sitemap` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-sitemap/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-sitemap/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-sitemap/test-report-patched.xml)<br>[warnings](packages/invenio-sitemap/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-files-rest` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-files-rest/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-files-rest/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-files-rest/test-report-patched.xml)<br>[warnings](packages/invenio-files-rest/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-formatter` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-formatter/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-formatter/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-formatter/test-report-patched.xml)<br>[warnings](packages/invenio-formatter/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-checks` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-checks/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-checks/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-checks/test-report-patched.xml)<br>[warnings](packages/invenio-checks/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
@@ -320,7 +321,7 @@ UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.
 | `invenio-previewer` | 1 |
 | `invenio-requests` | 1 |
 
-#### Warning 12 - 12 occurrences
+#### Warning 12 - 13 occurrences
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
@@ -337,6 +338,7 @@ DeprecationWarning: Using the initialization functions in flask_caching.backend 
 | `invenio-pages` | 1 |
 | `invenio-records-permissions` | 1 |
 | `invenio-requests` | 1 |
+| `invenio-sitemap` | 1 |
 | `invenio-stats` | 1 |
 
 #### Warning 13 - 11 occurrences

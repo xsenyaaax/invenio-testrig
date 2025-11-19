@@ -235,7 +235,7 @@ UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.
 | `invenio-previewer` | 1 |
 | `invenio-requests` | 1 |
 
-#### Warning 12 - 12 occurrences
+#### Warning 12 - 13 occurrences
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
@@ -252,6 +252,7 @@ DeprecationWarning: Using the initialization functions in flask_caching.backend 
 | `invenio-pages` | 1 |
 | `invenio-records-permissions` | 1 |
 | `invenio-requests` | 1 |
+| `invenio-sitemap` | 1 |
 | `invenio-stats` | 1 |
 
 #### Warning 13 - 11 occurrences
