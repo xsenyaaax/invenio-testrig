@@ -28,11 +28,11 @@ jobs:
     name: Load Test Configuration
     runs-on: ubuntu-latest
     outputs:
-      test_name: ${{ steps.load.outputs.test-name }}
-      run_original_tests: ${{ steps.load.outputs.run-original-tests }}
-      test_timeout: ${{ steps.load.outputs.test-timeout }}
+      test_name: ${{ steps.load.outputs.test_name }}
+      run_original_tests: ${{ steps.load.outputs.run_original_tests }}
+      test_timeout: ${{ steps.load.outputs.test_timeout }}
       packages: ${{ steps.load.outputs.packages }}
-      absolute_config_file: ${{ steps.load.outputs.absolute-config-file }}
+      absolute_config_file: ${{ steps.load.outputs.absolute_config_file }}
     steps:
       - name: Checkout verification repository
         uses: actions/checkout@v4
@@ -46,7 +46,7 @@ jobs:
         id: load
         uses: ./.github/actions/load-test-config
         with:
-          config-file: ${{ inputs.config_file }}
+          config_file: ${{ inputs.config_file }}
 
   create-report-directory:
     name: Create Report Directory
@@ -55,9 +55,9 @@ jobs:
     permissions:
       contents: write
     outputs:
-      report_dir: ${{ steps.create-dir.outputs.report_dir }}
-      report_file: ${{ steps.create-dir.outputs.report_file }}
-      report_timestamp: ${{ steps.create-dir.outputs.report_timestamp }}
+      report_dir: ${{ steps.create_dir.outputs.report_dir }}
+      report_file: ${{ steps.create_dir.outputs.report_file }}
+      report_timestamp: ${{ steps.create_dir.outputs.report_timestamp }}
 
     steps:
       - name: Checkout invenio-testrig repository
@@ -69,7 +69,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Create report directory
-        id: create-dir
+        id: create_dir
         run: |
           REPORT_TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
           REPORT_DIR=reports/results/$REPORT_TIMESTAMP
@@ -104,8 +104,8 @@ jobs:
             }
             
             # Create report directory
-            mkdir -p ${{ steps.create-dir.outputs.report_dir }}
-            touch ${{ steps.create-dir.outputs.report_file }}
+            mkdir -p ${{ steps.create_dir.outputs.report_dir }}
+            touch ${{ steps.create_dir.outputs.report_file }}
             git add reports/
             
             # Check if there are changes to commit
@@ -115,7 +115,7 @@ jobs:
               break
             fi
             
-            git commit --quiet -m "[skip ci] Create report directory ${{ steps.create-dir.outputs.report_dir }}" > /dev/null 2>&1
+            git commit --quiet -m "[skip ci] Create report directory ${{ steps.create_dir.outputs.report_dir }}" > /dev/null 2>&1
             
             # Try to push
             if git push --quiet origin > /dev/null 2>&1; then
@@ -140,7 +140,7 @@ jobs:
       - name: Create report artifact metadata
         run: |
           mkdir -p artifacts/
-          echo "{\"report_directory\": \"${{ steps.create-dir.outputs.report_dir }}\"}" > artifacts/report.json
+          echo "{\"report_directory\": \"${{ steps.create_dir.outputs.report_dir }}\"}" > artifacts/report.json
 
       - name: Upload report artifact metadata
         uses: actions/upload-artifact@v4
@@ -152,12 +152,12 @@ jobs:
       - name: Generate initial report
         uses: ./.github/actions/generate-report
         with:
-          report-dir: ${{ steps.create-dir.outputs.report_dir }}
-          report-file: ${{ steps.create-dir.outputs.report_file }}
-          report-timestamp: ${{ steps.create-dir.outputs.report_timestamp }}
-          test-name: ${{ needs.load-config.outputs.test_name }}
-          config-file: ${{ needs.load-config.outputs.absolute_config_file }}
-          add-report-summary: true
+          report_dir: ${{ steps.create_dir.outputs.report_dir }}
+          report_file: ${{ steps.create_dir.outputs.report_file }}
+          report_timestamp: ${{ steps.create_dir.outputs.report_timestamp }}
+          test_name: ${{ needs.load-config.outputs.test_name }}
+          config_file: ${{ needs.load-config.outputs.absolute_config_file }}
+          add_report_summary: true
 
   extract-tested-packages:
     name: Extract Invenio Packages
@@ -252,7 +252,7 @@ jobs:
         #   original_repository_branch (currently always empty as default branch is used)
         #   patched_repository_url (equal to original_repository_url if not patched, otherwise the patch URL)
         #   patched_repository_branch (equal to original_repository_branch if not patched, otherwise the patch branch)
-        id: load-patches
+        id: load_patches
         run: |
 
           # Use lookup_package.py to get repository information
@@ -280,8 +280,8 @@ jobs:
         continue-on-error: true
         uses: ./.github/actions/clone-package
         with:
-          repository-url: ${{ steps.load-patches.outputs.patched_repository_url }}
-          repository-branch: ${{ steps.load-patches.outputs.patched_repository_branch }}
+          repository-url: ${{ steps.load_patches.outputs.patched_repository_url }}
+          repository-branch: ${{ steps.load_patches.outputs.patched_repository_branch }}
           destination: package-repo
 
       - name: Setup virtual environment and install dependencies
@@ -294,21 +294,21 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Dump original requirements
-        if: env.SO_FAR_OK == '1' && ( steps.load-patches.outputs.has_patch == 'false' )
+        if: env.SO_FAR_OK == '1' && ( steps.load_patches.outputs.has_patch == 'false' )
         uses: ./.github/actions/dump-requirements
         with:
           package-path: package-repo
           requirement-type: original
 
       - name: Dump requirements of original package with sources patched
-        if: env.SO_FAR_OK == '1' && ( steps.load-patches.outputs.has_patch == 'true' )
+        if: env.SO_FAR_OK == '1' && ( steps.load_patches.outputs.has_patch == 'true' )
         uses: ./.github/actions/dump-requirements
         with:
           package-path: package-repo
           requirement-type: patched
 
       - name: Apply patches if applicable
-        id: check-patch
+        id: check_patch
         continue-on-error: true
         if: env.SO_FAR_OK == '1'
         run: |
@@ -331,36 +331,36 @@ jobs:
           fi
 
       - name: Dump requirements for package with patched dependencies
-        if: env.SO_FAR_OK == '1' && ( steps.check-patch.outputs.applies == 'true' )
+        if: env.SO_FAR_OK == '1' && ( steps.check_patch.outputs.applies == 'true' )
         uses: ./.github/actions/dump-requirements
         with:
           package-path: package-repo
           requirement-type: patched-dependencies
 
       - name: Run tests on patched package / with patched dependencies
-        id: test-with-patch
+        id: test_with_patch
         continue-on-error: true
-        if: env.SO_FAR_OK == '1' && ( steps.check-patch.outputs.applies == 'true' || steps.load-patches.outputs.has_patch == 'true' )
+        if: env.SO_FAR_OK == '1' && ( steps.check_patch.outputs.applies == 'true' || steps.load_patches.outputs.has_patch == 'true' )
         uses: ./.github/actions/run-tests
         with:
           package-path: package-repo
           package-name: ${{ matrix.package }}
           test-type: patched
-          timeout: ${{ needs.load-config.outputs.test-timeout }}
+          timeout: ${{ needs.load-config.outputs.test_timeout }}
           verbose-pytest: ${{ inputs.verbose_pytest }}
 
       # if the previous step failed, we will try to run the tests without patches
       - name: Clone package repository for tests without patches
         continue-on-error: true
-        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run-original-tests == 'true'
+        if: env.SO_FAR_OK == '1' && steps.test_with_patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run_original_tests == 'true'
         uses: ./.github/actions/clone-package
         with:
-          repository-url: ${{ steps.load-patches.outputs.original_repository_url }}
-          repository-branch: ${{ steps.load-patches.outputs.original_repository_branch }}
+          repository-url: ${{ steps.load_patches.outputs.original_repository_url }}
+          repository-branch: ${{ steps.load_patches.outputs.original_repository_branch }}
           destination: package-repo
 
       - name: Setup virtual environment and install dependencies for original package tests
-        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run-original-tests == 'true'
+        if: env.SO_FAR_OK == '1' && steps.test_with_patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run_original_tests == 'true'
         continue-on-error: true
         uses: ./.github/actions/setup-venv
         with:
@@ -369,15 +369,15 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Run tests on original package without patches
-        id: test-without-patch
+        id: test_without_patch
         continue-on-error: true
-        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run-original-tests == 'true'
+        if: env.SO_FAR_OK == '1' && steps.test_with_patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run_original_tests == 'true'
         uses: ./.github/actions/run-tests
         with:
           package-path: package-repo
           package-name: ${{ matrix.package }}
           test-type: original
-          timeout: ${{ needs.load-config.outputs.test-timeout }}
+          timeout: ${{ needs.load-config.outputs.test_timeout }}
           verbose-pytest: ${{ inputs.verbose_pytest }}
 
       - name: Compare test results
@@ -453,23 +453,23 @@ jobs:
           ORIGINAL_TESTS_OUTCOME=$(cat artifacts/test-status-original.txt 2>/dev/null || echo "skipped")
           PATCHED_TESTS_OUTCOME=$(cat artifacts/test-status-patched.txt 2>/dev/null|| echo "skipped")
 
-          if [ -z "${{ steps.check-patch.outputs.applies }}" ] ; then
+          if [ -z "${{ steps.check_patch.outputs.applies }}" ] ; then
             APPLIES="false"
           else
-            APPLIES="${{ steps.check-patch.outputs.applies }}"
+            APPLIES="${{ steps.check_patch.outputs.applies }}"
           fi
 
           cat > artifacts/result-summary.json << EOF
           {
             "package": "${{ matrix.package }}",
-            "has_patch": ${{ steps.load-patches.outputs.has_patch }},
+            "has_patch": ${{ steps.load_patches.outputs.has_patch }},
             "patch_applies": $APPLIES,
             "original_tests_outcome": "$ORIGINAL_TESTS_OUTCOME",
             "patched_tests_outcome": "$PATCHED_TESTS_OUTCOME",
             "result": "${{ steps.compare.outputs.result }}",
             "result_icon": "${{ steps.compare.outputs.result_icon }}",
             "result_text": "${{ steps.compare.outputs.result_text }}",
-            "patched_packages": "${{ steps.check-patch.outputs.patched_packages }}"
+            "patched_packages": "${{ steps.check_patch.outputs.patched_packages }}"
           }
           EOF
 
@@ -575,11 +575,11 @@ jobs:
         if: always()
         uses: ./.github/actions/generate-report
         with:
-          report-dir: ${{ needs.create-report-directory.outputs.report_dir }}
-          report-file: ${{ needs.create-report-directory.outputs.report_file }}
-          report-timestamp: ${{ needs.create-report-directory.outputs.report_timestamp }}
-          test-name: ${{ needs.load-config.outputs.test_name }}
-          config-file: ${{ needs.load-config.outputs.absolute_config_file }}
+          report_dir: ${{ needs.create-report-directory.outputs.report_dir }}
+          report_file: ${{ needs.create-report-directory.outputs.report_file }}
+          report_timestamp: ${{ needs.create-report-directory.outputs.report_timestamp }}
+          test_name: ${{ needs.load-config.outputs.test_name }}
+          config_file: ${{ needs.load-config.outputs.absolute_config_file }}
 
   generate-report:
     name: Generate Summary Report
@@ -605,9 +605,9 @@ jobs:
       - name: Generate and push report
         uses: ./.github/actions/generate-report
         with:
-          report-dir: ${{ needs.create-report-directory.outputs.report_dir }}
-          report-file: ${{ needs.create-report-directory.outputs.report_file }}
-          report-timestamp: ${{ needs.create-report-directory.outputs.report_timestamp }}
-          test-name: ${{ needs.load-config.outputs.test_name }}
-          config-file: ${{ needs.load-config.outputs.absolute_config_file }}
-          report-status: finished
+          report_dir: ${{ needs.create-report-directory.outputs.report_dir }}
+          report_file: ${{ needs.create-report-directory.outputs.report_file }}
+          report_timestamp: ${{ needs.create-report-directory.outputs.report_timestamp }}
+          test_name: ${{ needs.load-config.outputs.test_name }}
+          config_file: ${{ needs.load-config.outputs.absolute_config_file }}
+          report_status: finished

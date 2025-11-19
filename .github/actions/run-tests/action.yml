@@ -25,12 +25,12 @@ inputs:
 outputs:
   conclusion:
     description: 'Test conclusion (success or failure)'
-    value: ${{ steps.run-tests.outputs.conclusion }}
+    value: ${{ steps.run_tests.outputs.conclusion }}
 runs:
   using: 'composite'
   steps:
     - name: Run tests on ${{ inputs.test-type }} package
-      id: run-tests
+      id: run_tests
       shell: bash
       run: |
         echo "SO_FAR_OK=0" >> $GITHUB_ENV

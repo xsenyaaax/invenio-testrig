@@ -33,9 +33,9 @@ def load_test_config(config_file: Path) -> None:
         packages_str = " ".join(packages) if packages else ""
 
         # Output to stdout for parsing
-        print(f"test-name={test_name}")
-        print(f"run-original-tests={'true' if run_original_tests else 'false'}")
-        print(f"test-timeout={test_timeout}")
+        print(f"test_name={test_name}")
+        print(f"run_original_tests={'true' if run_original_tests else 'false'}")
+        print(f"test_timeout={test_timeout}")
         print(f"packages={packages_str}")
 
     except Exception as e:
