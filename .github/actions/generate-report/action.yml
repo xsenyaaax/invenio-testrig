@@ -22,6 +22,10 @@ inputs:
     description: 'Whether to add a summary of the report to the step summary'
     required: false
     default: 'false'
+  config-file:
+    description: 'Path to config file'
+    required: false
+    default: 'config.json5'
 runs:
   using: 'composite'
   steps:
@@ -47,7 +51,7 @@ runs:
       shell: bash
       run: |
         cd _repo/repo
-        bash scripts/generate_and_push_report.sh "${{ inputs.report-dir }}" "${{ inputs.report-file }}" "${{ inputs.report-timestamp }}" "${{ inputs.test-name }}" "../artifacts" "20" "${{ inputs.report-status }}"
+        bash scripts/generate_and_push_report.sh "${{ inputs.report-dir }}" "${{ inputs.report-file }}" "${{ inputs.report-timestamp }}" "${{ inputs.test-name }}" "../artifacts" "20" "${{ inputs.report-status }}" "${{ inputs.config-file }}"
 
     - name: Add report summary
       shell: bash

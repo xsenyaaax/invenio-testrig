@@ -49,16 +49,15 @@ This repository provides tools for verifying bugfixes in Invenio-based applicati
    - Click "Run workflow".
    - Select the correct branch.
    - Optionally, configure the following inputs:
-     - **Name of the verification run**: A descriptive name for this run (used in the report directory name).
+     - **Config file**: Path to the configuration file (default: `config.json5`)
      - **Continue from previous run**: If enabled, the workflow will continue from the most recent run, skipping packages that were already successfully tested.
-     - **Packages**: Space or comma-separated list of specific packages to test (leave empty to test all packages).
-     - **Run original tests**: If enabled, when patched tests fail, the original tests will be run to confirm the failure is due to the patch.
-     - **Timeout in minutes**: Maximum time allowed for each test run (0 = GitHub default).
      - **Verbose pytest**: If enabled, pytest will run with verbose output (-vv -s) and caching will be disabled. Use this if tests deadlock to see output in real-time.
+   
+   Note: Test name, packages to test, test timeout, and whether to run original tests are configured in the config file.
 
-7. Wait for the workflow to finish.
+6. Wait for the workflow to finish.
 
-8. Navigate to the [generated report](./reports/reports.md).
+7. Navigate to the [generated report](./reports/reports.md).
 
 ## How it works
 

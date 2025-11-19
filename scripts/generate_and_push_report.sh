@@ -2,7 +2,7 @@
 set -e
 
 # This script generates a report from test artifacts and pushes it to the repository
-# Usage: generate_and_push_report.sh <report_dir> <report_file> <report_timestamp> <test_name> [artifacts_dir] [max_attempts] [report_status]
+# Usage: generate_and_push_report.sh <report_dir> <report_file> <report_timestamp> <test_name> [artifacts_dir] [max_attempts] [report_status] [config_file]
 
 REPORT_DIR="$1"
 REPORT_FILE="$2"
@@ -11,6 +11,7 @@ TEST_NAME="$4"
 ARTIFACTS_DIR="${5:-artifacts}"
 MAX_ATTEMPTS="${6:-20}"
 REPORT_STATUS="${7:-running}"
+CONFIG_FILE="${8:-config.json5}"
 
 echo "Report directory: $REPORT_DIR"
 echo "Report file: $REPORT_FILE"
@@ -87,7 +88,7 @@ generate_report() {
   $PYTHON_CMD scripts/collect_warnings.py "${ARTIFACTS_DIR}" "${REPORT_DIR}/collected-warnings.md"
   
   # Generate summary report
-  $PYTHON_CMD scripts/generate_report.py "${ARTIFACTS_DIR}" "${REPORT_DIR}" "${REPORT_FILE}" "${REPORT_STATUS}"
+  $PYTHON_CMD scripts/generate_report.py "${ARTIFACTS_DIR}" "${REPORT_DIR}" "${REPORT_FILE}" "${CONFIG_FILE}" "${REPORT_STATUS}"
   echo "Generated report:"
   cat "${REPORT_FILE}"
   
@@ -122,7 +123,7 @@ generate_report() {
   STATUS="${TOTAL_PASSED} ✅ passed, ${TOTAL_FAILED} ❌ failed, ${TOTAL_WARNINGS} warnings"
   
   # Update reports index
-  $PYTHON_CMD scripts/add_summary_line.py reports/reports.md config.json5 "$TEST_NAME" "$REPORT_TIMESTAMP" "$STATUS"
+  $PYTHON_CMD scripts/add_summary_line.py reports/reports.md "$CONFIG_FILE" "$TEST_NAME" "$REPORT_TIMESTAMP" "$STATUS"
   echo "Updated reports index:"
   cat reports/reports.md
 }

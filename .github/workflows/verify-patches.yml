@@ -3,29 +3,15 @@ name: Verify Invenio Patches
 on:
   workflow_dispatch:
     inputs:
-      test_name:
-        description: "Name of the verification run"
+      config_file:
+        description: "Path to config file (JSON5 format)"
         required: false
-        default: ""
+        default: "config.json5"
       continue_from_previous:
         description: "Continue from previous run"
         required: false
         type: boolean
         default: false
-      packages:
-        description: "Space or comma separated list of packages to test (leave empty for all)"
-        required: false
-        default: ""
-      run_original_tests:
-        description: "Run original tests (when patched tests fail)"
-        required: false
-        type: boolean
-        default: true
-      test_timeout:
-        description: "Timeout in minutes for each test run (0 = no timeout)"
-        required: false
-        type: number
-        default: 90
       verbose_pytest:
         description: "Run pytest with verbose output (-vv -s)"
         required: false
@@ -38,8 +24,33 @@ env:
   EXTRAS: "tests,opensearch2,s3,devs,s3fs,oaipmh,rdf,sparql,postgresql,admin,docs"
 
 jobs:
+  load-config:
+    name: Load Test Configuration
+    runs-on: ubuntu-latest
+    outputs:
+      test_name: ${{ steps.load.outputs.test-name }}
+      run_original_tests: ${{ steps.load.outputs.run-original-tests }}
+      test_timeout: ${{ steps.load.outputs.test-timeout }}
+      packages: ${{ steps.load.outputs.packages }}
+      absolute_config_file: ${{ steps.load.outputs.absolute-config-file }}
+    steps:
+      - name: Checkout verification repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python and UV
+        uses: ./.github/actions/install-python
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Load configuration
+        id: load
+        uses: ./.github/actions/load-test-config
+        with:
+          config-file: ${{ inputs.config_file }}
+
   create-report-directory:
     name: Create Report Directory
+    needs: load-config
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -144,11 +155,13 @@ jobs:
           report-dir: ${{ steps.create-dir.outputs.report_dir }}
           report-file: ${{ steps.create-dir.outputs.report_file }}
           report-timestamp: ${{ steps.create-dir.outputs.report_timestamp }}
-          test-name: ${{ inputs.test_name }}
+          test-name: ${{ needs.load-config.outputs.test_name }}
+          config-file: ${{ needs.load-config.outputs.absolute_config_file }}
           add-report-summary: true
 
   extract-tested-packages:
     name: Extract Invenio Packages
+    needs: load-config
     runs-on: ubuntu-latest
     outputs:
       packages: ${{ steps.extract.outputs.packages }}
@@ -188,12 +201,12 @@ jobs:
           fi
 
           # Add package filter if provided
-          if [ -n "${{ inputs.packages }}" ]; then
-            echo "Filtering packages: ${{ inputs.packages }}"
-            opts+=("--filter-packages" ${{ inputs.packages }})
+          if [ -n "${{ needs.load-config.outputs.packages }}" ]; then
+            echo "Filtering packages: ${{ needs.load-config.outputs.packages }}"
+            opts+=("--filter-packages" ${{ needs.load-config.outputs.packages }})
           fi
 
-          $TOOLS_PYTHON scripts/extract_packages_to_test.py zenodo-rdm/uv.lock config.json5 packages.sh ${opts[@]}
+          $TOOLS_PYTHON scripts/extract_packages_to_test.py zenodo-rdm/uv.lock ${{ needs.load-config.outputs.absolute_config_file }} packages.sh ${opts[@]}
 
           # Source the output variables
           source packages.sh
@@ -208,6 +221,7 @@ jobs:
   test-packages:
     name: Test ${{ matrix.package }}
     needs:
+      - load-config
       - extract-tested-packages
       - create-report-directory
     runs-on: ubuntu-latest
@@ -242,7 +256,7 @@ jobs:
         run: |
 
           # Use lookup_package.py to get repository information
-          eval $($TOOLS_PYTHON scripts/lookup_package.py config.json5 ${{ matrix.package }})
+          eval $($TOOLS_PYTHON scripts/lookup_package.py ${{ needs.load-config.outputs.absolute_config_file }} ${{ matrix.package }})
 
           # Set outputs
           echo "original_repository_url=$original_repository_url" >> $GITHUB_OUTPUT
@@ -300,7 +314,7 @@ jobs:
         run: |
 
           # Use apply_patches.py to check and apply patches
-          $TOOLS_PYTHON scripts/apply_patches.py ${{ matrix.package }} package-repo/.venv config.json5 patch-variables.sh
+          $TOOLS_PYTHON scripts/apply_patches.py ${{ matrix.package }} package-repo/.venv ${{ needs.load-config.outputs.absolute_config_file }} patch-variables.sh
 
           # Source the output variables
           source patch-variables.sh
@@ -332,13 +346,13 @@ jobs:
           package-path: package-repo
           package-name: ${{ matrix.package }}
           test-type: patched
-          timeout: ${{ inputs.test_timeout }}
+          timeout: ${{ needs.load-config.outputs.test-timeout }}
           verbose-pytest: ${{ inputs.verbose_pytest }}
 
       # if the previous step failed, we will try to run the tests without patches
       - name: Clone package repository for tests without patches
         continue-on-error: true
-        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && inputs.run_original_tests
+        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run-original-tests == 'true'
         uses: ./.github/actions/clone-package
         with:
           repository-url: ${{ steps.load-patches.outputs.original_repository_url }}
@@ -346,7 +360,7 @@ jobs:
           destination: package-repo
 
       - name: Setup virtual environment and install dependencies for original package tests
-        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && inputs.run_original_tests
+        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run-original-tests == 'true'
         continue-on-error: true
         uses: ./.github/actions/setup-venv
         with:
@@ -357,13 +371,13 @@ jobs:
       - name: Run tests on original package without patches
         id: test-without-patch
         continue-on-error: true
-        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && inputs.run_original_tests
+        if: env.SO_FAR_OK == '1' && steps.test-with-patch.outputs.conclusion == 'failure' && needs.load-config.outputs.run-original-tests == 'true'
         uses: ./.github/actions/run-tests
         with:
           package-path: package-repo
           package-name: ${{ matrix.package }}
           test-type: original
-          timeout: ${{ inputs.test_timeout }}
+          timeout: ${{ needs.load-config.outputs.test-timeout }}
           verbose-pytest: ${{ inputs.verbose_pytest }}
 
       - name: Compare test results
@@ -492,7 +506,8 @@ jobs:
           report-dir: ${{ needs.create-report-directory.outputs.report_dir }}
           report-file: ${{ needs.create-report-directory.outputs.report_file }}
           report-timestamp: ${{ needs.create-report-directory.outputs.report_timestamp }}
-          test-name: ${{ inputs.test_name }}
+          test-name: ${{ needs.load-config.outputs.test_name }}
+          config-file: ${{ needs.load-config.outputs.absolute_config_file }}
 
       - name: Fail job if any tests failed
         if: always()
@@ -511,6 +526,7 @@ jobs:
   copy-previous-artifacts:
     name: Copy Previous Artifacts
     needs:
+      - load-config
       - extract-tested-packages
       - create-report-directory
     runs-on: ubuntu-latest
@@ -562,7 +578,8 @@ jobs:
           report-dir: ${{ needs.create-report-directory.outputs.report_dir }}
           report-file: ${{ needs.create-report-directory.outputs.report_file }}
           report-timestamp: ${{ needs.create-report-directory.outputs.report_timestamp }}
-          test-name: ${{ inputs.test_name }}
+          test-name: ${{ needs.load-config.outputs.test_name }}
+          config-file: ${{ needs.load-config.outputs.absolute_config_file }}
 
   generate-report:
     name: Generate Summary Report
@@ -570,6 +587,7 @@ jobs:
       - create-report-directory
       - test-packages
       - copy-previous-artifacts
+      - load-config
     runs-on: ubuntu-latest
     if: always()
     permissions:
@@ -590,5 +608,6 @@ jobs:
           report-dir: ${{ needs.create-report-directory.outputs.report_dir }}
           report-file: ${{ needs.create-report-directory.outputs.report_file }}
           report-timestamp: ${{ needs.create-report-directory.outputs.report_timestamp }}
-          test-name: ${{ inputs.test_name }}
+          test-name: ${{ needs.load-config.outputs.test_name }}
+          config-file: ${{ needs.load-config.outputs.absolute_config_file }}
           report-status: finished

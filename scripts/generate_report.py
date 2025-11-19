@@ -2,7 +2,7 @@
 """
 Generate markdown report from test artifacts.
 
-Usage: generate_report.py <artifacts_dir> <report_dir> <report_file>
+Usage: generate_report.py <artifacts_dir> <report_dir> <report_file> <config_file> [report_status]
 
 Processes test result artifacts and generates a comprehensive markdown report
 using Jinja2 templates.
@@ -208,6 +208,7 @@ def generate_report(
     artifacts_dir: Path,
     report_dir: Path,
     report_file: Path,
+    config_file: Path,
     report_status: str = "running",
 ) -> None:
     """Generate the markdown report."""
@@ -249,9 +250,8 @@ def generate_report(
     if warnings_file.exists():
         warnings_content = warnings_file.read_text()
 
-    # Load configured patches from config.json5
-    config_path = Path(__file__).parent.parent / "config.json5"
-    configured_patches = load_configured_patches(config_path)
+    # Load configured patches from config file
+    configured_patches = load_configured_patches(config_file)
 
     # Setup Jinja2 environment
     template_dir = Path(__file__).parent / "templates"
@@ -280,9 +280,9 @@ def generate_report(
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 4 or len(sys.argv) > 5:
+    if len(sys.argv) < 5 or len(sys.argv) > 6:
         print(
-            "Usage: generate_report.py <artifacts_dir> <report_dir> <report_file> [report_status]",
+            "Usage: generate_report.py <artifacts_dir> <report_dir> <report_file> <config_file> [report_status]",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -290,10 +290,13 @@ if __name__ == "__main__":
     artifacts_dir = Path(sys.argv[1])
     report_dir = Path(sys.argv[2])
     report_file = Path(sys.argv[3])
-    report_status = sys.argv[4] if len(sys.argv) == 5 else "running"
+    config_file = Path(sys.argv[4])
+    report_status = sys.argv[5] if len(sys.argv) == 6 else "running"
 
     try:
-        generate_report(artifacts_dir, report_dir, report_file, report_status)
+        generate_report(
+            artifacts_dir, report_dir, report_file, config_file, report_status
+        )
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
         import traceback
