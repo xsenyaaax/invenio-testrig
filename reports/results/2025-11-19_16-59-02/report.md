@@ -2,22 +2,22 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-11-19 17:00:38 UTC_
+_Last updated: 2025-11-19 17:00:53 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 6 |
-| **Patched Packages** | 6 |
+| **Total Packages** | 8 |
+| **Patched Packages** | 8 |
 | **Unpatched Packages** | 0 |
 
 ### Patch Results
 | Result | Count |
 |--------|-------|
-| ✅ Fixed | 6 |
+| ✅ Fixed | 7 |
 | ❌ Regressions | 0 |
-| ⚠️  Still Failing | 0 |
+| ⚠️  Still Failing | 1 |
 | ℹ️  No Change | 0 |
 
 ## 🔧 Configured Patches
@@ -43,6 +43,8 @@ _Last updated: 2025-11-19 17:00:38 UTC_
 | `invenio-cache` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-cache/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-cache/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-cache/test-report-patched.xml)<br>[warnings](packages/invenio-cache/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-app` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-app/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-app/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-app/test-report-patched.xml)<br>[warnings](packages/invenio-app/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-celery` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-celery/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-celery/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-celery/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
+| `invenio-db` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-db/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-db/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-db/test-report-patched.xml)<br>[warnings](packages/invenio-db/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
+| `invenio-records-files` | pytest-invenio | ❌ Fail<br>[output](packages/invenio-records-files/test-output-original.txt)<br>[output-no-warnings](packages/invenio-records-files/test-output-no-warnings-original.txt) | ❌ Fail<br>[output](packages/invenio-records-files/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-records-files/test-output-no-warnings-patched.txt) | ⚠️ Tests still failing after patch |
 | `invenio-logging` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-logging/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-logging/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-logging/test-report-patched.xml)<br>[warnings](packages/invenio-logging/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-formatter` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-formatter/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-formatter/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-formatter/test-report-patched.xml)<br>[warnings](packages/invenio-formatter/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-i18n` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-i18n/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-i18n/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-i18n/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
@@ -79,15 +81,15 @@ DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for r
 
 #### Warning 4 - 1 occurrence
 
-DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
+DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
 
 | Package | Count |
 |---------|-------|
-| `invenio-logging` | 1 |
+| `invenio-db` | 1 |
 
 #### Warning 5 - 1 occurrence
 
-PendingDeprecationWarning: This feature is deprecated.
+DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
 
 | Package | Count |
 |---------|-------|
@@ -95,13 +97,21 @@ PendingDeprecationWarning: This feature is deprecated.
 
 #### Warning 6 - 1 occurrence
 
+PendingDeprecationWarning: This feature is deprecated.
+
+| Package | Count |
+|---------|-------|
+| `invenio-logging` | 1 |
+
+#### Warning 7 - 1 occurrence
+
 UserWarning: Set configuration variable SECRET_KEY with random string
 
 | Package | Count |
 |---------|-------|
 | `invenio-app` | 1 |
 
-#### Warning 7 - 1 occurrence
+#### Warning 8 - 1 occurrence
 
 UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
 
