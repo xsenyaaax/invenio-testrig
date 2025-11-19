@@ -2,7 +2,7 @@
 
 ### Patched
 
-#### Warning 1 - 115 occurrences
+#### Warning 1 - 116 occurrences
 
 DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
 
@@ -29,6 +29,7 @@ DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for r
 | `invenio-pidstore` | 2 |
 | `invenio-cache` | 1 |
 | `invenio-formatter` | 1 |
+| `invenio-rest` | 1 |
 
 #### Warning 2 - 33 occurrences
 
@@ -145,7 +146,36 @@ DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of
 | `invenio-stats` | 1 |
 | `invenio-users-resources` | 1 |
 
-#### Warning 8 - 13 occurrences
+#### Warning 8 - 14 occurrences
+
+FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
+
+| Package | Count |
+|---------|-------|
+| `invenio-rest` | 2 |
+| `invenio-administration` | 1 |
+| `invenio-audit-logs` | 1 |
+| `invenio-collections` | 1 |
+| `invenio-drafts-resources` | 1 |
+| `invenio-github` | 1 |
+| `invenio-jobs` | 1 |
+| `invenio-records-permissions` | 1 |
+| `invenio-records-resources` | 1 |
+| `invenio-records-rest` | 1 |
+| `invenio-requests` | 1 |
+| `invenio-stats` | 1 |
+| `invenio-users-resources` | 1 |
+
+#### Warning 9 - 14 occurrences
+
+PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.
+
+| Package | Count |
+|---------|-------|
+| `invenio-records-rest` | 11 |
+| `invenio-rest` | 3 |
+
+#### Warning 10 - 13 occurrences
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
@@ -164,33 +194,6 @@ DeprecationWarning: Using the initialization functions in flask_caching.backend 
 | `invenio-requests` | 1 |
 | `invenio-stats` | 1 |
 | `invenio-users-resources` | 1 |
-
-#### Warning 9 - 12 occurrences
-
-FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
-
-| Package | Count |
-|---------|-------|
-| `invenio-administration` | 1 |
-| `invenio-audit-logs` | 1 |
-| `invenio-collections` | 1 |
-| `invenio-drafts-resources` | 1 |
-| `invenio-github` | 1 |
-| `invenio-jobs` | 1 |
-| `invenio-records-permissions` | 1 |
-| `invenio-records-resources` | 1 |
-| `invenio-records-rest` | 1 |
-| `invenio-requests` | 1 |
-| `invenio-stats` | 1 |
-| `invenio-users-resources` | 1 |
-
-#### Warning 10 - 11 occurrences
-
-PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.
-
-| Package | Count |
-|---------|-------|
-| `invenio-records-rest` | 11 |
 
 #### Warning 11 - 11 occurrences
 
