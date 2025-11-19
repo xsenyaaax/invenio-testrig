@@ -2,20 +2,20 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-11-19 14:41:54 UTC_
+_Last updated: 2025-11-19 14:42:02 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 26 |
-| **Patched Packages** | 26 |
+| **Total Packages** | 27 |
+| **Patched Packages** | 27 |
 | **Unpatched Packages** | 0 |
 
 ### Patch Results
 | Result | Count |
 |--------|-------|
-| ✅ Fixed | 25 |
+| ✅ Fixed | 26 |
 | ❌ Regressions | 1 |
 | ⚠️  Still Failing | 0 |
 | ℹ️  No Change | 0 |
@@ -53,6 +53,7 @@ _Last updated: 2025-11-19 14:41:54 UTC_
 | `invenio-indexer` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-indexer/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-indexer/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-indexer/test-report-patched.xml)<br>[warnings](packages/invenio-indexer/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-oaiserver` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-oaiserver/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-oaiserver/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-oaiserver/test-report-patched.xml)<br>[warnings](packages/invenio-oaiserver/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-drafts-resources` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-drafts-resources/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-drafts-resources/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-drafts-resources/test-report-patched.xml)<br>[warnings](packages/invenio-drafts-resources/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
+| `invenio-rest` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-rest/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-rest/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-rest/test-report-patched.xml)<br>[warnings](packages/invenio-rest/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-records-permissions` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-records-permissions/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-records-permissions/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-records-permissions/test-report-patched.xml)<br>[warnings](packages/invenio-records-permissions/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-records-ui` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-records-ui/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-records-ui/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-records-ui/test-report-patched.xml)<br>[warnings](packages/invenio-records-ui/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-stats` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-stats/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-stats/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-stats/test-report-patched.xml)<br>[warnings](packages/invenio-stats/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
@@ -71,7 +72,7 @@ _Last updated: 2025-11-19 14:41:54 UTC_
 
 ### Patched
 
-#### Warning 1 - 62 occurrences
+#### Warning 1 - 63 occurrences
 
 DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
 
@@ -91,6 +92,7 @@ DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for r
 | `invenio-pidstore` | 2 |
 | `invenio-cache` | 1 |
 | `invenio-formatter` | 1 |
+| `invenio-rest` | 1 |
 
 #### Warning 2 - 26 occurrences
 
@@ -124,7 +126,7 @@ RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be 
 | `invenio-drafts-resources` | 3 |
 | `invenio-checks` | 2 |
 
-#### Warning 4 - 15 occurrences
+#### Warning 4 - 18 occurrences
 
 PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.
 
@@ -132,6 +134,7 @@ PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as we
 |---------|-------|
 | `invenio-records-rest` | 11 |
 | `invenio-oaiserver` | 4 |
+| `invenio-rest` | 3 |
 
 #### Warning 5 - 13 occurrences
 
@@ -196,7 +199,23 @@ DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of
 | `invenio-records-ui` | 1 |
 | `invenio-stats` | 1 |
 
-#### Warning 9 - 9 occurrences
+#### Warning 9 - 10 occurrences
+
+FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
+
+| Package | Count |
+|---------|-------|
+| `invenio-rest` | 2 |
+| `invenio-administration` | 1 |
+| `invenio-audit-logs` | 1 |
+| `invenio-drafts-resources` | 1 |
+| `invenio-github` | 1 |
+| `invenio-jobs` | 1 |
+| `invenio-records-permissions` | 1 |
+| `invenio-records-rest` | 1 |
+| `invenio-stats` | 1 |
+
+#### Warning 10 - 9 occurrences
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
@@ -212,7 +231,7 @@ DeprecationWarning: Using the initialization functions in flask_caching.backend 
 | `invenio-records-permissions` | 1 |
 | `invenio-stats` | 1 |
 
-#### Warning 10 - 8 occurrences
+#### Warning 11 - 8 occurrences
 
 DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
 
@@ -226,21 +245,6 @@ DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxc
 | `invenio-notifications` | 1 |
 | `invenio-oaiserver` | 1 |
 | `invenio-pidstore` | 1 |
-
-#### Warning 11 - 8 occurrences
-
-FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
-
-| Package | Count |
-|---------|-------|
-| `invenio-administration` | 1 |
-| `invenio-audit-logs` | 1 |
-| `invenio-drafts-resources` | 1 |
-| `invenio-github` | 1 |
-| `invenio-jobs` | 1 |
-| `invenio-records-permissions` | 1 |
-| `invenio-records-rest` | 1 |
-| `invenio-stats` | 1 |
 
 #### Warning 12 - 8 occurrences
 

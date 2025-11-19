@@ -2,7 +2,7 @@
 
 ### Patched
 
-#### Warning 1 - 62 occurrences
+#### Warning 1 - 63 occurrences
 
 DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
 
@@ -22,6 +22,7 @@ DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for r
 | `invenio-pidstore` | 2 |
 | `invenio-cache` | 1 |
 | `invenio-formatter` | 1 |
+| `invenio-rest` | 1 |
 
 #### Warning 2 - 26 occurrences
 
@@ -55,7 +56,7 @@ RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be 
 | `invenio-drafts-resources` | 3 |
 | `invenio-checks` | 2 |
 
-#### Warning 4 - 15 occurrences
+#### Warning 4 - 18 occurrences
 
 PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.
 
@@ -63,6 +64,7 @@ PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as we
 |---------|-------|
 | `invenio-records-rest` | 11 |
 | `invenio-oaiserver` | 4 |
+| `invenio-rest` | 3 |
 
 #### Warning 5 - 13 occurrences
 
@@ -127,7 +129,23 @@ DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of
 | `invenio-records-ui` | 1 |
 | `invenio-stats` | 1 |
 
-#### Warning 9 - 9 occurrences
+#### Warning 9 - 10 occurrences
+
+FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
+
+| Package | Count |
+|---------|-------|
+| `invenio-rest` | 2 |
+| `invenio-administration` | 1 |
+| `invenio-audit-logs` | 1 |
+| `invenio-drafts-resources` | 1 |
+| `invenio-github` | 1 |
+| `invenio-jobs` | 1 |
+| `invenio-records-permissions` | 1 |
+| `invenio-records-rest` | 1 |
+| `invenio-stats` | 1 |
+
+#### Warning 10 - 9 occurrences
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
@@ -143,7 +161,7 @@ DeprecationWarning: Using the initialization functions in flask_caching.backend 
 | `invenio-records-permissions` | 1 |
 | `invenio-stats` | 1 |
 
-#### Warning 10 - 8 occurrences
+#### Warning 11 - 8 occurrences
 
 DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
 
@@ -157,21 +175,6 @@ DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxc
 | `invenio-notifications` | 1 |
 | `invenio-oaiserver` | 1 |
 | `invenio-pidstore` | 1 |
-
-#### Warning 11 - 8 occurrences
-
-FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
-
-| Package | Count |
-|---------|-------|
-| `invenio-administration` | 1 |
-| `invenio-audit-logs` | 1 |
-| `invenio-drafts-resources` | 1 |
-| `invenio-github` | 1 |
-| `invenio-jobs` | 1 |
-| `invenio-records-permissions` | 1 |
-| `invenio-records-rest` | 1 |
-| `invenio-stats` | 1 |
 
 #### Warning 12 - 8 occurrences
 
