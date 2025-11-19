@@ -149,18 +149,22 @@ def calculate_statistics(artifacts_dir: Path) -> dict[str, int]:
             summary = json.load(f)
 
         stats["total"] += 1
+        has_patch = summary.get("has_patch", False)
         applies = summary.get("patch_applies", False)
 
-        if applies:
+        # A package is considered "patched" if either its source is patched (has_patch)
+        # or dependencies are patched (patch_applies)
+        if has_patch or applies:
             stats["patched"] += 1
             result = summary.get("result", "")
-            if result == "fixed":
+            if result == "fixed" or result == "fixed-skipped":
                 stats["fixed"] += 1
-            elif result == "regression":
+            elif result == "regression" or result == "regression-skipped":
                 stats["regression"] += 1
-            elif result == "still-failing":
+            elif result == "still-failing" or result == "still-failing-skipped":
                 stats["still_failing"] += 1
             else:
+                # ok, no-change-skipped, no-change-both-skipped
                 stats["no_change"] += 1
         else:
             stats["unpatched"] += 1
