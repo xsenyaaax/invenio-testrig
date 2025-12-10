@@ -2,15 +2,15 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-12-10 10:00:58 UTC_
+_Last updated: 2025-12-10 10:01:22 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 0 |
+| **Total Packages** | 6 |
 | **Patched Packages** | 0 |
-| **Unpatched Packages** | 0 |
+| **Unpatched Packages** | 6 |
 
 ### Patch Results
 | Result | Count |
@@ -38,6 +38,12 @@ _Last updated: 2025-12-10 10:00:58 UTC_
 
 | Package | Build Status |
 |---------|--------------|
+| `invenio-config` | ⏭️  Skipped |
+| `invenio-queues` | ⏭️  Skipped |
+| `invenio-cache` | ⏭️  Skipped |
+| `invenio-base` | ⏭️  Skipped |
+| `invenio-celery` | ⏭️  Skipped |
+| `invenio-formatter` | ⏭️  Skipped |
 
 ## 🔄 Packages that depend on patched packages
 
