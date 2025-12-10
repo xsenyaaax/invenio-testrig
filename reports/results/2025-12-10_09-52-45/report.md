@@ -2,20 +2,20 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-12-10 09:53:42 UTC_
+_Last updated: 2025-12-10 09:53:47 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 12 |
-| **Patched Packages** | 12 |
+| **Total Packages** | 11 |
+| **Patched Packages** | 11 |
 | **Unpatched Packages** | 0 |
 
 ### Patch Results
 | Result | Count |
 |--------|-------|
-| ✅ Fixed | 12 |
+| ✅ Fixed | 11 |
 | ❌ Regressions | 0 |
 | ⚠️  Still Failing | 0 |
 | ℹ️  No Change | 0 |
@@ -45,7 +45,6 @@ _Last updated: 2025-12-10 09:53:42 UTC_
 | `invenio-theme` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-theme/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-theme/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-theme/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
 | `invenio-assets` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-assets/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-assets/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-assets/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
 | `invenio-celery` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-celery/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-celery/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-celery/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
-| `invenio-db` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-db/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-db/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-db/test-report-patched.xml)<br>[warnings](packages/invenio-db/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-rest` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-rest/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-rest/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-rest/test-report-patched.xml)<br>[warnings](packages/invenio-rest/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 | `invenio-search-ui` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-search-ui/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-search-ui/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-search-ui/test-report-patched.xml) | ✅ Patch applied successfully, tests passed |
 | `invenio-logging` | pytest-invenio | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-logging/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-logging/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-logging/test-report-patched.xml)<br>[warnings](packages/invenio-logging/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
@@ -93,21 +92,13 @@ FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
 
 #### Warning 5 - 1 occurrence
 
-DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
-
-| Package | Count |
-|---------|-------|
-| `invenio-db` | 1 |
-
-#### Warning 6 - 1 occurrence
-
 DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
 
 | Package | Count |
 |---------|-------|
 | `invenio-logging` | 1 |
 
-#### Warning 7 - 1 occurrence
+#### Warning 6 - 1 occurrence
 
 DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
 
@@ -115,7 +106,7 @@ DeprecationWarning: Using the initialization functions in flask_caching.backend 
 |---------|-------|
 | `invenio-cache` | 1 |
 
-#### Warning 8 - 1 occurrence
+#### Warning 7 - 1 occurrence
 
 DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
 
@@ -123,7 +114,7 @@ DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor
 |---------|-------|
 | `invenio-jsonschemas` | 1 |
 
-#### Warning 9 - 1 occurrence
+#### Warning 8 - 1 occurrence
 
 PendingDeprecationWarning: This feature is deprecated.
 
@@ -131,7 +122,7 @@ PendingDeprecationWarning: This feature is deprecated.
 |---------|-------|
 | `invenio-logging` | 1 |
 
-#### Warning 10 - 1 occurrence
+#### Warning 9 - 1 occurrence
 
 PytestConfigWarning: Unknown config option: pep8ignore
 
