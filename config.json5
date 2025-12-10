@@ -8,6 +8,18 @@
       git: "https://github.com/oarepo/invenio-previewer.git",
       branch: "oarepo-feature-container-previewers",
     },
+    "invenio-records-resources": {
+      git: "https://github.com/oarepo/invenio-records-resources.git",
+      branch: "oarepo-feature-extractors",
+    },
+    "invenio-rdm-records": {
+      git: "https://github.com/oarepo/invenio-rdm-records.git,
+      branch: "oarepo-feature-zip",
+    },
+    "invenio-app-rdm": {
+      git: "https://github.com/oarepo/invenio-app-rdm.git,
+      branch: "oarepo-feature-extract-preview-ui-links",
+    },
     // Add more patches here as needed
   },
   // whether to run original tests without patches when patched test fails
