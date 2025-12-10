@@ -1,0 +1,733 @@
+ rabbitmq Pulling 
+ redis Pulling 
+ postgresql Pulling 
+ elasticsearch Pulling 
+ redis Pulled 
+ elasticsearch Pulled 
+ postgresql Pulled 
+ rabbitmq Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-elasticsearch-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-elasticsearch-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-elasticsearch-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-elasticsearch-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/invenio-testrig/invenio-testrig/package-repo
+configfile: setup.cfg
+testpaths: docs, tests, invenio_jobs
+plugins: github-actions-annotate-failures-0.3.0, pycodestyle-2.5.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, isort-4.0.0, cov-7.0.0, pydocstyle-2.4.0
+collecting ... collected 174 items
+
+docs/conf.py::PYDOCSTYLE PASSED
+docs/conf.py::ISORT PASSED
+docs/conf.py::black PASSED
+tests/conftest.py::PYDOCSTYLE PASSED
+tests/conftest.py::ISORT PASSED
+tests/conftest.py::black PASSED
+tests/mock_module/__init__.py::PYDOCSTYLE PASSED
+tests/mock_module/__init__.py::ISORT PASSED
+tests/mock_module/__init__.py::black PASSED
+tests/mock_module/jobs.py::PYDOCSTYLE PASSED
+tests/mock_module/jobs.py::ISORT PASSED
+tests/mock_module/jobs.py::black PASSED
+tests/mock_module/tasks.py::PYDOCSTYLE PASSED
+tests/mock_module/tasks.py::ISORT PASSED
+tests/mock_module/tasks.py::black PASSED
+tests/resources/test_resources.py::ISORT PASSED
+tests/resources/test_resources.py::black PASSED
+tests/resources/test_resources.py::test_simple_flow JSONSCHEMAS_HOST is set to localhost
+Flask-DebugToolbar extension not installed.
+A resource error handler caught the following exception:
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/resources.py", line 65, in view
+    return view_meth()
+           ^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/content_negotiation.py", line 116, in inner_content_negotiation
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/parsers/decorators.py", line 90, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/parsers/decorators.py", line 51, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/responses.py", line 39, in inner
+    res = f(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_jobs/resources/resources.py", line 188, in create
+    item = self.service.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_jobs/logging/jobs.py", line 82, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py", line 251, in inner
+    res = f(self, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_jobs/services/services.py", line 259, in create
+    valid_data, errors = self.schema.load(
+                         ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/schema.py", line 90, in load
+    valid_data = self.schema(context=context, **schema_args).load(data)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/schema.py", line 792, in load
+    return self._do_load(
+           ^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/schema.py", line 999, in _do_load
+    raise exc
+marshmallow.exceptions.ValidationError: {'args': {'since': ['Not a valid datetime.']}}
+[2025-12-10 10:02:31,547] DEBUG in errors: A resource error handler caught the following exception:
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/resources.py", line 65, in view
+    return view_meth()
+           ^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/content_negotiation.py", line 116, in inner_content_negotiation
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/parsers/decorators.py", line 90, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/parsers/decorators.py", line 51, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_resources/responses.py", line 39, in inner
+    res = f(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_jobs/resources/resources.py", line 188, in create
+    item = self.service.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_jobs/logging/jobs.py", line 82, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py", line 251, in inner
+    res = f(self, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_jobs/services/services.py", line 259, in create
+    valid_data, errors = self.schema.load(
+                         ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/schema.py", line 90, in load
+    valid_data = self.schema(context=context, **schema_args).load(data)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/schema.py", line 792, in load
+    return self._do_load(
+           ^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/schema.py", line 999, in _do_load
+    raise exc
+marshmallow.exceptions.ValidationError: {'args': {'since': ['Not a valid datetime.']}}
+Run created
+[2025-12-10 10:02:31,574] DEBUG in services: Run created
+Run created
+[2025-12-10 10:02:31,709] DEBUG in services: Run created
+Test log message
+[2025-12-10 10:02:32,007] INFO in test_resources: Test log message
+PASSED
+tests/resources/test_resources.py::test_tasks_search SKIPPED (Tasks
+search not needed.)
+tests/resources/test_resources.py::test_jobs_create PASSED
+
+tests/resources/test_resources.py::test_jobs_update PASSED
+
+tests/resources/test_resources.py::test_jobs_search PASSED
+
+tests/resources/test_resources.py::test_jobs_delete PASSED
+
+tests/resources/test_resources.py::test_job_template_args SKIPPED
+tests/test_alembic.py::ISORT PASSED
+tests/test_alembic.py::black PASSED
+tests/test_alembic.py::test_alembic SKIPPED (endles loop)
+tests/test_deprecated.py::ISORT PASSED
+tests/test_deprecated.py::black PASSED
+tests/test_deprecated.py::test_task_execution_error_deprecated PASSED
+tests/test_invenio_jobs.py::ISORT PASSED
+tests/test_invenio_jobs.py::black PASSED
+tests/test_invenio_jobs.py::test_version PASSED
+tests/test_invenio_jobs.py::test_init PASSED
+tests/test_services_job_logs.py::ISORT PASSED
+tests/test_services_job_logs.py::black PASSED
+tests/test_services_job_logs.py::test_job_logs_search_limits_to_max_docs JSONSCHEMAS_HOST is set to localhost
+[2025-12-10 10:02:35,189] WARNING in ext: JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+Flask-DebugToolbar extension not installed.
+[2025-12-10 10:02:35,392] DEBUG in ext: Flask-DebugToolbar extension not installed.
+Flask-DebugToolbar extension not installed.
+PASSED
+
+tests/test_services_job_logs.py::test_job_logs_search_returns_all_when_under_limit PASSED
+
+tests/test_services_subtasks.py::ISORT PASSED
+tests/test_services_subtasks.py::black PASSED
+tests/test_services_subtasks.py::test_create_subtask_run JSONSCHEMAS_HOST is set to localhost
+[2025-12-10 10:02:37,173] WARNING in ext: JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+Flask-DebugToolbar extension not installed.
+[2025-12-10 10:02:37,368] DEBUG in ext: Flask-DebugToolbar extension not installed.
+Flask-DebugToolbar extension not installed.
+Flask-DebugToolbar extension not installed.
+Run created
+[2025-12-10 10:02:38,476] DEBUG in services: Run created
+Run created
+Run created
+Updating run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:38,493] INFO in tasks: Updating run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:38,506] DEBUG in tasks: Executing run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with task mock_module.tasks.mock_task and args None
+Executing run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with task mock_module.tasks.mock_task and args None
+Executing run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with task mock_module.tasks.mock_task and args None
+Run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:38,514] ERROR in tasks: Run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:38,517] INFO in tasks: Updating run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_create_subtask_run_invalid_parent PASSED
+
+tests/test_services_subtasks.py::test_start_processing_subtask Run created
+[2025-12-10 10:02:38,834] DEBUG in services: Run created
+Run created
+Run created
+Updating run 7002e417-0d63-4462-acf4-118262e3064d with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:38,841] INFO in tasks: Updating run 7002e417-0d63-4462-acf4-118262e3064d with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 7002e417-0d63-4462-acf4-118262e3064d with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 7002e417-0d63-4462-acf4-118262e3064d with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run 7002e417-0d63-4462-acf4-118262e3064d with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:38,851] DEBUG in tasks: Executing run 7002e417-0d63-4462-acf4-118262e3064d with task mock_module.tasks.mock_task and args None
+Executing run 7002e417-0d63-4462-acf4-118262e3064d with task mock_module.tasks.mock_task and args None
+Executing run 7002e417-0d63-4462-acf4-118262e3064d with task mock_module.tasks.mock_task and args None
+Run 7002e417-0d63-4462-acf4-118262e3064d encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:38,859] ERROR in tasks: Run 7002e417-0d63-4462-acf4-118262e3064d encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 7002e417-0d63-4462-acf4-118262e3064d encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 7002e417-0d63-4462-acf4-118262e3064d encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run 7002e417-0d63-4462-acf4-118262e3064d with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:38,862] INFO in tasks: Updating run 7002e417-0d63-4462-acf4-118262e3064d with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 7002e417-0d63-4462-acf4-118262e3064d with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 7002e417-0d63-4462-acf4-118262e3064d with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_start_processing_subtask_invalid_status Run created
+[2025-12-10 10:02:39,090] DEBUG in services: Run created
+Run created
+Run created
+Updating run fcaf3180-6275-4a74-afab-48a5d3108606 with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:39,099] INFO in tasks: Updating run fcaf3180-6275-4a74-afab-48a5d3108606 with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run fcaf3180-6275-4a74-afab-48a5d3108606 with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run fcaf3180-6275-4a74-afab-48a5d3108606 with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run fcaf3180-6275-4a74-afab-48a5d3108606 with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:39,109] DEBUG in tasks: Executing run fcaf3180-6275-4a74-afab-48a5d3108606 with task mock_module.tasks.mock_task and args None
+Executing run fcaf3180-6275-4a74-afab-48a5d3108606 with task mock_module.tasks.mock_task and args None
+Executing run fcaf3180-6275-4a74-afab-48a5d3108606 with task mock_module.tasks.mock_task and args None
+Run fcaf3180-6275-4a74-afab-48a5d3108606 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:39,115] ERROR in tasks: Run fcaf3180-6275-4a74-afab-48a5d3108606 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run fcaf3180-6275-4a74-afab-48a5d3108606 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run fcaf3180-6275-4a74-afab-48a5d3108606 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run fcaf3180-6275-4a74-afab-48a5d3108606 with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:39,118] INFO in tasks: Updating run fcaf3180-6275-4a74-afab-48a5d3108606 with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run fcaf3180-6275-4a74-afab-48a5d3108606 with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run fcaf3180-6275-4a74-afab-48a5d3108606 with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_finalize_subtask_success Run created
+[2025-12-10 10:02:39,252] DEBUG in services: Run created
+Run created
+Run created
+Updating run feb89396-23df-4644-bece-90dd47c88157 with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:39,259] INFO in tasks: Updating run feb89396-23df-4644-bece-90dd47c88157 with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run feb89396-23df-4644-bece-90dd47c88157 with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run feb89396-23df-4644-bece-90dd47c88157 with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run feb89396-23df-4644-bece-90dd47c88157 with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:39,268] DEBUG in tasks: Executing run feb89396-23df-4644-bece-90dd47c88157 with task mock_module.tasks.mock_task and args None
+Executing run feb89396-23df-4644-bece-90dd47c88157 with task mock_module.tasks.mock_task and args None
+Executing run feb89396-23df-4644-bece-90dd47c88157 with task mock_module.tasks.mock_task and args None
+Run feb89396-23df-4644-bece-90dd47c88157 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:39,275] ERROR in tasks: Run feb89396-23df-4644-bece-90dd47c88157 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run feb89396-23df-4644-bece-90dd47c88157 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run feb89396-23df-4644-bece-90dd47c88157 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run feb89396-23df-4644-bece-90dd47c88157 with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:39,278] INFO in tasks: Updating run feb89396-23df-4644-bece-90dd47c88157 with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run feb89396-23df-4644-bece-90dd47c88157 with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run feb89396-23df-4644-bece-90dd47c88157 with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_finalize_subtask_failure Run created
+[2025-12-10 10:02:39,547] DEBUG in services: Run created
+Run created
+Run created
+Updating run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:39,554] INFO in tasks: Updating run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:39,565] DEBUG in tasks: Executing run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with task mock_module.tasks.mock_task and args None
+Executing run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with task mock_module.tasks.mock_task and args None
+Executing run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with task mock_module.tasks.mock_task and args None
+Run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:39,573] ERROR in tasks: Run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:39,576] INFO in tasks: Updating run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 9c2b68f8-8db8-4c0d-b85f-8141c6e2026c with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_finalize_subtask_partial_success Run created
+[2025-12-10 10:02:39,839] DEBUG in services: Run created
+Run created
+Run created
+Updating run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:39,846] INFO in tasks: Updating run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:39,856] DEBUG in tasks: Executing run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with task mock_module.tasks.mock_task and args None
+Executing run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with task mock_module.tasks.mock_task and args None
+Executing run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with task mock_module.tasks.mock_task and args None
+Run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:39,864] ERROR in tasks: Run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:39,867] INFO in tasks: Updating run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1 with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_add_total_entries Run created
+[2025-12-10 10:02:40,088] DEBUG in services: Run created
+Run created
+Run created
+Updating run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:40,096] INFO in tasks: Updating run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:40,110] DEBUG in tasks: Executing run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with task mock_module.tasks.mock_task and args None
+Executing run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with task mock_module.tasks.mock_task and args None
+Executing run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with task mock_module.tasks.mock_task and args None
+Run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:40,119] ERROR in tasks: Run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:40,122] INFO in tasks: Updating run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 0dd95f05-66c9-45e6-b4fa-ad21956b4b0b with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_add_total_entries_invalid_values Run created
+[2025-12-10 10:02:40,336] DEBUG in services: Run created
+Run created
+Run created
+Updating run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:40,344] INFO in tasks: Updating run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:40,354] DEBUG in tasks: Executing run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with task mock_module.tasks.mock_task and args None
+Executing run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with task mock_module.tasks.mock_task and args None
+Executing run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with task mock_module.tasks.mock_task and args None
+Run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:40,364] ERROR in tasks: Run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:40,367] INFO in tasks: Updating run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 7da664fd-b8bf-48ef-a7b1-9c5208d60245 with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_finalize_subtask_with_errored_entries_message Run created
+[2025-12-10 10:02:40,492] DEBUG in services: Run created
+Run created
+Run created
+Updating run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with status RunStatusEnum.QUEUED and active subtasks: False
+[2025-12-10 10:02:40,499] INFO in tasks: Updating run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with status RunStatusEnum.QUEUED and active subtasks: False
+Updating run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with status RunStatusEnum.QUEUED and active subtasks: False
+Executing run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with task mock_module.tasks.mock_task and args None
+[2025-12-10 10:02:40,509] DEBUG in tasks: Executing run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with task mock_module.tasks.mock_task and args None
+Executing run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with task mock_module.tasks.mock_task and args None
+Executing run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with task mock_module.tasks.mock_task and args None
+Run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+[2025-12-10 10:02:40,517] ERROR in tasks: Run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c encountered an unexpected error: mock_task() got an unexpected keyword argument 'since'
+Updating run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with status RunStatusEnum.RUNNING and active subtasks: False
+[2025-12-10 10:02:40,520] INFO in tasks: Updating run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with status RunStatusEnum.RUNNING and active subtasks: False
+Updating run 8c91311c-cfc5-4ca0-8947-ef7ed0d5557c with status RunStatusEnum.RUNNING and active subtasks: False
+PASSED
+
+tests/test_services_subtasks.py::test_finalize_subtask_nonexistent_run PASSED
+
+tests/test_utils.py::ISORT PASSED
+tests/test_utils.py::black PASSED
+tests/test_utils.py::test_job_arg_json_dumper PASSED
+invenio_jobs/__init__.py::PYDOCSTYLE PASSED
+invenio_jobs/__init__.py::ISORT PASSED
+invenio_jobs/__init__.py::black PASSED
+invenio_jobs/administration/__init__.py::PYDOCSTYLE PASSED
+invenio_jobs/administration/__init__.py::ISORT PASSED
+invenio_jobs/administration/__init__.py::black PASSED
+invenio_jobs/administration/jobs.py::PYDOCSTYLE PASSED
+invenio_jobs/administration/jobs.py::ISORT PASSED
+invenio_jobs/administration/jobs.py::black PASSED
+invenio_jobs/administration/runs.py::PYDOCSTYLE PASSED
+invenio_jobs/administration/runs.py::ISORT PASSED
+invenio_jobs/administration/runs.py::black PASSED
+invenio_jobs/alembic/1753948224_add_subtasks_columns_to_jobs_run.py::PYDOCSTYLE PASSED
+invenio_jobs/alembic/1753948224_add_subtasks_columns_to_jobs_run.py::ISORT PASSED
+invenio_jobs/alembic/1753948224_add_subtasks_columns_to_jobs_run.py::black PASSED
+invenio_jobs/alembic/1f896f6990b8_update_jobs_module_table_names.py::PYDOCSTYLE PASSED
+invenio_jobs/alembic/1f896f6990b8_update_jobs_module_table_names.py::ISORT PASSED
+invenio_jobs/alembic/1f896f6990b8_update_jobs_module_table_names.py::black PASSED
+invenio_jobs/alembic/356496a01197_create_invenio_jobs_tables.py::PYDOCSTYLE PASSED
+invenio_jobs/alembic/356496a01197_create_invenio_jobs_tables.py::ISORT PASSED
+invenio_jobs/alembic/356496a01197_create_invenio_jobs_tables.py::black PASSED
+invenio_jobs/alembic/371f4cbcb73d_create_invenio_jobs_branch.py::PYDOCSTYLE PASSED
+invenio_jobs/alembic/371f4cbcb73d_create_invenio_jobs_branch.py::ISORT PASSED
+invenio_jobs/alembic/371f4cbcb73d_create_invenio_jobs_branch.py::black PASSED
+invenio_jobs/api.py::PYDOCSTYLE PASSED
+invenio_jobs/api.py::ISORT PASSED
+invenio_jobs/api.py::black PASSED
+invenio_jobs/config.py::PYDOCSTYLE PASSED
+invenio_jobs/config.py::ISORT PASSED
+invenio_jobs/config.py::black PASSED
+invenio_jobs/errors.py::PYDOCSTYLE PASSED
+invenio_jobs/errors.py::ISORT PASSED
+invenio_jobs/errors.py::black PASSED
+invenio_jobs/ext.py::PYDOCSTYLE PASSED
+invenio_jobs/ext.py::ISORT PASSED
+invenio_jobs/ext.py::black PASSED
+invenio_jobs/jobs.py::PYDOCSTYLE PASSED
+invenio_jobs/jobs.py::ISORT PASSED
+invenio_jobs/jobs.py::black PASSED
+invenio_jobs/logging/__init__.py::PYDOCSTYLE PASSED
+invenio_jobs/logging/__init__.py::ISORT PASSED
+invenio_jobs/logging/__init__.py::black PASSED
+invenio_jobs/logging/celery_signals.py::PYDOCSTYLE PASSED
+invenio_jobs/logging/celery_signals.py::ISORT PASSED
+invenio_jobs/logging/celery_signals.py::black PASSED
+invenio_jobs/logging/index_templates/__init__.py::PYDOCSTYLE PASSED
+invenio_jobs/logging/index_templates/__init__.py::ISORT PASSED
+invenio_jobs/logging/index_templates/__init__.py::black PASSED
+invenio_jobs/logging/index_templates/os-v1/__init__.py::PYDOCSTYLE PASSED
+invenio_jobs/logging/index_templates/os-v1/__init__.py::ISORT PASSED
+invenio_jobs/logging/index_templates/os-v1/__init__.py::black PASSED
+invenio_jobs/logging/index_templates/os-v2/__init__.py::PYDOCSTYLE PASSED
+invenio_jobs/logging/index_templates/os-v2/__init__.py::ISORT PASSED
+invenio_jobs/logging/index_templates/os-v2/__init__.py::black PASSED
+invenio_jobs/logging/jobs.py::PYDOCSTYLE PASSED
+invenio_jobs/logging/jobs.py::ISORT PASSED
+invenio_jobs/logging/jobs.py::black PASSED
+invenio_jobs/logging/tasks.py::PYDOCSTYLE PASSED
+invenio_jobs/logging/tasks.py::ISORT PASSED
+invenio_jobs/logging/tasks.py::black PASSED
+invenio_jobs/models.py::PYDOCSTYLE PASSED
+invenio_jobs/models.py::ISORT PASSED
+invenio_jobs/models.py::black PASSED
+invenio_jobs/proxies.py::PYDOCSTYLE PASSED
+invenio_jobs/proxies.py::ISORT PASSED
+invenio_jobs/proxies.py::black PASSED
+invenio_jobs/registry.py::PYDOCSTYLE PASSED
+invenio_jobs/registry.py::ISORT PASSED
+invenio_jobs/registry.py::black PASSED
+invenio_jobs/resources/__init__.py::PYDOCSTYLE PASSED
+invenio_jobs/resources/__init__.py::ISORT PASSED
+invenio_jobs/resources/__init__.py::black PASSED
+invenio_jobs/resources/config.py::PYDOCSTYLE PASSED
+invenio_jobs/resources/config.py::ISORT PASSED
+invenio_jobs/resources/config.py::black PASSED
+invenio_jobs/resources/resources.py::PYDOCSTYLE PASSED
+invenio_jobs/resources/resources.py::ISORT PASSED
+invenio_jobs/resources/resources.py::black PASSED
+invenio_jobs/services/__init__.py::PYDOCSTYLE PASSED
+invenio_jobs/services/__init__.py::ISORT PASSED
+invenio_jobs/services/__init__.py::black PASSED
+invenio_jobs/services/config.py::PYDOCSTYLE PASSED
+invenio_jobs/services/config.py::ISORT PASSED
+invenio_jobs/services/config.py::black PASSED
+invenio_jobs/services/errors.py::PYDOCSTYLE PASSED
+invenio_jobs/services/errors.py::ISORT PASSED
+invenio_jobs/services/errors.py::black PASSED
+invenio_jobs/services/links.py::PYDOCSTYLE PASSED
+invenio_jobs/services/links.py::ISORT PASSED
+invenio_jobs/services/links.py::black PASSED
+invenio_jobs/services/permissions.py::PYDOCSTYLE PASSED
+invenio_jobs/services/permissions.py::ISORT PASSED
+invenio_jobs/services/permissions.py::black PASSED
+invenio_jobs/services/results.py::PYDOCSTYLE PASSED
+invenio_jobs/services/results.py::ISORT PASSED
+invenio_jobs/services/results.py::black PASSED
+invenio_jobs/services/scheduler.py::PYDOCSTYLE PASSED
+invenio_jobs/services/scheduler.py::ISORT PASSED
+invenio_jobs/services/scheduler.py::black PASSED
+invenio_jobs/services/schema.py::PYDOCSTYLE PASSED
+invenio_jobs/services/schema.py::ISORT PASSED
+invenio_jobs/services/schema.py::black PASSED
+invenio_jobs/services/services.py::PYDOCSTYLE PASSED
+invenio_jobs/services/services.py::ISORT PASSED
+invenio_jobs/services/services.py::black PASSED
+invenio_jobs/services/ui_schema.py::PYDOCSTYLE PASSED
+invenio_jobs/services/ui_schema.py::ISORT PASSED
+invenio_jobs/services/ui_schema.py::black PASSED
+invenio_jobs/tasks.py::PYDOCSTYLE PASSED
+invenio_jobs/tasks.py::ISORT PASSED
+invenio_jobs/tasks.py::black PASSED
+invenio_jobs/utils.py::PYDOCSTYLE PASSED
+invenio_jobs/utils.py::ISORT PASSED
+invenio_jobs/utils.py::black PASSED
+invenio_jobs/views.py::PYDOCSTYLE PASSED
+invenio_jobs/views.py::ISORT PASSED
+invenio_jobs/views.py::black PASSED
+invenio_jobs/webpack.py::PYDOCSTYLE PASSED
+invenio_jobs/webpack.py::ISORT PASSED
+invenio_jobs/webpack.py::black PASSED
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/passlib/utils/__init__.py:854
+    from crypt import crypt as _crypt
+
+.venv/lib/python3.12/site-packages/marshmallow_utils/fields/generated.py:12
+.venv/lib/python3.12/site-packages/marshmallow_utils/fields/generated.py:12
+    from marshmallow import __version_info__ as marshmallow_version
+
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+    from jsonschema import RefResolver as _RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/fs/__init__.py:4
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:3146
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+.venv/lib/python3.12/site-packages/fs/__init__.py:4
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/fs/opener/__init__.py:6
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:2558
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+
+.venv/lib/python3.12/site-packages/invenio_records_resources/services/files/schema.py:154
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/files/schema.py:154: RemovedInMarshmallow4Warning: The 'default' argument to fields is deprecated. Use 'dump_default' instead.
+    storage_class = Str(default="L", dump_only=False)
+
+    warnings.warn(
+
+.venv/lib/python3.12/site-packages/marshmallow/fields.py:986
+.venv/lib/python3.12/site-packages/marshmallow/fields.py:986
+.venv/lib/python3.12/site-packages/marshmallow/fields.py:986
+.venv/lib/python3.12/site-packages/marshmallow/fields.py:986
+.venv/lib/python3.12/site-packages/marshmallow/fields.py:986
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/fields.py:986: RemovedInMarshmallow4Warning: The 'default' argument to fields is deprecated. Use 'dump_default' instead.
+    super().__init__(**kwargs)
+
+.venv/lib/python3.12/site-packages/marshmallow/utils.py:361
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/utils.py:361: ChangedInMarshmallow4Warning: `Field` should not be instantiated. Use `fields.Raw` or  another field subclass instead.
+    return cls_or_instance()
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/schema.py:90: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    valid_data = self.schema(context=context, **schema_args).load(data)
+
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/schema.py:105: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    return self.schema(context=context, **schema_args).dump(data)
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/fields.py:631: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    self._schema = schema_class(
+
+    self._confirmed = datetime.utcnow() if confirmed else None
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_security/datastore.py:235: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    return self.user_model.query.get(identifier)
+
+    target.updated = datetime.utcnow()
+
+tests/test_services_job_logs.py::test_job_logs_search_limits_to_max_docs
+tests/test_services_subtasks.py::test_create_subtask_run
+    self.init_app(app)
+
+tests/test_services_job_logs.py::test_job_logs_search_limits_to_max_docs
+tests/test_services_subtasks.py::test_create_subtask_run
+    self._set_cache(app, config)
+
+tests/test_services_subtasks.py::test_create_subtask_run
+tests/test_services_subtasks.py::test_start_processing_subtask
+tests/test_services_subtasks.py::test_start_processing_subtask_invalid_status
+tests/test_services_subtasks.py::test_finalize_subtask_success
+tests/test_services_subtasks.py::test_finalize_subtask_failure
+tests/test_services_subtasks.py::test_finalize_subtask_partial_success
+tests/test_services_subtasks.py::test_add_total_entries
+tests/test_services_subtasks.py::test_add_total_entries_invalid_values
+tests/test_services_subtasks.py::test_finalize_subtask_with_errored_entries_message
+    update_run(run, status=RunStatusEnum.RUNNING, started_at=datetime.utcnow())
+
+tests/test_services_subtasks.py::test_create_subtask_run
+tests/test_services_subtasks.py::test_start_processing_subtask
+tests/test_services_subtasks.py::test_start_processing_subtask_invalid_status
+tests/test_services_subtasks.py::test_finalize_subtask_success
+tests/test_services_subtasks.py::test_finalize_subtask_failure
+tests/test_services_subtasks.py::test_finalize_subtask_partial_success
+tests/test_services_subtasks.py::test_add_total_entries
+tests/test_services_subtasks.py::test_add_total_entries_invalid_values
+tests/test_services_subtasks.py::test_finalize_subtask_with_errored_entries_message
+    finished_at=datetime.utcnow(),
+
+tests/test_services_subtasks.py::test_create_subtask_run
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('2cbdb4a2-3e56-4f93-b104-9096d0f3e2fd'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_jobs/services/schema.py:127: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    super().__init__(*args, **kwargs)
+
+tests/test_services_subtasks.py::test_start_processing_subtask
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('7002e417-0d63-4462-acf4-118262e3064d'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+
+tests/test_services_subtasks.py::test_start_processing_subtask
+tests/test_services_subtasks.py::test_finalize_subtask_success
+tests/test_services_subtasks.py::test_finalize_subtask_failure
+tests/test_services_subtasks.py::test_finalize_subtask_partial_success
+tests/test_services_subtasks.py::test_finalize_subtask_partial_success
+tests/test_services_subtasks.py::test_finalize_subtask_with_errored_entries_message
+    run.started_at = datetime.utcnow()
+
+tests/test_services_subtasks.py::test_start_processing_subtask_invalid_status
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('fcaf3180-6275-4a74-afab-48a5d3108606'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+
+tests/test_services_subtasks.py::test_finalize_subtask_success
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('feb89396-23df-4644-bece-90dd47c88157'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+
+tests/test_services_subtasks.py::test_finalize_subtask_success
+tests/test_services_subtasks.py::test_finalize_subtask_failure
+tests/test_services_subtasks.py::test_finalize_subtask_partial_success
+tests/test_services_subtasks.py::test_finalize_subtask_with_errored_entries_message
+    finished_at_value = datetime.utcnow()
+
+tests/test_services_subtasks.py::test_finalize_subtask_failure
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('9c2b68f8-8db8-4c0d-b85f-8141c6e2026c'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+
+tests/test_services_subtasks.py::test_finalize_subtask_partial_success
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('c8e28f85-6a6d-4071-a0c4-9c0ecbd861e1'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+
+tests/test_services_subtasks.py::test_finalize_subtask_with_errored_entries_message
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('8c91311c-cfc5-4ca0-8947-ef7ed0d5557c'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+
+- generated xml file: /home/runner/work/invenio-testrig/invenio-testrig/artifacts/test-report-patched.xml -
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.12-final-0 _______________
+
+Name                                                                  Stmts   Miss  Cover   Missing
+invenio_jobs/__init__.py                                                  3      0   100%
+invenio_jobs/administration/__init__.py                                   0      0   100%
+invenio_jobs/administration/jobs.py                                      73     15    79%   105, 109-115, 119-124, 133-138
+invenio_jobs/administration/runs.py                                      46     25    46%   39-54, 58-65, 69-70, 74-75
+invenio_jobs/alembic/1f896f6990b8_update_jobs_module_table_names.py      20     10    50%   25-32, 40-45
+invenio_jobs/alembic/371f4cbcb73d_create_invenio_jobs_branch.py          10      2    80%   22, 27
+invenio_jobs/alembic/356496a01197_create_invenio_jobs_tables.py          17      4    76%   30-62, 105-106
+invenio_jobs/alembic/1753948224_add_subtasks_columns_to_jobs_run.py      31     22    29%   23-91, 102-114
+invenio_jobs/api.py                                                       4      0   100%
+invenio_jobs/config.py                                                   32      0   100%
+invenio_jobs/errors.py                                                   11      3    73%   20-22
+invenio_jobs/ext.py                                                      57      1    98%   106
+invenio_jobs/jobs.py                                                     32      7    78%   65-67, 89, 102, 105-113
+invenio_jobs/logging/__init__.py                                          0      0   100%
+invenio_jobs/logging/celery_signals.py                                   19      5    74%   23-26, 38-40, 49
+invenio_jobs/logging/index_templates/__init__.py                          0      0   100%
+invenio_jobs/logging/index_templates/os-v1/__init__.py                    0      0   100%
+invenio_jobs/logging/index_templates/os-v2/__init__.py                    0      0   100%
+invenio_jobs/logging/jobs.py                                             63      5    92%   98, 119-121, 125-126
+invenio_jobs/logging/tasks.py                                             8      2    75%   20-21
+invenio_jobs/models.py                                                  130     11    92%   80-88, 215-217
+invenio_jobs/proxies.py                                                  12      0   100%
+invenio_jobs/registry.py                                                 26      5    81%   23, 32-35
+invenio_jobs/resources/__init__.py                                        3      0   100%
+invenio_jobs/resources/config.py                                         57      0   100%
+invenio_jobs/resources/resources.py                                     126     14    89%   48-53, 58-63, 210-217, 237-243, 249-255
+invenio_jobs/services/__init__.py                                         4      0   100%
+invenio_jobs/services/config.py                                          79      0   100%
+invenio_jobs/services/errors.py                                          22      1    95%   63
+invenio_jobs/services/links.py                                           11      1    91%   38
+invenio_jobs/services/permissions.py                                     25      0   100%
+invenio_jobs/services/results.py                                        100     13    87%   53-54, 83, 92-95, 120-121, 148-149, 167, 169-170
+invenio_jobs/services/scheduler.py                                       55     31    44%   31-32, 37-39, 59, 66, 70-71, 75-94, 99-106, 113-117
+invenio_jobs/services/schema.py                                         149     10    93%   51-56, 132, 185, 288, 321-322
+invenio_jobs/services/services.py                                       246     31    87%   52, 60-64, 91-93, 192-194, 212, 309, 418, 438, 474-488, 493-499, 508, 544, 555, 561-562
+invenio_jobs/services/ui_schema.py                                       19      0   100%
+invenio_jobs/tasks.py                                                    63     23    63%   28, 40-43, 67, 71-86, 88-107, 112, 117, 130
+invenio_jobs/utils.py                                                    28     19    32%   20-31, 36-47, 55
+invenio_jobs/views.py                                                    14      0   100%
+invenio_jobs/webpack.py                                                   2      0   100%
+TOTAL                                                                  1597    260    84%
+================ 171 passed, 3 skipped, 479 warnings in 24.42s =================
+ Container docker_services_cli-elasticsearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-elasticsearch-1  Stopped
+ Container docker_services_cli-elasticsearch-1  Removing
+ Container docker_services_cli-elasticsearch-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed
