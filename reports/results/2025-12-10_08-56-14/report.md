@@ -2,15 +2,15 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-12-10 08:57:34 UTC_
+_Last updated: 2025-12-10 08:57:42 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 42 |
+| **Total Packages** | 48 |
 | **Patched Packages** | 0 |
-| **Unpatched Packages** | 42 |
+| **Unpatched Packages** | 48 |
 
 ### Patch Results
 | Result | Count |
@@ -37,11 +37,13 @@ _Last updated: 2025-12-10 08:57:34 UTC_
 |---------|--------------|
 | `invenio-banners` | ⏭️  Skipped |
 | `invenio-mail` | ⏭️  Skipped |
+| `invenio-config` | ⏭️  Skipped |
 | `invenio-queues` | ⏭️  Skipped |
 | `invenio-oauthclient` | ⏭️  Skipped |
 | `invenio-cache` | ⏭️  Skipped |
 | `invenio-notifications` | ⏭️  Skipped |
 | `invenio-base` | ⏭️  Skipped |
+| `invenio-rdm-records` | ⏭️  Skipped |
 | `invenio-app` | ⏭️  Skipped |
 | `invenio-jobs` | ⏭️  Skipped |
 | `invenio-theme` | ⏭️  Skipped |
@@ -51,12 +53,15 @@ _Last updated: 2025-12-10 08:57:34 UTC_
 | `invenio-db` | ⏭️  Skipped |
 | `invenio-indexer` | ⏭️  Skipped |
 | `invenio-oaiserver` | ⏭️  Skipped |
+| `invenio-drafts-resources` | ⏭️  Skipped |
 | `invenio-access` | ⏭️  Skipped |
 | `invenio-rest` | ⏭️  Skipped |
 | `invenio-pages` | ⏭️  Skipped |
 | `invenio-records-permissions` | ⏭️  Skipped |
 | `invenio-collections` | ⏭️  Skipped |
+| `invenio-records-ui` | ⏭️  Skipped |
 | `invenio-stats` | ⏭️  Skipped |
+| `invenio-userprofiles` | ⏭️  Skipped |
 | `invenio-communities` | ⏭️  Skipped |
 | `invenio-search-ui` | ⏭️  Skipped |
 | `invenio-records-files` | ⏭️  Skipped |
@@ -65,6 +70,7 @@ _Last updated: 2025-12-10 08:57:34 UTC_
 | `invenio-files-rest` | ⏭️  Skipped |
 | `invenio-formatter` | ⏭️  Skipped |
 | `invenio-checks` | ⏭️  Skipped |
+| `invenio-audit-logs` | ⏭️  Skipped |
 | `invenio-records-rest` | ⏭️  Skipped |
 | `invenio-administration` | ⏭️  Skipped |
 | `invenio-github` | ⏭️  Skipped |
