@@ -2,15 +2,15 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-12-10 10:54:02 UTC_
+_Last updated: 2025-12-10 10:54:07 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 9 |
+| **Total Packages** | 18 |
 | **Patched Packages** | 0 |
-| **Unpatched Packages** | 9 |
+| **Unpatched Packages** | 18 |
 
 ### Patch Results
 | Result | Count |
@@ -38,15 +38,24 @@ _Last updated: 2025-12-10 10:54:02 UTC_
 
 | Package | Build Status |
 |---------|--------------|
+| `invenio-mail` | ⏭️  Skipped |
 | `invenio-config` | ⏭️  Skipped |
+| `invenio-oauthclient` | ⏭️  Skipped |
 | `invenio-cache` | ⏭️  Skipped |
 | `invenio-base` | ⏭️  Skipped |
 | `invenio-app` | ⏭️  Skipped |
 | `invenio-assets` | ⏭️  Skipped |
 | `invenio-celery` | ⏭️  Skipped |
 | `invenio-db` | ⏭️  Skipped |
+| `invenio-indexer` | ⏭️  Skipped |
+| `invenio-access` | ⏭️  Skipped |
+| `invenio-records-ui` | ⏭️  Skipped |
 | `invenio-logging` | ⏭️  Skipped |
+| `invenio-files-rest` | ⏭️  Skipped |
+| `invenio-formatter` | ⏭️  Skipped |
 | `invenio-jsonschemas` | ⏭️  Skipped |
+| `invenio-accounts` | ⏭️  Skipped |
+| `invenio-webhooks` | ⏭️  Skipped |
 
 ## 🔄 Packages that depend on patched packages
 
