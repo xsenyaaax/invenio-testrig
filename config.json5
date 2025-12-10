@@ -13,11 +13,11 @@
       branch: "oarepo-feature-extractors",
     },
     "invenio-rdm-records": {
-      git: "https://github.com/oarepo/invenio-rdm-records.git,
+      git: "https://github.com/oarepo/invenio-rdm-records.git",
       branch: "oarepo-feature-zip",
     },
     "invenio-app-rdm": {
-      git: "https://github.com/oarepo/invenio-app-rdm.git,
+      git: "https://github.com/oarepo/invenio-app-rdm.git",
       branch: "oarepo-feature-extract-preview-ui-links",
     },
     // Add more patches here as needed
