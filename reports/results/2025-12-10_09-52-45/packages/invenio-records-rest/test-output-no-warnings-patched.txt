@@ -1,0 +1,682 @@
+ postgresql Pulling 
+ rabbitmq Pulling 
+ opensearch Pulling 
+ redis Pulling 
+ redis Pulled 
+ rabbitmq Pulled 
+ postgresql Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/invenio-testrig/invenio-testrig/package-repo
+configfile: setup.cfg
+testpaths: docs, tests, invenio_records_rest
+plugins: github-actions-annotate-failures-0.3.0, pycodestyle-2.5.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, isort-4.0.0, cov-7.0.0, pydocstyle-2.4.0
+collecting ... collected 319 items
+
+docs/conf.py::PYDOCSTYLE PASSED
+docs/conf.py::ISORT PASSED
+docs/conf.py::black PASSED
+tests/conftest.py::PYDOCSTYLE PASSED
+tests/conftest.py::ISORT PASSED
+tests/conftest.py::black PASSED
+tests/helpers.py::PYDOCSTYLE PASSED
+tests/helpers.py::ISORT PASSED
+tests/helpers.py::black PASSED
+tests/mock_module/__init__.py::PYDOCSTYLE PASSED
+tests/mock_module/__init__.py::ISORT PASSED
+tests/mock_module/__init__.py::black PASSED
+tests/mock_module/mappings/__init__.py::PYDOCSTYLE PASSED
+tests/mock_module/mappings/__init__.py::ISORT PASSED
+tests/mock_module/mappings/__init__.py::black PASSED
+tests/mock_module/mappings/os-v1/__init__.py::PYDOCSTYLE PASSED
+tests/mock_module/mappings/os-v1/__init__.py::ISORT PASSED
+tests/mock_module/mappings/os-v1/__init__.py::black PASSED
+tests/mock_module/mappings/os-v2/__init__.py::PYDOCSTYLE PASSED
+tests/mock_module/mappings/os-v2/__init__.py::ISORT PASSED
+tests/mock_module/mappings/os-v2/__init__.py::black PASSED
+tests/mock_module/mappings/v7/__init__.py::PYDOCSTYLE PASSED
+tests/mock_module/mappings/v7/__init__.py::ISORT PASSED
+tests/mock_module/mappings/v7/__init__.py::black PASSED
+tests/test_custom_endpoints.py::ISORT PASSED
+tests/test_custom_endpoints.py::black PASSED
+tests/test_custom_endpoints.py::test_get_record[app0] PASSED
+
+tests/test_custom_endpoints.py::test_get_records_list[test_custom_endpoints_app0] PASSED
+
+tests/test_custom_fields.py::ISORT PASSED
+tests/test_custom_fields.py::black PASSED
+tests/test_custom_fields.py::test_load_custom_fields PASSED
+
+tests/test_custom_fields.py::test_custom_generated_fields PASSED
+
+tests/test_error_handlers.py::ISORT PASSED
+tests/test_error_handlers.py::black PASSED
+tests/test_error_handlers.py::test_custom_error_handlers[app0] PASSED
+
+tests/test_ext.py::ISORT PASSED
+tests/test_ext.py::black PASSED
+tests/test_ext.py::test_version PASSED
+tests/test_ext.py::test_init PASSED
+tests/test_facets.py::ISORT PASSED
+tests/test_facets.py::black PASSED
+tests/test_facets.py::test_terms_filter PASSED
+tests/test_facets.py::test_range_filter PASSED
+tests/test_facets.py::test_create_filter_dsl PASSED
+tests/test_facets.py::test_post_filter PASSED
+
+tests/test_facets.py::test_query_filter PASSED
+
+tests/test_facets.py::test_aggregations PASSED
+
+tests/test_facets.py::test_default_facets_factory PASSED
+
+tests/test_facets.py::test_selecting_one_specified_facet PASSED
+
+tests/test_facets.py::test_selecting_specified_facet PASSED
+
+tests/test_facets.py::test_turn_off_facets PASSED
+
+tests/test_facets.py::test_selecting_all_facets_by_default PASSED
+
+tests/test_index_prefixing.py::ISORT PASSED
+tests/test_index_prefixing.py::black PASSED
+tests/test_index_prefixing.py::test_index_creation PASSED
+
+tests/test_index_prefixing.py::test_api_views PASSED
+
+tests/test_links.py::ISORT PASSED
+tests/test_links.py::black PASSED
+tests/test_links.py::test_default_links_factory_with_additional PASSED
+
+tests/test_links.py::test_old_signature_backward_compatibility[app0] PASSED
+
+tests/test_marshmallow_contrib.py::ISORT PASSED
+tests/test_marshmallow_contrib.py::black PASSED
+tests/test_marshmallow_contrib.py::test_get_func_args_on_func PASSED
+tests/test_marshmallow_contrib.py::test_get_func_args_on_method PASSED
+tests/test_marshmallow_contrib.py::test_get_func_args_on_callable PASSED
+tests/test_marshmallow_loader.py::ISORT PASSED
+tests/test_marshmallow_loader.py::black PASSED
+tests/test_marshmallow_loader.py::test_marshmallow_load PASSED
+
+tests/test_marshmallow_loader.py::test_marshmallow_load_errors PASSED
+
+tests/test_marshmallow_loader.py::test_marshmallow_load_nested_errors PASSED
+
+tests/test_marshmallow_loader.py::test_marshmallow_load_nested_subfield_errors PASSED
+
+tests/test_marshmallow_loader.py::test_marshmallow_errors PASSED
+tests/test_marshmallow_loader.py::test_json_pid_checker_loader PASSED
+
+tests/test_permissions.py::ISORT PASSED
+tests/test_permissions.py::black PASSED
+tests/test_permissions.py::test_default_permissions PASSED
+
+tests/test_pid_resolver.py::ISORT PASSED
+tests/test_pid_resolver.py::black PASSED
+tests/test_pid_resolver.py::test_record_resolution PASSED
+
+tests/test_serializer_base.py::ISORT PASSED
+tests/test_serializer_base.py::black PASSED
+tests/test_serializer_base.py::test_preprocessor_mixin_record PASSED
+
+tests/test_serializer_base.py::test_preprocessor_mixin_searchhit PASSED
+tests/test_serializer_citeproc.py::ISORT PASSED
+tests/test_serializer_citeproc.py::black PASSED
+tests/test_serializer_citeproc.py::test_serialize PASSED
+tests/test_serializer_citeproc.py::test_serializer_args PASSED
+tests/test_serializer_citeproc.py::test_nonexistent_style PASSED
+tests/test_serializer_citeproc.py::test_serializer_in_request PASSED
+
+tests/test_serializer_csv.py::ISORT PASSED
+tests/test_serializer_csv.py::black PASSED
+tests/test_serializer_csv.py::test_serialize PASSED
+
+tests/test_serializer_csv.py::test_serialize_with_extra_col_other_separator PASSED
+
+tests/test_serializer_csv.py::test_serialize_search PASSED
+
+tests/test_serializer_datacite.py::ISORT PASSED
+tests/test_serializer_datacite.py::black PASSED
+tests/test_serializer_datacite.py::test_serialize[DataCite40Serializer] PASSED
+
+tests/test_serializer_datacite.py::test_serialize[DataCite41Serializer] PASSED
+
+tests/test_serializer_datacite.py::test_serialize_search[DataCite40Serializer] PASSED
+
+tests/test_serializer_datacite.py::test_serialize_search[DataCite41Serializer] PASSED
+
+tests/test_serializer_dc.py::ISORT PASSED
+tests/test_serializer_dc.py::black PASSED
+tests/test_serializer_dc.py::test_serialize PASSED
+
+tests/test_serializer_dc.py::test_serialize_search PASSED
+
+tests/test_serializer_json.py::ISORT PASSED
+tests/test_serializer_json.py::black PASSED
+tests/test_serializer_json.py::test_serialize PASSED
+
+tests/test_serializer_json.py::test_serialize_search PASSED
+
+tests/test_serializer_json.py::test_serialize_pretty PASSED
+
+tests/test_serializer_jsonld.py::ISORT PASSED
+tests/test_serializer_jsonld.py::black PASSED
+tests/test_serializer_jsonld.py::test_serialize PASSED
+
+tests/test_serializer_jsonld.py::test_serialize_search PASSED
+
+tests/test_serializer_marshmallow.py::ISORT PASSED
+tests/test_serializer_marshmallow.py::black PASSED
+tests/test_serializer_marshmallow.py::test_transform_record PASSED
+
+tests/test_serializer_marshmallow.py::test_transform_search_hit PASSED
+
+tests/test_serializer_marshmallow.py::test_transform_record_default_schema PASSED
+
+tests/test_serializer_response.py::ISORT PASSED
+tests/test_serializer_response.py::black PASSED
+tests/test_serializer_response.py::test_record_responsify PASSED
+
+tests/test_serializer_response.py::test_search_responsify PASSED
+
+tests/test_sorter.py::ISORT PASSED
+tests/test_sorter.py::black PASSED
+tests/test_sorter.py::test_parse_sort_field PASSED
+tests/test_sorter.py::test_reverse_order PASSED
+tests/test_sorter.py::test_eval_field_string PASSED
+tests/test_sorter.py::test_eval_field_callable PASSED
+tests/test_sorter.py::test_eval_field_dict PASSED
+tests/test_sorter.py::test_geolocation_sort PASSED
+
+tests/test_sorter.py::test_default_sorter_factory PASSED
+
+tests/test_utils.py::ISORT PASSED
+tests/test_utils.py::black PASSED
+tests/test_utils.py::test_build_default_endpoint_prefixes_simple[app0] PASSED
+
+tests/test_utils.py::test_build_default_endpoint_prefixes_simple_with_default[app0] PASSED
+
+tests/test_utils.py::test_build_default_endpoint_prefixes_two_simple_endpoints[app0] PASSED
+
+tests/test_utils.py::test_build_default_endpoint_prefixes_redundant_default[app0] PASSED
+
+tests/test_utils.py::test_build_default_endpoint_prefixes_two_endpoints_with_default[app0] PASSED
+
+tests/test_utils.py::test_get_default_endpoint_for_inconsistent PASSED
+
+tests/test_views_item_delete.py::ISORT PASSED
+tests/test_views_item_delete.py::black PASSED
+tests/test_views_item_delete.py::test_valid_delete PASSED
+
+tests/test_views_item_delete.py::test_delete_deleted PASSED
+
+tests/test_views_item_delete.py::test_delete_notfound PASSED
+
+tests/test_views_item_delete.py::test_delete_with_sqldatabase_error PASSED
+
+tests/test_views_item_get.py::ISORT PASSED
+tests/test_views_item_get.py::black PASSED
+tests/test_views_item_get.py::test_item_get PASSED
+
+tests/test_views_item_get.py::test_item_get_etag PASSED
+
+tests/test_views_item_get.py::test_item_get_norecord PASSED
+
+tests/test_views_item_get.py::test_item_get_invalid_mimetype PASSED
+
+tests/test_views_item_patch.py::ISORT PASSED
+tests/test_views_item_patch.py::black PASSED
+tests/test_views_item_patch.py::test_valid_patch[application/json-patch+json] PASSED
+
+tests/test_views_item_patch.py::test_valid_patch[application/json-patch+json;charset=utf-8] PASSED
+
+tests/test_views_item_patch.py::test_patch_deleted[application/json-patch+json] PASSED
+
+tests/test_views_item_patch.py::test_patch_deleted[application/json-patch+json;charset=utf-8] PASSED
+
+tests/test_views_item_patch.py::test_invalid_patch[] PASSED
+
+tests/test_views_item_patch.py::test_invalid_patch[;charset=utf-8] PASSED
+
+tests/test_views_item_patch.py::test_validation_error[application/json-patch+json] PASSED
+
+tests/test_views_item_patch.py::test_validation_error[application/json-patch+json;charset=utf-8] PASSED
+
+tests/test_views_item_put.py::ISORT PASSED
+tests/test_views_item_put.py::black PASSED
+tests/test_views_item_put.py::test_valid_put[application/json] PASSED
+
+tests/test_views_item_put.py::test_valid_put[application/json;charset=utf-8] PASSED
+
+tests/test_views_item_put.py::test_valid_put_etag[application/json] PASSED
+
+tests/test_views_item_put.py::test_valid_put_etag[application/json;charset=utf-8] PASSED
+
+tests/test_views_item_put.py::test_put_on_deleted[application/json] PASSED
+
+tests/test_views_item_put.py::test_put_on_deleted[application/json;charset=utf-8] PASSED
+
+tests/test_views_item_put.py::test_invalid_put[] PASSED
+
+tests/test_views_item_put.py::test_invalid_put[;charset=utf-8] PASSED
+
+tests/test_views_item_put.py::test_validation_error[application/json] PASSED
+
+tests/test_views_item_put.py::test_validation_error[application/json;charset=utf-8] PASSED
+
+tests/test_views_list_post.py::ISORT PASSED
+tests/test_views_list_post.py::black PASSED
+tests/test_views_list_post.py::test_valid_create[application/json] PASSED
+
+tests/test_views_list_post.py::test_valid_create[application/json;charset=utf-8] PASSED
+
+tests/test_views_list_post.py::test_invalid_create[application/json] PASSED
+
+tests/test_views_list_post.py::test_invalid_create[application/json;charset=utf-8] PASSED
+
+tests/test_views_list_post.py::test_validation_error[application/json] PASSED
+
+tests/test_views_list_post.py::test_validation_error[application/json;charset=utf-8] PASSED
+
+tests/test_views_list_post.py::test_jsonschema_validation_error[application/json] PASSED
+
+tests/test_views_list_post.py::test_jsonschema_validation_error[application/json;charset=utf-8] PASSED
+
+tests/test_views_options.py::ISORT PASSED
+tests/test_views_options.py::black PASSED
+tests/test_views_options.py::test_options_view PASSED
+
+tests/test_views_options.py::test_use_options[app0] PASSED
+
+tests/test_views_search.py::ISORT PASSED
+tests/test_views_search.py::black PASSED
+tests/test_views_search.py::test_json_result_serializer PASSED
+
+tests/test_views_search.py::test_page_size PASSED
+
+tests/test_views_search.py::test_page_size_without_size_in_request PASSED
+
+tests/test_views_search.py::test_page_size_without_size_in_request_with_five_as_default PASSED
+
+tests/test_views_search.py::test_pagination PASSED
+
+tests/test_views_search.py::test_page_links PASSED
+
+tests/test_views_search.py::test_query PASSED
+
+tests/test_views_search.py::test_search_query_syntax[app0] PASSED
+
+tests/test_views_search.py::test_sort PASSED
+
+tests/test_views_search.py::test_invalid_accept PASSED
+
+tests/test_views_search.py::test_aggregations_info PASSED
+
+tests/test_views_search.py::test_filters PASSED
+
+tests/test_views_search.py::test_query_wrong PASSED
+
+tests/test_views_search.py::test_search_exception[app0] PASSED
+
+tests/test_views_search.py::test_dynamic_aggregation PASSED
+
+tests/test_views_search.py::test_from_parameter_pagination PASSED
+
+tests/test_views_search.py::test_from_parameter_edges PASSED
+
+tests/test_views_search.py::test_from_parameter_invalid_pagination PASSED
+
+tests/test_views_search.py::test_max_result_window_valid_params[app0] PASSED
+
+tests/test_views_search.py::test_max_result_window_invalid_params[app0] PASSED
+
+tests/test_views_serializers.py::ISORT PASSED
+tests/test_views_serializers.py::black PASSED
+tests/test_views_serializers.py::test_default_serializer[app0] PASSED
+
+tests/test_views_serializers.py::test_serializer_aliases[app0] PASSED
+
+tests/test_views_suggesters.py::ISORT PASSED
+tests/test_views_suggesters.py::black PASSED
+tests/test_views_suggesters.py::test_valid_suggest[app0] PASSED
+
+invenio_records_rest/__init__.py::PYDOCSTYLE PASSED
+invenio_records_rest/__init__.py::ISORT PASSED
+invenio_records_rest/__init__.py::black PASSED
+invenio_records_rest/__init__.py::invenio_records_rest PASSED
+
+invenio_records_rest/_compat.py::PYDOCSTYLE PASSED
+invenio_records_rest/_compat.py::ISORT PASSED
+invenio_records_rest/_compat.py::black PASSED
+invenio_records_rest/config.py::PYDOCSTYLE PASSED
+invenio_records_rest/config.py::ISORT PASSED
+invenio_records_rest/config.py::black PASSED
+invenio_records_rest/errors.py::PYDOCSTYLE PASSED
+invenio_records_rest/errors.py::ISORT PASSED
+invenio_records_rest/errors.py::black PASSED
+invenio_records_rest/ext.py::PYDOCSTYLE PASSED
+invenio_records_rest/ext.py::ISORT PASSED
+invenio_records_rest/ext.py::black PASSED
+invenio_records_rest/facets.py::PYDOCSTYLE PASSED
+invenio_records_rest/facets.py::ISORT PASSED
+invenio_records_rest/facets.py::black PASSED
+invenio_records_rest/links.py::PYDOCSTYLE PASSED
+invenio_records_rest/links.py::ISORT PASSED
+invenio_records_rest/links.py::black PASSED
+invenio_records_rest/loaders/__init__.py::PYDOCSTYLE PASSED
+invenio_records_rest/loaders/__init__.py::ISORT PASSED
+invenio_records_rest/loaders/__init__.py::black PASSED
+invenio_records_rest/loaders/marshmallow.py::PYDOCSTYLE PASSED
+invenio_records_rest/loaders/marshmallow.py::ISORT PASSED
+invenio_records_rest/loaders/marshmallow.py::black PASSED
+invenio_records_rest/proxies.py::PYDOCSTYLE PASSED
+invenio_records_rest/proxies.py::ISORT PASSED
+invenio_records_rest/proxies.py::black PASSED
+invenio_records_rest/query.py::PYDOCSTYLE PASSED
+invenio_records_rest/query.py::ISORT PASSED
+invenio_records_rest/query.py::black PASSED
+invenio_records_rest/schemas/__init__.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/__init__.py::ISORT PASSED
+invenio_records_rest/schemas/__init__.py::black PASSED
+invenio_records_rest/schemas/fields/__init__.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/fields/__init__.py::ISORT PASSED
+invenio_records_rest/schemas/fields/__init__.py::black PASSED
+invenio_records_rest/schemas/fields/datetime.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/fields/datetime.py::ISORT PASSED
+invenio_records_rest/schemas/fields/datetime.py::black PASSED
+invenio_records_rest/schemas/fields/generated.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/fields/generated.py::ISORT PASSED
+invenio_records_rest/schemas/fields/generated.py::black PASSED
+invenio_records_rest/schemas/fields/marshmallow_contrib.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/fields/marshmallow_contrib.py::ISORT PASSED
+invenio_records_rest/schemas/fields/marshmallow_contrib.py::black PASSED
+invenio_records_rest/schemas/fields/persistentidentifier.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/fields/persistentidentifier.py::ISORT PASSED
+invenio_records_rest/schemas/fields/persistentidentifier.py::black PASSED
+invenio_records_rest/schemas/fields/sanitizedhtml.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/fields/sanitizedhtml.py::ISORT PASSED
+invenio_records_rest/schemas/fields/sanitizedhtml.py::black PASSED
+invenio_records_rest/schemas/fields/sanitizedunicode.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/fields/sanitizedunicode.py::ISORT PASSED
+invenio_records_rest/schemas/fields/sanitizedunicode.py::black PASSED
+invenio_records_rest/schemas/fields/trimmedstring.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/fields/trimmedstring.py::ISORT PASSED
+invenio_records_rest/schemas/fields/trimmedstring.py::black PASSED
+invenio_records_rest/schemas/json.py::PYDOCSTYLE PASSED
+invenio_records_rest/schemas/json.py::ISORT PASSED
+invenio_records_rest/schemas/json.py::black PASSED
+invenio_records_rest/serializers/__init__.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/__init__.py::ISORT PASSED
+invenio_records_rest/serializers/__init__.py::black PASSED
+invenio_records_rest/serializers/base.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/base.py::ISORT PASSED
+invenio_records_rest/serializers/base.py::black PASSED
+invenio_records_rest/serializers/citeproc.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/citeproc.py::ISORT PASSED
+invenio_records_rest/serializers/citeproc.py::black PASSED
+invenio_records_rest/serializers/csv.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/csv.py::ISORT PASSED
+invenio_records_rest/serializers/csv.py::black PASSED
+invenio_records_rest/serializers/datacite.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/datacite.py::ISORT PASSED
+invenio_records_rest/serializers/datacite.py::black PASSED
+invenio_records_rest/serializers/dc.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/dc.py::ISORT PASSED
+invenio_records_rest/serializers/dc.py::black PASSED
+invenio_records_rest/serializers/json.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/json.py::ISORT PASSED
+invenio_records_rest/serializers/json.py::black PASSED
+invenio_records_rest/serializers/jsonld.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/jsonld.py::ISORT PASSED
+invenio_records_rest/serializers/jsonld.py::black PASSED
+invenio_records_rest/serializers/marshmallow.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/marshmallow.py::ISORT PASSED
+invenio_records_rest/serializers/marshmallow.py::black PASSED
+invenio_records_rest/serializers/response.py::PYDOCSTYLE PASSED
+invenio_records_rest/serializers/response.py::ISORT PASSED
+invenio_records_rest/serializers/response.py::black PASSED
+invenio_records_rest/sorter.py::PYDOCSTYLE PASSED
+invenio_records_rest/sorter.py::ISORT PASSED
+invenio_records_rest/sorter.py::black PASSED
+invenio_records_rest/utils.py::PYDOCSTYLE PASSED
+invenio_records_rest/utils.py::ISORT PASSED
+invenio_records_rest/utils.py::black PASSED
+invenio_records_rest/views.py::PYDOCSTYLE PASSED
+invenio_records_rest/views.py::ISORT PASSED
+invenio_records_rest/views.py::black PASSED
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+    from jsonschema import RefResolver as _RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.12/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.12/site-packages/webargs/__init__.py:13
+    __version_info__ = tuple(LooseVersion(__version__).version)
+
+invenio_records_rest/serializers/citeproc.py:57
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_records_rest/serializers/citeproc.py:57: RemovedInMarshmallow4Warning: The 'missing' argument to fields is deprecated. Use 'load_default' instead.
+    "style": fields.Str(missing=_default_style),
+
+invenio_records_rest/serializers/citeproc.py:58
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_records_rest/serializers/citeproc.py:58: RemovedInMarshmallow4Warning: The 'missing' argument to fields is deprecated. Use 'load_default' instead.
+    "locale": fields.Str(missing=_default_locale),
+
+.venv/lib/python3.12/site-packages/datacite/rest_client.py:23
+    from idutils import normalize_doi
+
+.venv/lib/python3.12/site-packages/datacite/jsonutils.py:15
+.venv/lib/python3.12/site-packages/datacite/jsonutils.py:15
+    from jsonschema import RefResolver, validate
+
+.venv/lib/python3.12/site-packages/pyld/jsonld.py:4413
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/pyld/jsonld.py:4413: SyntaxWarning: invalid escape sequence '\?'
+    and re.match('.*[:/\?#\[\]@]$', id_)
+
+.venv/lib/python3.12/site-packages/pyld/jsonld.py:577
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/pyld/jsonld.py:577: SyntaxWarning: "is" with 'int' literal. Did you mean "=="?
+    if len(output) is 1 and output[0] == '':
+
+    self.init_app(app)
+
+    warnings.warn(
+
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records/api.py:335: SAWarning: nested transaction already deassociated from connection
+    with db.session.begin_nested():
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/helpers.py:30: SAWarning: nested transaction already deassociated from connection
+    with db.session.begin_nested():
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_records_rest/serializers/marshmallow.py:26: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    return self.schema_class(context=context).dump(obj).data
+
+    return self.schema_class(context=context).dump(obj).data
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/fields.py:986: RemovedInMarshmallow4Warning: Passing field metadata as keyword arguments is deprecated. Use the explicit `metadata=...` argument instead. Additional metadata: {'load_from': 'from'}
+    super().__init__(**kwargs)
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/fields.py:986: RemovedInMarshmallow4Warning: The 'missing' argument to fields is deprecated. Use 'load_default' instead.
+    super().__init__(**kwargs)
+
+tests/test_custom_fields.py::test_load_custom_fields
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_custom_fields.py:80: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    loaded_data = CustomFieldSchema(context={"pid": recid}).load(rec).data
+
+tests/test_custom_fields.py::test_load_custom_fields
+    loaded_data = CustomFieldSchema(context={"pid": recid}).load(rec).data
+
+tests/test_custom_fields.py::test_custom_generated_fields
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/fields.py:2005: RemovedInMarshmallow4Warning: The 'missing' argument to fields is deprecated. Use 'load_default' instead.
+    super().__init__(**kwargs)
+
+tests/test_custom_fields.py::test_custom_generated_fields
+    assert GeneratedFieldsSchema().load({}).data == {}
+
+tests/test_custom_fields.py::test_custom_generated_fields
+    assert GeneratedFieldsSchema().dump({}).data == {}
+
+tests/test_custom_fields.py::test_custom_generated_fields
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_custom_fields.py:152: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    assert GeneratedFieldsSchema(context=ctx).load({}).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+    assert GeneratedFieldsSchema(context=ctx).load({}).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_custom_fields.py:156: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    assert GeneratedFieldsSchema(context=ctx).dump({}).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+    assert GeneratedFieldsSchema(context=ctx).dump({}).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+    assert GeneratedFieldsSchema().load(data).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+    assert GeneratedFieldsSchema().dump(data).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_custom_fields.py:172: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    assert GeneratedFieldsSchema(context=ctx).load(data).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+    assert GeneratedFieldsSchema(context=ctx).load(data).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_custom_fields.py:176: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    assert GeneratedFieldsSchema(context=ctx).dump(data).data == {
+
+tests/test_custom_fields.py::test_custom_generated_fields
+    assert GeneratedFieldsSchema(context=ctx).dump(data).data == {
+
+    target.updated = datetime.utcnow()
+
+tests/test_index_prefixing.py::test_api_views
+tests/test_views_item_delete.py::test_valid_delete
+tests/test_views_item_delete.py::test_delete_deleted
+tests/test_views_item_delete.py::test_delete_with_sqldatabase_error
+tests/test_views_item_patch.py::test_patch_deleted[application/json-patch+json]
+tests/test_views_item_patch.py::test_patch_deleted[application/json-patch+json;charset=utf-8]
+tests/test_views_item_put.py::test_put_on_deleted[application/json]
+tests/test_views_item_put.py::test_put_on_deleted[application/json;charset=utf-8]
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records/api.py:496: SAWarning: nested transaction already deassociated from connection
+    with db.session.begin_nested():
+
+    target.updated = datetime.utcnow()
+
+tests/test_marshmallow_loader.py::test_marshmallow_load
+tests/test_marshmallow_loader.py::test_marshmallow_load
+tests/test_marshmallow_loader.py::test_json_pid_checker_loader
+    return result.data
+
+tests/test_marshmallow_loader.py::test_marshmallow_load
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_records_rest/loaders/marshmallow.py:94: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    result = schema_class(context=context).load(request_json)
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records/api.py:443: SAWarning: nested transaction already deassociated from connection
+    with db.session.begin_nested():
+
+tests/test_marshmallow_loader.py::test_marshmallow_load_nested_errors
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_records_rest/schemas/json.py:57: RemovedInMarshmallow4Warning: `Field.fail` is deprecated. Use `raise self.make_error("required", ...)` instead.
+    self.fail("required")
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/fields.py:631: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    self._schema = schema_class(
+
+    warnings.warn(
+
+- generated xml file: /home/runner/work/invenio-testrig/invenio-testrig/artifacts/test-report-patched.xml -
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.12-final-0 _______________
+
+Name                                                          Stmts   Miss  Cover   Missing
+invenio_records_rest/__init__.py                                  4      0   100%
+invenio_records_rest/_compat.py                                  11      5    55%   22-28
+invenio_records_rest/config.py                                   29      0   100%
+invenio_records_rest/errors.py                                  105     10    90%   51, 104-106, 187-189, 255-259
+invenio_records_rest/ext.py                                      52      1    98%   112
+invenio_records_rest/facets.py                                  103     22    79%   31-55, 121, 167-170, 189-192, 240
+invenio_records_rest/links.py                                    13      0   100%
+invenio_records_rest/loaders/__init__.py                          8      0   100%
+invenio_records_rest/loaders/marshmallow.py                      45      5    89%   56, 86-88, 105
+invenio_records_rest/proxies.py                                   4      0   100%
+invenio_records_rest/query.py                                    25      3    88%   39-44
+invenio_records_rest/schemas/__init__.py                          2      0   100%
+invenio_records_rest/schemas/fields/__init__.py                   8      0   100%
+invenio_records_rest/schemas/fields/datetime.py                  11      4    64%   21-24
+invenio_records_rest/schemas/fields/generated.py                 23      7    70%   31-54
+invenio_records_rest/schemas/fields/marshmallow_contrib.py       38      7    82%   19-20, 26, 76, 135-137
+invenio_records_rest/schemas/fields/persistentidentifier.py       8      0   100%
+invenio_records_rest/schemas/fields/sanitizedhtml.py             11      0   100%
+invenio_records_rest/schemas/fields/sanitizedunicode.py          14      0   100%
+invenio_records_rest/schemas/fields/trimmedstring.py              5      0   100%
+invenio_records_rest/schemas/json.py                             61     27    56%   26-34, 67-74, 79-96, 113, 121-122
+invenio_records_rest/serializers/__init__.py                      9      0   100%
+invenio_records_rest/serializers/base.py                         37      7    81%   38, 53, 63, 85, 98, 117, 127
+invenio_records_rest/serializers/citeproc.py                     62      5    92%   32-35, 109-110
+invenio_records_rest/serializers/csv.py                          66      3    95%   54, 135, 139
+invenio_records_rest/serializers/datacite.py                     43      0   100%
+invenio_records_rest/serializers/dc.py                           15      0   100%
+invenio_records_rest/serializers/json.py                         15      0   100%
+invenio_records_rest/serializers/jsonld.py                       32      4    88%   45-48
+invenio_records_rest/serializers/marshmallow.py                  20      0   100%
+invenio_records_rest/serializers/response.py                     27      0   100%
+invenio_records_rest/sorter.py                                   49      0   100%
+invenio_records_rest/utils.py                                   100      1    99%   168
+invenio_records_rest/views.py                                   339     13    96%   114-116, 127, 291, 296, 299, 440, 718, 723, 881, 924, 961
+TOTAL                                                          1394    124    91%
+================ 319 passed, 1717 warnings in 65.27s (0:01:05) =================
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed
