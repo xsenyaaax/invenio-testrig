@@ -1,0 +1,777 @@
+ redis Pulling 
+ rabbitmq Pulling 
+ opensearch Pulling 
+ postgresql Pulling 
+ redis Pulled 
+ rabbitmq Pulled 
+ postgresql Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-opensearch-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/invenio-testrig/invenio-testrig/package-repo
+configfile: setup.cfg
+testpaths: tests, invenio_files_rest
+plugins: github-actions-annotate-failures-0.3.0, pycodestyle-2.5.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, isort-4.0.0, cov-7.0.0, pydocstyle-2.4.0
+collecting ... collected 351 items
+
+tests/conftest.py::PYDOCSTYLE PASSED
+tests/conftest.py::ISORT PASSED
+tests/conftest.py::black PASSED
+tests/fixtures/source/demo_source.py::PYDOCSTYLE PASSED
+tests/fixtures/source/demo_source.py::ISORT PASSED
+tests/fixtures/source/demo_source.py::black PASSED
+tests/fixtures/source/root.py::PYDOCSTYLE PASSED
+tests/fixtures/source/root.py::ISORT PASSED
+tests/fixtures/source/root.py::black PASSED
+tests/fixtures/source/subdirectory/demo_copy.py::PYDOCSTYLE PASSED
+tests/fixtures/source/subdirectory/demo_copy.py::ISORT PASSED
+tests/fixtures/source/subdirectory/demo_copy.py::black PASSED
+tests/test_admin.py::ISORT PASSED
+tests/test_admin.py::black PASSED
+tests/test_admin.py::test_require_slug PASSED
+tests/test_admin.py::test_admin_views PASSED
+
+tests/test_cli.py::ISORT PASSED
+tests/test_cli.py::black PASSED
+tests/test_cli.py::test_simple_workflow PASSED
+
+tests/test_helpers.py::ISORT PASSED
+tests/test_helpers.py::black PASSED
+tests/test_helpers.py::test_make_path PASSED
+tests/test_invenio_files_rest.py::ISORT PASSED
+tests/test_invenio_files_rest.py::black PASSED
+tests/test_invenio_files_rest.py::test_version PASSED
+tests/test_invenio_files_rest.py::test_init PASSED
+tests/test_invenio_files_rest.py::test_alembic PASSED
+
+tests/test_limiters.py::ISORT PASSED
+tests/test_limiters.py::black PASSED
+tests/test_limiters.py::test_file_size_limit_comparisons PASSED
+tests/test_models.py::ISORT PASSED
+tests/test_models.py::black PASSED
+tests/test_models.py::test_location PASSED
+
+tests/test_models.py::test_location_default PASSED
+
+tests/test_models.py::test_location_validation PASSED
+tests/test_models.py::test_bucket_removal PASSED
+
+tests/test_models.py::test_bucket_kwargs_creation PASSED
+
+tests/test_models.py::test_bucket_create_object PASSED
+
+tests/test_models.py::test_bucket_retrieval PASSED
+
+tests/test_models.py::test_object_create PASSED
+
+tests/test_models.py::test_object_create_uq_constraint PASSED
+
+tests/test_models.py::test_object_create_with_fileid PASSED
+
+tests/test_models.py::test_object_multibucket PASSED
+
+tests/test_models.py::test_object_get_by_bucket PASSED
+
+tests/test_models.py::test_object_delete PASSED
+
+tests/test_models.py::test_object_remove PASSED
+
+tests/test_models.py::test_object_remove_marker PASSED
+
+tests/test_models.py::test_object_set_contents PASSED
+
+tests/test_models.py::test_object_set_location PASSED
+
+tests/test_models.py::test_object_snapshot PASSED
+
+tests/test_models.py::test_object_snapshot_deleted PASSED
+
+tests/test_models.py::test_bucket_sync_new_object PASSED
+
+tests/test_models.py::test_bucket_sync_same_object PASSED
+
+tests/test_models.py::test_bucket_sync_deleted_object PASSED
+
+tests/test_models.py::test_bucket_sync_add_deleted_object PASSED
+
+tests/test_models.py::test_bucket_sync_delete_extras PASSED
+
+tests/test_models.py::test_bucket_sync PASSED
+
+tests/test_models.py::test_bucket_sync_deleted PASSED
+
+tests/test_models.py::test_object_copy PASSED
+
+tests/test_models.py::test_object_copy_from PASSED
+
+tests/test_models.py::test_object_set_file PASSED
+
+tests/test_models.py::test_object_mimetype PASSED
+
+tests/test_models.py::test_object_restore PASSED
+
+tests/test_models.py::test_object_relink_all PASSED
+
+tests/test_models.py::test_object_validation PASSED
+
+tests/test_models.py::test_bucket_tags PASSED
+
+tests/test_models.py::test_fileinstance_get PASSED
+
+tests/test_models.py::test_fileinstance_get_by_uri PASSED
+
+tests/test_models.py::test_fileinstance_create PASSED
+
+tests/test_models.py::test_fileinstance_set_contents PASSED
+
+tests/test_models.py::test_fileinstance_copy_contents PASSED
+
+tests/test_models.py::test_fileinstance_copy_contents_invalid PASSED
+
+tests/test_models.py::test_fileinstance_send_file PASSED
+
+tests/test_models.py::test_fileinstance_validation PASSED
+
+tests/test_models.py::test_object_version_tags PASSED
+
+tests/test_models_multipart.py::ISORT PASSED
+tests/test_models_multipart.py::black PASSED
+tests/test_models_multipart.py::test_multipart_creation PASSED
+
+tests/test_models_multipart.py::test_multipart_last_part PASSED
+
+tests/test_models_multipart.py::test_part_creation PASSED
+
+tests/test_models_multipart.py::test_multipart_full PASSED
+
+tests/test_request.py::ISORT PASSED
+tests/test_request.py::black PASSED
+tests/test_request.py::test_max_content_length PASSED
+tests/test_serializer.py::ISORT PASSED
+tests/test_serializer.py::black PASSED
+tests/test_serializer.py::test_serialize_pretty PASSED
+
+tests/test_signals.py::ISORT PASSED
+tests/test_signals.py::black PASSED
+tests/test_signals.py::test_signals PASSED
+
+tests/test_storage.py::ISORT PASSED
+tests/test_storage.py::black PASSED
+tests/test_storage.py::test_storage_interface PASSED
+tests/test_storage.py::test_pyfs_initialize PASSED
+
+tests/test_storage.py::test_pyfs_delete PASSED
+
+tests/test_storage.py::test_pyfs_delete_fail PASSED
+
+tests/test_storage.py::test_pyfs_save PASSED
+
+tests/test_storage.py::test_pyfs_save_failcleanup PASSED
+
+tests/test_storage.py::test_pyfs_save_callback PASSED
+
+tests/test_storage.py::test_pyfs_save_limits PASSED
+
+tests/test_storage.py::test_pyfs_update PASSED
+
+tests/test_storage.py::test_pyfs_update_fail PASSED
+
+tests/test_storage.py::test_pyfs_checksum PASSED
+tests/test_storage.py::test_pyfs_checksum_fail PASSED
+tests/test_storage.py::test_pyfs_send_file PASSED
+
+tests/test_storage.py::test_pyfs_send_file_for_download PASSED
+
+tests/test_storage.py::test_pyfs_send_file_xss_prevention PASSED
+
+tests/test_storage.py::test_pyfs_send_file_fail PASSED
+
+tests/test_storage.py::test_pyfs_copy PASSED
+
+tests/test_storage.py::test_non_unicode_filename PASSED
+
+tests/test_tasks.py::ISORT PASSED
+tests/test_tasks.py::black PASSED
+tests/test_tasks.py::test_verify_checksum PASSED
+
+tests/test_tasks.py::test_schedule_checksum_verification PASSED
+
+tests/test_tasks.py::test_checksum_verification_non_readable PASSED
+
+tests/test_tasks.py::test_migrate_file PASSED
+
+tests/test_tasks.py::test_migrate_file_copyfail PASSED
+
+tests/test_tasks.py::test_remove_file_data PASSED
+
+tests/test_tasks.py::test_clear_orphaned_files PASSED
+
+tests/test_views_bucket.py::ISORT PASSED
+tests/test_views_bucket.py::black PASSED
+tests/test_views_bucket.py::test_head[None-404] PASSED
+
+tests/test_views_bucket.py::test_head[auth-404] PASSED
+
+tests/test_views_bucket.py::test_head[objects-404] PASSED
+
+tests/test_views_bucket.py::test_head[bucket-200] PASSED
+
+tests/test_views_bucket.py::test_head[location-200] PASSED
+
+tests/test_views_bucket.py::test_head_locked_deleted PASSED
+
+tests/test_views_bucket.py::test_get[None-404] PASSED
+
+tests/test_views_bucket.py::test_get[auth-404] PASSED
+
+tests/test_views_bucket.py::test_get[objects-404] PASSED
+
+tests/test_views_bucket.py::test_get[bucket-200] PASSED
+
+tests/test_views_bucket.py::test_get[location-200] PASSED
+
+tests/test_views_bucket.py::test_get_versions[None-404] PASSED
+
+tests/test_views_bucket.py::test_get_versions[auth-404] PASSED
+
+tests/test_views_bucket.py::test_get_versions[bucket-403] PASSED
+
+tests/test_views_bucket.py::test_get_versions[objects-404] PASSED
+
+tests/test_views_bucket.py::test_get_versions[location-200] PASSED
+
+tests/test_views_bucket.py::test_get_empty_bucket[None-404] PASSED
+
+tests/test_views_bucket.py::test_get_empty_bucket[auth-404] PASSED
+
+tests/test_views_bucket.py::test_get_empty_bucket[objects-404] PASSED
+
+tests/test_views_bucket.py::test_get_empty_bucket[bucket-200] PASSED
+
+tests/test_views_bucket.py::test_get_empty_bucket[location-200] PASSED
+
+tests/test_views_location.py::ISORT PASSED
+tests/test_views_location.py::black PASSED
+tests/test_views_location.py::test_post_bucket[None-401] PASSED
+
+tests/test_views_location.py::test_post_bucket[auth-403] PASSED
+
+tests/test_views_location.py::test_post_bucket[location-200] PASSED
+
+tests/test_views_location.py::test_get_location[None-405] PASSED
+
+tests/test_views_location.py::test_get_location[auth-405] PASSED
+
+tests/test_views_location.py::test_get_location[location-405] PASSED
+
+tests/test_views_multipart.py::ISORT PASSED
+tests/test_views_multipart.py::black PASSED
+tests/test_views_multipart.py::test_post_init[None-404] PASSED
+
+tests/test_views_multipart.py::test_post_init[auth-404] PASSED
+
+tests/test_views_multipart.py::test_post_init[objects-404] PASSED
+
+tests/test_views_multipart.py::test_post_init[bucket-200] PASSED
+
+tests/test_views_multipart.py::test_post_init[location-200] PASSED
+
+tests/test_views_multipart.py::test_post_init_querystring PASSED
+
+tests/test_views_multipart.py::test_get_init_not_allowed PASSED
+
+tests/test_views_multipart.py::test_post_invalid_partsizes PASSED
+
+tests/test_views_multipart.py::test_post_size_limits PASSED
+
+tests/test_views_multipart.py::test_post_locked_bucket PASSED
+
+tests/test_views_multipart.py::test_post_invalidkey PASSED
+
+tests/test_views_multipart.py::test_put[None-404] PASSED
+
+tests/test_views_multipart.py::test_put[auth-404] PASSED
+
+tests/test_views_multipart.py::test_put[objects-404] PASSED
+
+tests/test_views_multipart.py::test_put[bucket-200] PASSED
+
+tests/test_views_multipart.py::test_put[location-200] PASSED
+
+tests/test_views_multipart.py::test_put_not_found PASSED
+
+tests/test_views_multipart.py::test_put_wrong_sizes PASSED
+
+tests/test_views_multipart.py::test_put_ngfileupload PASSED
+
+tests/test_views_multipart.py::test_put_invalid_part_number PASSED
+
+tests/test_views_multipart.py::test_put_completed_multipart PASSED
+
+tests/test_views_multipart.py::test_put_badstream PASSED
+
+tests/test_views_multipart.py::test_get[None-404] PASSED
+
+tests/test_views_multipart.py::test_get[auth-404] PASSED
+
+tests/test_views_multipart.py::test_get[objects-404] PASSED
+
+tests/test_views_multipart.py::test_get[bucket-200] PASSED
+
+tests/test_views_multipart.py::test_get[location-200] PASSED
+
+tests/test_views_multipart.py::test_get_empty PASSED
+
+tests/test_views_multipart.py::test_get_serialization PASSED
+
+tests/test_views_multipart.py::test_post_complete[None-404] PASSED
+
+tests/test_views_multipart.py::test_post_complete[auth-404] PASSED
+
+tests/test_views_multipart.py::test_post_complete[objects-404] PASSED
+
+tests/test_views_multipart.py::test_post_complete[bucket-200] PASSED
+
+tests/test_views_multipart.py::test_post_complete[location-200] PASSED
+
+tests/test_views_multipart.py::test_post_complete_fail PASSED
+
+tests/test_views_multipart.py::test_post_complete_timeout PASSED
+
+tests/test_views_multipart.py::test_delete[None-404] PASSED
+
+tests/test_views_multipart.py::test_delete[auth-404] PASSED
+
+tests/test_views_multipart.py::test_delete[objects-404] PASSED
+
+tests/test_views_multipart.py::test_delete[bucket-404] PASSED
+
+tests/test_views_multipart.py::test_delete[location-204] PASSED
+
+tests/test_views_multipart.py::test_delete_invalid PASSED
+
+tests/test_views_multipart.py::test_delete_init_not_allowed PASSED
+
+tests/test_views_multipart.py::test_get_listuploads[None-404] PASSED
+
+tests/test_views_multipart.py::test_get_listuploads[auth-404] PASSED
+
+tests/test_views_multipart.py::test_get_listuploads[objects-404] PASSED
+
+tests/test_views_multipart.py::test_get_listuploads[bucket-404] PASSED
+
+tests/test_views_multipart.py::test_get_listuploads[location-200] PASSED
+
+tests/test_views_multipart.py::test_already_exhausted_input_stream PASSED
+
+tests/test_views_objectversion.py::ISORT PASSED
+tests/test_views_objectversion.py::black PASSED
+tests/test_views_objectversion.py::test_get_not_found[None-404] PASSED
+
+tests/test_views_objectversion.py::test_get_not_found[auth-404] PASSED
+
+tests/test_views_objectversion.py::test_get_not_found[objects-404] PASSED
+
+tests/test_views_objectversion.py::test_get_not_found[bucket-404] PASSED
+
+tests/test_views_objectversion.py::test_get_not_found[location-404] PASSED
+
+tests/test_views_objectversion.py::test_get[None-404] PASSED
+
+tests/test_views_objectversion.py::test_get[auth-404] PASSED
+
+tests/test_views_objectversion.py::test_get[bucket-200] PASSED
+
+tests/test_views_objectversion.py::test_get[location-200] PASSED
+
+tests/test_views_objectversion.py::test_get[objects-200] PASSED
+
+tests/test_views_objectversion.py::test_get_with_x_sendfile PASSED
+
+tests/test_views_objectversion.py::test_get_download PASSED
+
+tests/test_views_objectversion.py::test_last_modified_utc_conversion PASSED
+
+tests/test_views_objectversion.py::test_get_unreadable_file PASSED
+
+tests/test_views_objectversion.py::test_get_versions[None-404] PASSED
+
+tests/test_views_objectversion.py::test_get_versions[auth-404] PASSED
+
+tests/test_views_objectversion.py::test_get_versions[objects-403] PASSED
+
+tests/test_views_objectversion.py::test_get_versions[bucket-403] PASSED
+
+tests/test_views_objectversion.py::test_get_versions[location-200] PASSED
+
+tests/test_views_objectversion.py::test_get_versions_invalid[None] PASSED
+
+tests/test_views_objectversion.py::test_get_versions_invalid[auth] PASSED
+
+tests/test_views_objectversion.py::test_get_versions_invalid[objects] PASSED
+
+tests/test_views_objectversion.py::test_get_versions_invalid[bucket] PASSED
+
+tests/test_views_objectversion.py::test_get_versions_invalid[location] PASSED
+
+tests/test_views_objectversion.py::test_post[None-404] PASSED
+
+tests/test_views_objectversion.py::test_post[auth-404] PASSED
+
+tests/test_views_objectversion.py::test_post[bucket-403] PASSED
+
+tests/test_views_objectversion.py::test_post[location-403] PASSED
+
+tests/test_views_objectversion.py::test_put[None-404] PASSED
+
+tests/test_views_objectversion.py::test_put[auth-404] PASSED
+
+tests/test_views_objectversion.py::test_put[objects-404] PASSED
+
+tests/test_views_objectversion.py::test_put[bucket-200] PASSED
+
+tests/test_views_objectversion.py::test_put[location-200] PASSED
+
+tests/test_views_objectversion.py::test_put_versioning PASSED
+
+tests/test_views_objectversion.py::test_put_file_size_errors[50-100-400-Bucket quota] PASSED
+
+tests/test_views_objectversion.py::test_put_file_size_errors[100-50-400-Maximum file size] PASSED
+
+tests/test_views_objectversion.py::test_put_file_size_errors[100-100-200-None] PASSED
+
+tests/test_views_objectversion.py::test_put_file_size_errors[None-None-200-None] PASSED
+
+tests/test_views_objectversion.py::test_put_invalid_key PASSED
+
+tests/test_views_objectversion.py::test_put_zero_size PASSED
+
+tests/test_views_objectversion.py::test_put_deleted_locked PASSED
+
+tests/test_views_objectversion.py::test_put_error PASSED
+
+tests/test_views_objectversion.py::test_put_multipartform PASSED
+
+tests/test_views_objectversion.py::test_delete[None-404] PASSED
+
+tests/test_views_objectversion.py::test_delete[auth-404] PASSED
+
+tests/test_views_objectversion.py::test_delete[objects-403] PASSED
+
+tests/test_views_objectversion.py::test_delete[bucket-204] PASSED
+
+tests/test_views_objectversion.py::test_delete[location-204] PASSED
+
+tests/test_views_objectversion.py::test_delete_versions[None-404] PASSED
+
+tests/test_views_objectversion.py::test_delete_versions[auth-404] PASSED
+
+tests/test_views_objectversion.py::test_delete_versions[objects-403] PASSED
+
+tests/test_views_objectversion.py::test_delete_versions[bucket-403] PASSED
+
+tests/test_views_objectversion.py::test_delete_versions[location-204] PASSED
+
+tests/test_views_objectversion.py::test_delete_versions_head_reset PASSED
+
+tests/test_views_objectversion.py::test_delete_locked_deleted PASSED
+
+tests/test_views_objectversion.py::test_delete_unwritable PASSED
+
+tests/test_views_objectversion.py::test_put_header_tags PASSED
+
+tests/test_views_objectversion.py::test_put_header_invalid_tags PASSED
+
+tests/test_views_objectversion.py::test_get_range_request_enabled PASSED
+
+tests/test_views_objectversion.py::test_get_range_request_disabled PASSED
+
+tests/testutils.py::PYDOCSTYLE PASSED
+tests/testutils.py::ISORT PASSED
+tests/testutils.py::black PASSED
+invenio_files_rest/__init__.py::PYDOCSTYLE PASSED
+invenio_files_rest/__init__.py::ISORT PASSED
+invenio_files_rest/__init__.py::black PASSED
+invenio_files_rest/__init__.py::invenio_files_rest PASSED
+
+invenio_files_rest/admin.py::PYDOCSTYLE PASSED
+invenio_files_rest/admin.py::ISORT PASSED
+invenio_files_rest/admin.py::black PASSED
+invenio_files_rest/alembic/2e97565eba72_create_files_rest_tables.py::PYDOCSTYLE PASSED
+invenio_files_rest/alembic/2e97565eba72_create_files_rest_tables.py::ISORT PASSED
+invenio_files_rest/alembic/2e97565eba72_create_files_rest_tables.py::black PASSED
+invenio_files_rest/alembic/52ce868f33c3_create_files_rest_branch.py::PYDOCSTYLE PASSED
+invenio_files_rest/alembic/52ce868f33c3_create_files_rest_branch.py::ISORT PASSED
+invenio_files_rest/alembic/52ce868f33c3_create_files_rest_branch.py::black PASSED
+invenio_files_rest/alembic/8ae99b034410_create_files_objecttags_table.py::PYDOCSTYLE PASSED
+invenio_files_rest/alembic/8ae99b034410_create_files_objecttags_table.py::ISORT PASSED
+invenio_files_rest/alembic/8ae99b034410_create_files_objecttags_table.py::black PASSED
+invenio_files_rest/alembic/a29271fd78f8_create_files_object_partial_unique_index.py::PYDOCSTYLE PASSED
+invenio_files_rest/alembic/a29271fd78f8_create_files_object_partial_unique_index.py::ISORT PASSED
+invenio_files_rest/alembic/a29271fd78f8_create_files_object_partial_unique_index.py::black PASSED
+invenio_files_rest/alembic/e172c837b036_add_indexes.py::PYDOCSTYLE PASSED
+invenio_files_rest/alembic/e172c837b036_add_indexes.py::ISORT PASSED
+invenio_files_rest/alembic/e172c837b036_add_indexes.py::black PASSED
+invenio_files_rest/alembic/f741aa746a7d_alter_files_files_last_check_column_to_.py::PYDOCSTYLE PASSED
+invenio_files_rest/alembic/f741aa746a7d_alter_files_files_last_check_column_to_.py::ISORT PASSED
+invenio_files_rest/alembic/f741aa746a7d_alter_files_files_last_check_column_to_.py::black PASSED
+invenio_files_rest/app.py::PYDOCSTYLE PASSED
+invenio_files_rest/app.py::ISORT PASSED
+invenio_files_rest/app.py::black PASSED
+invenio_files_rest/cli.py::PYDOCSTYLE PASSED
+invenio_files_rest/cli.py::ISORT PASSED
+invenio_files_rest/cli.py::black PASSED
+invenio_files_rest/config.py::PYDOCSTYLE PASSED
+invenio_files_rest/config.py::ISORT PASSED
+invenio_files_rest/config.py::black PASSED
+invenio_files_rest/errors.py::PYDOCSTYLE PASSED
+invenio_files_rest/errors.py::ISORT PASSED
+invenio_files_rest/errors.py::black PASSED
+invenio_files_rest/ext.py::PYDOCSTYLE PASSED
+invenio_files_rest/ext.py::ISORT PASSED
+invenio_files_rest/ext.py::black PASSED
+invenio_files_rest/formparser.py::PYDOCSTYLE PASSED
+invenio_files_rest/formparser.py::ISORT PASSED
+invenio_files_rest/formparser.py::black PASSED
+invenio_files_rest/helpers.py::PYDOCSTYLE PASSED
+invenio_files_rest/helpers.py::ISORT PASSED
+invenio_files_rest/helpers.py::black PASSED
+invenio_files_rest/limiters.py::PYDOCSTYLE PASSED
+invenio_files_rest/limiters.py::ISORT PASSED
+invenio_files_rest/limiters.py::black PASSED
+invenio_files_rest/models.py::PYDOCSTYLE PASSED
+invenio_files_rest/models.py::ISORT PASSED
+invenio_files_rest/models.py::black PASSED
+invenio_files_rest/permissions.py::PYDOCSTYLE PASSED
+invenio_files_rest/permissions.py::ISORT PASSED
+invenio_files_rest/permissions.py::black PASSED
+invenio_files_rest/proxies.py::PYDOCSTYLE PASSED
+invenio_files_rest/proxies.py::ISORT PASSED
+invenio_files_rest/proxies.py::black PASSED
+invenio_files_rest/serializer.py::PYDOCSTYLE PASSED
+invenio_files_rest/serializer.py::ISORT PASSED
+invenio_files_rest/serializer.py::black PASSED
+invenio_files_rest/signals.py::PYDOCSTYLE PASSED
+invenio_files_rest/signals.py::ISORT PASSED
+invenio_files_rest/signals.py::black PASSED
+invenio_files_rest/storage/__init__.py::PYDOCSTYLE PASSED
+invenio_files_rest/storage/__init__.py::ISORT PASSED
+invenio_files_rest/storage/__init__.py::black PASSED
+invenio_files_rest/storage/base.py::PYDOCSTYLE PASSED
+invenio_files_rest/storage/base.py::ISORT PASSED
+invenio_files_rest/storage/base.py::black PASSED
+invenio_files_rest/storage/pyfs.py::PYDOCSTYLE PASSED
+invenio_files_rest/storage/pyfs.py::ISORT PASSED
+invenio_files_rest/storage/pyfs.py::black PASSED
+invenio_files_rest/tasks.py::PYDOCSTYLE PASSED
+invenio_files_rest/tasks.py::ISORT PASSED
+invenio_files_rest/tasks.py::black PASSED
+invenio_files_rest/utils.py::PYDOCSTYLE PASSED
+invenio_files_rest/utils.py::ISORT PASSED
+invenio_files_rest/utils.py::black PASSED
+invenio_files_rest/views.py::PYDOCSTYLE PASSED
+invenio_files_rest/views.py::ISORT PASSED
+invenio_files_rest/views.py::black PASSED
+invenio_files_rest/wrappers.py::PYDOCSTYLE PASSED
+invenio_files_rest/wrappers.py::ISORT PASSED
+invenio_files_rest/wrappers.py::black PASSED
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/passlib/utils/__init__.py:854
+    from crypt import crypt as _crypt
+
+.venv/lib/python3.12/site-packages/fs/__init__.py:4
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:3146
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:3146
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+.venv/lib/python3.12/site-packages/fs/__init__.py:4
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/fs/opener/__init__.py:6
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:2558
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+
+.venv/lib/python3.12/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.12/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.12/site-packages/webargs/__init__.py:13
+    __version_info__ = tuple(LooseVersion(__version__).version)
+
+.venv/lib/python3.12/site-packages/flask_admin/contrib/__init__.py:2
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__('pkg_resources').declare_namespace(__name__)
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:2558
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+    warnings.warn(
+
+    target.updated = datetime.utcnow()
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_files_rest/models.py:750: SAWarning: Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+    return db.session.query(cls).filter_by(id=file_id).one_or_none()
+
+tests/test_invenio_files_rest.py::test_alembic
+    util.warn_deprecated(
+
+tests/test_invenio_files_rest.py::test_alembic
+    super().alter_column(
+
+tests/test_invenio_files_rest.py::test_alembic
+    insp = Inspector.from_engine(ctx.connection.engine)
+
+    self.last_check_at = datetime.utcnow()
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_files_rest/serializer.py:309: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    schema_class(context=context).dump(data, many=many).data, **_format_args()
+
+    schema_class(context=context).dump(data, many=many).data, **_format_args()
+
+    target.updated = datetime.utcnow()
+
+    created = datetime.utcnow()
+
+    return cls(int(id_s, 16), datetime.utcfromtimestamp(int(created_s, 16)))
+
+    now = now or datetime.utcnow()
+
+tests/test_tasks.py::test_verify_checksum
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_tasks.py:39: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    f = FileInstance.query.get(file_id)
+
+tests/test_tasks.py::test_verify_checksum
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_tasks.py:48: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    f = FileInstance.query.get(file_id)
+
+tests/test_tasks.py::test_verify_checksum
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_tasks.py:52: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    f = FileInstance.query.get(file_id)
+
+    self.last_check_at = datetime.utcnow()
+
+tests/test_tasks.py::test_verify_checksum
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_tasks.py:60: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    f = FileInstance.query.get(file_id)
+
+tests/test_views_bucket.py::test_get[bucket-200]
+tests/test_views_bucket.py::test_get[location-200]
+tests/test_views_bucket.py::test_get_versions[location-200]
+tests/test_views_bucket.py::test_get_empty_bucket[bucket-200]
+tests/test_views_bucket.py::test_get_empty_bucket[location-200]
+tests/test_views_objectversion.py::test_put_versioning
+    data.update(BucketSchema().dump(bucket).data)
+
+tests/test_views_multipart.py::test_put_badstream
+tests/test_views_multipart.py::test_put_badstream
+tests/test_views_multipart.py::test_get[bucket-200]
+tests/test_views_multipart.py::test_get[location-200]
+tests/test_views_multipart.py::test_get_empty
+tests/test_views_multipart.py::test_get_serialization
+tests/test_views_multipart.py::test_post_complete_fail
+tests/test_views_multipart.py::test_post_complete_timeout
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_files_rest/serializer.py:196: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    MultipartObjectSchema(context={"bucket": multipart.bucket})
+
+tests/test_views_multipart.py::test_put_badstream
+tests/test_views_multipart.py::test_put_badstream
+tests/test_views_multipart.py::test_get[bucket-200]
+tests/test_views_multipart.py::test_get[location-200]
+tests/test_views_multipart.py::test_get_empty
+tests/test_views_multipart.py::test_get_serialization
+tests/test_views_multipart.py::test_post_complete_fail
+tests/test_views_multipart.py::test_post_complete_timeout
+    .data
+
+tests/test_views_objectversion.py::test_get_with_x_sendfile
+    warnings.warn("This streaming does not support multiple storage backends.")
+
+invenio_files_rest/__init__.py::invenio_files_rest
+    self.init_app(app)
+
+- generated xml file: /home/runner/work/invenio-testrig/invenio-testrig/artifacts/test-report-patched.xml -
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.12-final-0 _______________
+
+Name                                                                                  Stmts   Miss  Cover   Missing
+invenio_files_rest/__init__.py                                                            4      0   100%
+invenio_files_rest/admin.py                                                             116     13    89%   338-354
+invenio_files_rest/alembic/2e97565eba72_create_files_rest_tables.py                      34      0   100%
+invenio_files_rest/alembic/8ae99b034410_create_files_objecttags_table.py                 22      3    86%   28-29, 67
+invenio_files_rest/alembic/52ce868f33c3_create_files_rest_branch.py                       8      0   100%
+invenio_files_rest/alembic/a29271fd78f8_create_files_object_partial_unique_index.py      12      0   100%
+invenio_files_rest/alembic/e172c837b036_add_indexes.py                                   21      0   100%
+invenio_files_rest/alembic/f741aa746a7d_alter_files_files_last_check_column_to_.py       10      0   100%
+invenio_files_rest/app.py                                                                 4      0   100%
+invenio_files_rest/cli.py                                                                66      0   100%
+invenio_files_rest/config.py                                                             52      0   100%
+invenio_files_rest/errors.py                                                             63      4    94%   29, 54-55, 59
+invenio_files_rest/ext.py                                                                52      1    98%   87
+invenio_files_rest/formparser.py                                                         24      7    71%   35, 39, 54, 65, 69-71
+invenio_files_rest/helpers.py                                                           118      5    96%   183-187
+invenio_files_rest/limiters.py                                                           25      0   100%
+invenio_files_rest/models.py                                                            712     23    97%   117, 573-578, 742, 1052-1054, 1436, 1494, 1622, 1659-1666, 1672, 1763-1766
+invenio_files_rest/permissions.py                                                        61      1    98%   134
+invenio_files_rest/proxies.py                                                             6      0   100%
+invenio_files_rest/serializer.py                                                        122      2    98%   303, 336
+invenio_files_rest/signals.py                                                             8      0   100%
+invenio_files_rest/storage/__init__.py                                                    3      0   100%
+invenio_files_rest/storage/base.py                                                       91      2    98%   120-121
+invenio_files_rest/storage/pyfs.py                                                       74      4    95%   95-98
+invenio_files_rest/tasks.py                                                             123     19    85%   108-109, 118, 241-243, 259, 261, 268-270, 276-285
+invenio_files_rest/utils.py                                                              20      1    95%   35
+invenio_files_rest/views.py                                                             273      4    99%   291, 726, 770, 772
+invenio_files_rest/wrappers.py                                                            4      0   100%
+TOTAL                                                                                  2128     89    96%
+================ 351 passed, 8397 warnings in 149.76s (0:02:29) ================
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed
