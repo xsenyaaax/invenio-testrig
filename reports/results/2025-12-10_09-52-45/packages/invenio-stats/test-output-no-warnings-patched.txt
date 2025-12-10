@@ -1,0 +1,641 @@
+ postgresql Pulling 
+ rabbitmq Pulling 
+ opensearch Pulling 
+ redis Pulling 
+ redis Pulled 
+ rabbitmq Pulled 
+ postgresql Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/invenio-testrig/invenio-testrig/package-repo
+configfile: setup.cfg
+testpaths: tests, invenio_stats
+plugins: github-actions-annotate-failures-0.3.0, pycodestyle-2.5.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, isort-4.0.0, cov-7.0.0, pydocstyle-2.4.0
+collecting ... collected 190 items
+
+tests/conftest.py::PYDOCSTYLE PASSED
+tests/conftest.py::ISORT PASSED
+tests/conftest.py::black PASSED
+tests/contrib/test_event_builders.py::ISORT PASSED
+tests/contrib/test_event_builders.py::black PASSED
+tests/contrib/test_event_builders.py::test_file_download_event_builder PASSED
+tests/contrib/test_event_builders.py::test_record_view_event_builder PASSED
+
+tests/helpers.py::PYDOCSTYLE PASSED
+tests/helpers.py::ISORT PASSED
+tests/helpers.py::black PASSED
+tests/test_aggregations.py::ISORT PASSED
+tests/test_aggregations.py::black PASSED
+tests/test_aggregations.py::test_wrong_intervals PASSED
+
+tests/test_aggregations.py::test_get_bookmark[indexed_events0] PASSED
+
+tests/test_aggregations.py::test_overwriting_aggregations PASSED
+
+tests/test_aggregations.py::test_aggregation_without_events PASSED
+tests/test_aggregations.py::test_bookmark_removal PASSED
+
+tests/test_aggregations.py::test_date_range[indexed_events0] PASSED
+
+tests/test_aggregations.py::test_filter_robots[True-indexed_events0] PASSED
+
+tests/test_aggregations.py::test_filter_robots[False-indexed_events0] PASSED
+
+tests/test_aggregations.py::test_metric_aggregations PASSED
+
+tests/test_cli.py::ISORT PASSED
+tests/test_cli.py::black PASSED
+tests/test_cli.py::test_events_process PASSED
+
+tests/test_cli.py::test_aggregations_process[indexed_events0] PASSED
+
+tests/test_cli.py::test_aggregations_delete[aggregated_events0] PASSED
+
+tests/test_cli.py::test_aggregations_list_bookmarks[aggregated_events0] PASSED
+
+tests/test_events.py::ISORT PASSED
+tests/test_events.py::black PASSED
+tests/test_events.py::test_event_queues_declare PASSED
+
+tests/test_events.py::test_publish_and_consume_events PASSED
+tests/test_invenio_stats.py::ISORT PASSED
+tests/test_invenio_stats.py::black PASSED
+tests/test_invenio_stats.py::test_version PASSED
+tests/test_invenio_stats.py::test_init PASSED
+tests/test_invenio_stats.py::test_extension_get_query_cache PASSED
+
+tests/test_prefixing.py::ISORT PASSED
+tests/test_prefixing.py::black PASSED
+tests/test_prefixing.py::test_index_prefix PASSED
+
+tests/test_processors.py::ISORT PASSED
+tests/test_processors.py::black PASSED
+tests/test_processors.py::test_anonymize_user[131.169.180.47-None-None-None-timestamp0-DE-1850abef504ce64cb6b38fa60fe8f90aede1d2d2e9013735554af946-1850abef504ce64cb6b38fa60fe8f90aede1d2d2e9013735554af946] PASSED
+tests/test_processors.py::test_anonymize_user[188.184.37.205-100-None-None-timestamp1-CH-eaf6a44a598ea63c659e6e46722e2d11d0d7487694ec504ade273b9d-c6b85f117cd0636a07f1cf250a30d86714ec45e55a1110441d1a9e2b] PASSED
+tests/test_processors.py::test_anonymize_user[23.22.39.120-100-foo-bar-timestamp2-US-eaf6a44a598ea63c659e6e46722e2d11d0d7487694ec504ade273b9d-c6b85f117cd0636a07f1cf250a30d86714ec45e55a1110441d1a9e2b] PASSED
+tests/test_processors.py::test_anonymize_user[23.22.39.120-100-None-None-timestamp3-US-eaf6a44a598ea63c659e6e46722e2d11d0d7487694ec504ade273b9d-77536991d991e6e8251999fc6a8d78ec1be42847da3c8774221a03a0] PASSED
+tests/test_processors.py::test_anonymize_user[23.22.39.120-100-None-None-timestamp4-US-eaf6a44a598ea63c659e6e46722e2d11d0d7487694ec504ade273b9d-77536991d991e6e8251999fc6a8d78ec1be42847da3c8774221a03a0] PASSED
+tests/test_processors.py::test_anonymize_user[131.169.180.47-None-foo-None-timestamp5-DE-a78cc092c88fb4d060a873217f2cd466c2776f672a99ee06317c2858-ca28702a6ece34d18c6f6498ef79d77492a6bd653ac886beb5018880] PASSED
+tests/test_processors.py::test_anonymize_user[131.169.180.47-None-foo-bar-timestamp6-DE-a78cc092c88fb4d060a873217f2cd466c2776f672a99ee06317c2858-ca28702a6ece34d18c6f6498ef79d77492a6bd653ac886beb5018880] PASSED
+tests/test_processors.py::test_anonymize_user[131.169.180.47-None-foo-bar-timestamp7-DE-a78cc092c88fb4d060a873217f2cd466c2776f672a99ee06317c2858-ceb752c8b51c8c4a9c18a9d4404e9fb570fbf83195631ab3efb46b31] PASSED
+tests/test_processors.py::test_anonymize_user[188.184.37.205-None-None-bar-timestamp8-CH-e9c48686d21c21a9ee5b9eba58b1d86c9460272809b6de71649f6ce7-e9c48686d21c21a9ee5b9eba58b1d86c9460272809b6de71649f6ce7] PASSED
+tests/test_processors.py::test_anonymize_user[131.169.180.47-None-None-bar-timestamp9-DE-602e9bc738b422d5a19283e20fc31ec540a12d42b04ad7073d943fb2-602e9bc738b422d5a19283e20fc31ec540a12d42b04ad7073d943fb2] PASSED
+tests/test_processors.py::test_anonymize_user[131.169.180.47-None-None-bar-timestamp10-DE-4b30c060f422f304b073759553d4161a14784e0ddcf57284f55d7cae-4b30c060f422f304b073759553d4161a14784e0ddcf57284f55d7cae] PASSED
+tests/test_processors.py::test_anonymize_user[0.0.0.0-None-None-None-timestamp11-None-1850abef504ce64cb6b38fa60fe8f90aede1d2d2e9013735554af946-1850abef504ce64cb6b38fa60fe8f90aede1d2d2e9013735554af946] PASSED
+tests/test_processors.py::test_anonymiation_salt PASSED
+
+tests/test_processors.py::test_flag_robots PASSED
+
+tests/test_processors.py::test_flag_machines PASSED
+
+tests/test_processors.py::test_referrer PASSED
+
+tests/test_processors.py::test_events_indexer_preprocessors PASSED
+
+tests/test_processors.py::test_events_indexer_id_windowing PASSED
+
+tests/test_processors.py::test_double_clicks PASSED
+
+tests/test_processors.py::test_failing_processors Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_processors.py", line 399, in _raises_on_second_call
+    raise Exception("mocked-exception")
+Exception: mocked-exception
+[2025-12-10 09:55:17,268] ERROR in processors: Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_processors.py", line 399, in _raises_on_second_call
+    raise Exception("mocked-exception")
+Exception: mocked-exception
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_processors.py", line 399, in _raises_on_second_call
+    raise Exception("mocked-exception")
+Exception: mocked-exception
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_processors.py", line 399, in _raises_on_second_call
+    raise Exception("mocked-exception")
+Exception: mocked-exception
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_processors.py", line 399, in _raises_on_second_call
+    raise Exception("mocked-exception")
+Exception: mocked-exception
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_processors.py", line 399, in _raises_on_second_call
+    raise Exception("mocked-exception")
+Exception: mocked-exception
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_processors.py", line 399, in _raises_on_second_call
+    raise Exception("mocked-exception")
+Exception: mocked-exception
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_processors.py", line 399, in _raises_on_second_call
+    raise Exception("mocked-exception")
+Exception: mocked-exception
+PASSED
+
+tests/test_queries.py::ISORT PASSED
+tests/test_queries.py::black PASSED
+tests/test_queries.py::test_histogram_query[aggregated_events0] PASSED
+
+tests/test_queries.py::test_terms_query[aggregated_events0] PASSED
+
+tests/test_receivers.py::ISORT PASSED
+tests/test_receivers.py::black PASSED
+tests/test_receivers.py::test_register_receivers PASSED
+
+tests/test_receivers.py::test_failing_receiver Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+[2025-12-10 09:55:20,879] ERROR in receivers: Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+Error building event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/receivers.py", line 34, in __call__
+    event = builder(event, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_receivers.py", line 59, in failing_event_builder
+    raise Exception("builder-exception")
+Exception: builder-exception
+PASSED
+tests/test_tasks.py::ISORT PASSED
+tests/test_tasks.py::black PASSED
+tests/test_tasks.py::test_process_events Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+[2025-12-10 09:55:22,605] ERROR in processors: Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+Error while processing event
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/processors.py", line 192, in actionsiter
+    msg = preproc(msg)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/invenio_stats/contrib/event_builders.py", line 40, in build_file_unique_id
+    doc["unique_id"] = "{0}_{1}".format(doc["bucket_id"], doc["file_id"])
+                                        ~~~^^^^^^^^^^^^^
+KeyError: 'bucket_id'
+PASSED
+
+tests/test_utils.py::ISORT PASSED
+tests/test_utils.py::black PASSED
+tests/test_utils.py::test_get_user PASSED
+
+tests/test_utils.py::test_get_geoip PASSED
+tests/test_views.py::ISORT PASSED
+tests/test_views.py::black PASSED
+tests/test_views.py::test_post_request PASSED
+
+tests/test_views.py::test_unauthorized_request[authorized-200] PASSED
+
+tests/test_views.py::test_unauthorized_request[unauthorized-403] PASSED
+
+tests/test_views.py::test_unauthorized_request[None-401] PASSED
+
+invenio_stats/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/__init__.py::ISORT PASSED
+invenio_stats/__init__.py::black PASSED
+invenio_stats/aggregations.py::PYDOCSTYLE PASSED
+invenio_stats/aggregations.py::ISORT PASSED
+invenio_stats/aggregations.py::black PASSED
+invenio_stats/bookmark.py::PYDOCSTYLE PASSED
+invenio_stats/bookmark.py::ISORT PASSED
+invenio_stats/bookmark.py::black PASSED
+invenio_stats/cli.py::PYDOCSTYLE PASSED
+invenio_stats/cli.py::ISORT PASSED
+invenio_stats/cli.py::black PASSED
+invenio_stats/config.py::PYDOCSTYLE PASSED
+invenio_stats/config.py::ISORT PASSED
+invenio_stats/config.py::black PASSED
+invenio_stats/contrib/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/__init__.py::ISORT PASSED
+invenio_stats/contrib/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/os-v1/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/os-v1/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/os-v1/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/os-v2/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/os-v2/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/os-v2/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/v7/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/v7/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/aggr_file_download/v7/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/os-v1/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/os-v1/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/os-v1/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/os-v2/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/os-v2/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/os-v2/__init__.py::black PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/v7/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/v7/__init__.py::ISORT PASSED
+invenio_stats/contrib/aggregations/aggr_record_view/v7/__init__.py::black PASSED
+invenio_stats/contrib/config.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/config.py::ISORT PASSED
+invenio_stats/contrib/config.py::black PASSED
+invenio_stats/contrib/event_builders.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/event_builders.py::ISORT PASSED
+invenio_stats/contrib/event_builders.py::black PASSED
+invenio_stats/contrib/file_download/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/file_download/__init__.py::ISORT PASSED
+invenio_stats/contrib/file_download/__init__.py::black PASSED
+invenio_stats/contrib/file_download/os-v1/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/file_download/os-v1/__init__.py::ISORT PASSED
+invenio_stats/contrib/file_download/os-v1/__init__.py::black PASSED
+invenio_stats/contrib/file_download/os-v2/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/file_download/os-v2/__init__.py::ISORT PASSED
+invenio_stats/contrib/file_download/os-v2/__init__.py::black PASSED
+invenio_stats/contrib/file_download/v7/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/file_download/v7/__init__.py::ISORT PASSED
+invenio_stats/contrib/file_download/v7/__init__.py::black PASSED
+invenio_stats/contrib/record_view/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/record_view/__init__.py::ISORT PASSED
+invenio_stats/contrib/record_view/__init__.py::black PASSED
+invenio_stats/contrib/record_view/os-v1/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/record_view/os-v1/__init__.py::ISORT PASSED
+invenio_stats/contrib/record_view/os-v1/__init__.py::black PASSED
+invenio_stats/contrib/record_view/os-v2/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/record_view/os-v2/__init__.py::ISORT PASSED
+invenio_stats/contrib/record_view/os-v2/__init__.py::black PASSED
+invenio_stats/contrib/record_view/v7/__init__.py::PYDOCSTYLE PASSED
+invenio_stats/contrib/record_view/v7/__init__.py::ISORT PASSED
+invenio_stats/contrib/record_view/v7/__init__.py::black PASSED
+invenio_stats/errors.py::PYDOCSTYLE PASSED
+invenio_stats/errors.py::ISORT PASSED
+invenio_stats/errors.py::black PASSED
+invenio_stats/ext.py::PYDOCSTYLE PASSED
+invenio_stats/ext.py::ISORT PASSED
+invenio_stats/ext.py::black PASSED
+invenio_stats/processors.py::PYDOCSTYLE PASSED
+invenio_stats/processors.py::ISORT PASSED
+invenio_stats/processors.py::black PASSED
+invenio_stats/proxies.py::PYDOCSTYLE PASSED
+invenio_stats/proxies.py::ISORT PASSED
+invenio_stats/proxies.py::black PASSED
+invenio_stats/queries.py::PYDOCSTYLE PASSED
+invenio_stats/queries.py::ISORT PASSED
+invenio_stats/queries.py::black PASSED
+invenio_stats/queues.py::PYDOCSTYLE PASSED
+invenio_stats/queues.py::ISORT PASSED
+invenio_stats/queues.py::black PASSED
+invenio_stats/receivers.py::PYDOCSTYLE PASSED
+invenio_stats/receivers.py::ISORT PASSED
+invenio_stats/receivers.py::black PASSED
+invenio_stats/tasks.py::PYDOCSTYLE PASSED
+invenio_stats/tasks.py::ISORT PASSED
+invenio_stats/tasks.py::black PASSED
+invenio_stats/templates.py::PYDOCSTYLE PASSED
+invenio_stats/templates.py::ISORT PASSED
+invenio_stats/templates.py::black PASSED
+invenio_stats/utils.py::PYDOCSTYLE PASSED
+invenio_stats/utils.py::ISORT PASSED
+invenio_stats/utils.py::black PASSED
+invenio_stats/views.py::PYDOCSTYLE PASSED
+invenio_stats/views.py::ISORT PASSED
+invenio_stats/views.py::black PASSED
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/passlib/utils/__init__.py:854
+    from crypt import crypt as _crypt
+
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+    from jsonschema import RefResolver as _RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/contrib/test_event_builders.py::test_record_view_event_builder
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records/api.py:335: SAWarning: nested transaction already deassociated from connection
+    with db.session.begin_nested():
+
+    self.init_app(app)
+
+    self._set_cache(app, config)
+
+    msg["updated_timestamp"] = datetime.utcnow().isoformat()
+
+    target.updated = datetime.utcnow()
+
+tests/test_cli.py::test_aggregations_process[indexed_events0]
+tests/test_cli.py::test_aggregations_process[indexed_events0]
+    datetime.utcnow(),
+
+    aggregation_data["updated_timestamp"] = datetime.utcnow().isoformat()
+
+    self._confirmed = datetime.utcnow() if confirmed else None
+
+tests/test_processors.py::test_flag_robots
+tests/test_processors.py::test_flag_robots
+tests/test_processors.py::test_flag_machines
+tests/test_processors.py::test_flag_machines
+tests/test_processors.py::test_flag_machines
+tests/test_processors.py::test_referrer
+    "timestamp": datetime.datetime.utcnow().isoformat(),
+
+tests/test_views.py::test_post_request
+tests/test_views.py::test_unauthorized_request[authorized-200]
+tests/test_views.py::test_unauthorized_request[authorized-200]
+tests/test_views.py::test_unauthorized_request[unauthorized-403]
+tests/test_views.py::test_unauthorized_request[unauthorized-403]
+    warnings.warn(
+
+tests/test_views.py::test_post_request
+tests/test_views.py::test_unauthorized_request[authorized-200]
+tests/test_views.py::test_unauthorized_request[unauthorized-403]
+    _security.datetime_factory(),
+
+tests/test_views.py::test_post_request
+tests/test_views.py::test_unauthorized_request[authorized-200]
+tests/test_views.py::test_unauthorized_request[unauthorized-403]
+    target.updated = datetime.utcnow()
+
+tests/test_views.py::test_post_request
+tests/test_views.py::test_unauthorized_request[authorized-200]
+tests/test_views.py::test_unauthorized_request[unauthorized-403]
+    created = datetime.utcnow()
+
+tests/test_views.py::test_post_request
+tests/test_views.py::test_unauthorized_request[authorized-200]
+tests/test_views.py::test_unauthorized_request[unauthorized-403]
+    return cls(int(id_s, 16), datetime.utcfromtimestamp(int(created_s, 16)))
+
+tests/test_views.py::test_post_request
+tests/test_views.py::test_unauthorized_request[authorized-200]
+tests/test_views.py::test_unauthorized_request[unauthorized-403]
+    now = now or datetime.utcnow()
+
+- generated xml file: /home/runner/work/invenio-testrig/invenio-testrig/artifacts/test-report-patched.xml -
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.12-final-0 _______________
+
+Name                                                                      Stmts   Miss  Cover   Missing
+invenio_stats/__init__.py                                                     4      0   100%
+invenio_stats/aggregations.py                                               130      2    98%   142, 280
+invenio_stats/bookmark.py                                                    52      5    90%   100-102, 126, 128, 130
+invenio_stats/cli.py                                                         88      0   100%
+invenio_stats/config.py                                                      14      0   100%
+invenio_stats/contrib/__init__.py                                             0      0   100%
+invenio_stats/contrib/aggregations/__init__.py                                0      0   100%
+invenio_stats/contrib/aggregations/aggr_file_download/__init__.py             0      0   100%
+invenio_stats/contrib/aggregations/aggr_file_download/os-v1/__init__.py       0      0   100%
+invenio_stats/contrib/aggregations/aggr_file_download/os-v2/__init__.py       0      0   100%
+invenio_stats/contrib/aggregations/aggr_file_download/v7/__init__.py          0      0   100%
+invenio_stats/contrib/aggregations/aggr_record_view/__init__.py               0      0   100%
+invenio_stats/contrib/aggregations/aggr_record_view/os-v1/__init__.py         0      0   100%
+invenio_stats/contrib/aggregations/aggr_record_view/os-v2/__init__.py         0      0   100%
+invenio_stats/contrib/aggregations/aggr_record_view/v7/__init__.py            0      0   100%
+invenio_stats/contrib/config.py                                               7      0   100%
+invenio_stats/contrib/event_builders.py                                      15      0   100%
+invenio_stats/contrib/file_download/__init__.py                               0      0   100%
+invenio_stats/contrib/file_download/os-v1/__init__.py                         0      0   100%
+invenio_stats/contrib/file_download/os-v2/__init__.py                         0      0   100%
+invenio_stats/contrib/file_download/v7/__init__.py                            0      0   100%
+invenio_stats/contrib/record_view/__init__.py                                 0      0   100%
+invenio_stats/contrib/record_view/os-v1/__init__.py                           0      0   100%
+invenio_stats/contrib/record_view/os-v2/__init__.py                           0      0   100%
+invenio_stats/contrib/record_view/v7/__init__.py                              0      0   100%
+invenio_stats/errors.py                                                      19      2    89%   61-62
+invenio_stats/ext.py                                                         88      7    92%   51-56, 78, 98, 116, 177
+invenio_stats/processors.py                                                  87      4    95%   104, 125, 194, 196
+invenio_stats/proxies.py                                                      3      0   100%
+invenio_stats/queries.py                                                    150     19    87%   40-43, 45, 50, 104, 115, 120, 138, 176, 245, 263, 281, 323-328
+invenio_stats/queues.py                                                       3      0   100%
+invenio_stats/receivers.py                                                   31      3    90%   36, 55-58
+invenio_stats/tasks.py                                                       24      0   100%
+invenio_stats/templates.py                                                   14      4    71%   31, 37-39
+invenio_stats/utils.py                                                       41      1    98%   110
+invenio_stats/views.py                                                       41      6    85%   49, 63, 95-99
+TOTAL                                                                       811     53    93%
+====================== 190 passed, 616 warnings in 39.83s ======================
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed
