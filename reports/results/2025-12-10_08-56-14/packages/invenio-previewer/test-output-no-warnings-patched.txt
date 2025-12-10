@@ -1,0 +1,337 @@
+running extract_messages
+extracting messages from invenio_previewer/__init__.py (encoding="utf-8")
+extracting messages from invenio_previewer/api.py (encoding="utf-8")
+extracting messages from invenio_previewer/config.py (encoding="utf-8")
+extracting messages from invenio_previewer/ext.py (encoding="utf-8")
+extracting messages from invenio_previewer/proxies.py (encoding="utf-8")
+extracting messages from invenio_previewer/utils.py (encoding="utf-8")
+extracting messages from invenio_previewer/views.py (encoding="utf-8")
+extracting messages from invenio_previewer/webpack.py (encoding="utf-8")
+extracting messages from invenio_previewer/assets/bootstrap3/js/invenio_previewer/previewer_theme.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/bootstrap3/js/invenio_previewer/prismjs.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/bootstrap3/js/invenio_previewer/csv_previewer/init.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/semantic-ui/js/invenio_previewer/bottom.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/semantic-ui/js/invenio_previewer/previewer_theme.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/semantic-ui/js/invenio_previewer/prismjs.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/semantic-ui/js/invenio_previewer/csv_previewer/init.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/extensions/__init__.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/audio_videojs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/csv_papaparsejs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/default.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/ipynb.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/json_prismjs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/mistune.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/pdfjs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/simple_image.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/txt.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/video_videojs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/web_archive.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/xml_prismjs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/zip.py (encoding="utf-8")
+extracting messages from invenio_previewer/static/js/fullscreen.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/static/js/open_pdf.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/templates/invenio_previewer/abstract_previewer.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/base.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/bottom.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/csv_bar.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/default.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/ipynb.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/json_prismjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/macros.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/mistune.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/pdfjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/simple_image.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/top.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/txt.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/web_archive.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/xml_prismjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/zip.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/abstract_previewer.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/audio_videojs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/base.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/bottom.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/csv_bar.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/default.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/ipynb.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/json_prismjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/macros.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/mistune.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/simple_image.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/top.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/txt.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/videojs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/web_archive.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/xml_prismjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/zip.html (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/invenio-testrig/invenio-testrig/package-repo
+configfile: setup.cfg
+testpaths: tests, invenio_previewer
+plugins: github-actions-annotate-failures-0.3.0, pycodestyle-2.5.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, isort-4.0.0, cov-7.0.0, pydocstyle-2.4.0
+collected 112 items
+
+tests/conftest.py ...                                                    [  2%]
+tests/test_invenio_previewer.py .::error file=package-repo/tests/test_invenio_previewer.py,line=0::Black format check%0A%0A--- /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_invenio_previewer.py	2025-12-10 08:57:22.031140+00:00%0A+++ /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_invenio_previewer.py	2025-12-10 08:57:53.624395+00:00%0A@@ -107,10 +107,11 @@%0A %0A %0A @patch("importlib.metadata.entry_points", lambda group=None: [])%0A def test_iter_container_previewers():%0A     """Test iter_container_previewers with CONTAINER_PREVIEWER_PREFERENCE."""%0A+%0A     # Mock previewer modules%0A     class MockPreviewer1:%0A         previewable_extensions = [".txt"]%0A %0A     class MockPreviewer2:%0A
+F.....                                  [  8%]
+tests/test_macros.py ...
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+::error file=package-repo/tests/test_macros.py,line=280::test_wacz_extensions_range_requests_enabled%0A%0Aassert '<script src="/static/js/replaywebpage/ui.js" type="module"></script>' in '\n<!DOCTYPE html>\n<html >\n  <head>\n    <title>Preview</title>\n    <meta charset="utf-8">\n    <meta name="viewpor...>\n<script src="/static/dist/js/previewer_theme.f60373f3c5d3b745f63e.js"></script>\n        \n    \n  </body>\n</html>'
+F
+::error file=package-repo/tests/test_macros.py,line=302::test_wacz_extensions_range_requests_disabled%0A%0Aassert '<script src="/static/js/replaywebpage/ui.js" type="module"></script>' in '\n<!DOCTYPE html>\n<html >\n  <head>\n    <title>Preview</title>\n    <meta charset="utf-8">\n    <meta name="viewpor...>\n<script src="/static/dist/js/previewer_theme.f60373f3c5d3b745f63e.js"></script>\n        \n    \n  </body>\n</html>'
+F
+.                                 [ 25%]
+tests/test_utils.py ...
+..........                                        [ 37%]
+tests/test_views.py ....                                                 [ 41%]
+invenio_previewer/__init__.py ...                                        [ 43%]
+invenio_previewer/api.py ...                                             [ 46%]
+invenio_previewer/config.py ...                                          [ 49%]
+invenio_previewer/ext.py ...                                             [ 51%]
+invenio_previewer/extensions/__init__.py ...                             [ 54%]
+invenio_previewer/extensions/audio_videojs.py ...                        [ 57%]
+invenio_previewer/extensions/csv_papaparsejs.py ...                      [ 59%]
+invenio_previewer/extensions/default.py ...                              [ 62%]
+invenio_previewer/extensions/ipynb.py ...                                [ 65%]
+invenio_previewer/extensions/json_prismjs.py ...                         [ 67%]
+invenio_previewer/extensions/mistune.py ...                              [ 70%]
+invenio_previewer/extensions/pdfjs.py ...                                [ 73%]
+invenio_previewer/extensions/simple_image.py ...                         [ 75%]
+invenio_previewer/extensions/txt.py ...                                  [ 78%]
+invenio_previewer/extensions/video_videojs.py ...                        [ 81%]
+invenio_previewer/extensions/web_archive.py ...                          [ 83%]
+invenio_previewer/extensions/xml_prismjs.py ...                          [ 86%]
+invenio_previewer/extensions/zip.py ...                                  [ 89%]
+invenio_previewer/proxies.py ...                                         [ 91%]
+invenio_previewer/utils.py ...                                           [ 94%]
+invenio_previewer/views.py ...                                           [ 97%]
+invenio_previewer/webpack.py ...                                         [100%]
+
+=================================== FAILURES ===================================
+______________________________ Black format check ______________________________
+--- /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_invenio_previewer.py	2025-12-10 08:57:22.031140+00:00
++++ /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_invenio_previewer.py	2025-12-10 08:57:53.624395+00:00
+@@ -107,10 +107,11 @@
+ 
+ 
+ @patch("importlib.metadata.entry_points", lambda group=None: [])
+ def test_iter_container_previewers():
+     """Test iter_container_previewers with CONTAINER_PREVIEWER_PREFERENCE."""
++
+     # Mock previewer modules
+     class MockPreviewer1:
+         previewable_extensions = [".txt"]
+ 
+     class MockPreviewer2:
+
+_________________ test_wacz_extensions_range_requests_enabled __________________
+
+testapp = <Flask 'conftest'>, webassets = <Flask 'conftest'>
+record = {'control_number': '15', 'title': 'TestDefault', '_bucket': '7501c28a-8595-48cb-a6d2-eea2054d7700', '_files': [{'bucke...'size': 12, 'checksum': 'md5:9473fdd0d880a43c21b7778d34872157', 'version_id': '833f5382-4bb2-4ef7-8874-6c010a5c3b80'}]}
+
+    def test_wacz_extensions_range_requests_enabled(testapp, webassets, record):
+        """Test .wacz previewer."""
+        testapp.config.update(
+            dict(
+                PREVIEWER_PREFERENCE=["web_archive"],
+                PREVIEWER_WEB_ARCHIVE_RANGE_REQUESTS=True,
+            )
+        )
+    
+        create_file(record, "test.wacz", BytesIO(b"test content"))
+    
+        with testapp.test_client() as client:
+            res = client.get(preview_url(record["control_number"], "test.wacz"))
+            text = res.get_data(as_text=True)
+    
+            print(text)
+>           assert (
+                '<script src="/static/js/replaywebpage/ui.js" type="module"></script>'
+                in text
+            )
+E           assert '<script src="/static/js/replaywebpage/ui.js" type="module"></script>' in '\n<!DOCTYPE html>\n<html >\n  <head>\n    <title>Preview</title>\n    <meta charset="utf-8">\n    <meta name="viewpor...>\n<script src="/static/dist/js/previewer_theme.f60373f3c5d3b745f63e.js"></script>\n        \n    \n  </body>\n</html>'
+
+/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_macros.py:280: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+<!DOCTYPE html>
+<html >
+  <head>
+    <title>Preview</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+      
+        <link rel="stylesheet" href="/static/dist/css/526.089e41670ee8b062aebd.css" />
+      
+    
+  </head>
+
+  <body>
+    
+<div class="ui container">
+  <div class="ui padded grid column">
+    <div class="column">
+        <h3><i class="times icon"></i> Cannot preview file</h3>
+        <p>Sorry, we are unfortunately not able to preview this file.</p>
+    </div>
+  </div>
+</div>
+
+      
+        
+          <script src="/static/dist/js/manifest.525cd978694acb8ec0ca.js"></script>
+<script src="/static/dist/js/73.163a3bb519e66ba8f797.js"></script>
+<script src="/static/dist/js/526.bb275eeb543ab936a59d.js"></script>
+<script src="/static/dist/js/previewer_theme.f60373f3c5d3b745f63e.js"></script>
+        
+    
+  </body>
+</html>
+_________________ test_wacz_extensions_range_requests_disabled _________________
+
+testapp = <Flask 'conftest'>, webassets = <Flask 'conftest'>
+record = {'control_number': '16', 'title': 'TestDefault', '_bucket': '538205a3-732c-44c7-b366-5d3b1fb6800d', '_files': [{'bucke...'size': 12, 'checksum': 'md5:9473fdd0d880a43c21b7778d34872157', 'version_id': '3578d2bd-9961-4b5e-aec8-e01050e4f9f9'}]}
+
+    def test_wacz_extensions_range_requests_disabled(testapp, webassets, record):
+        """Test .wacz previewer."""
+        testapp.config.update(
+            dict(
+                PREVIEWER_PREFERENCE=["web_archive"],
+                PREVIEWER_WEB_ARCHIVE_RANGE_REQUESTS=False,
+            )
+        )
+    
+        create_file(record, "test.wacz", BytesIO(b"test content"))
+    
+        with testapp.test_client() as client:
+            res = client.get(preview_url(record["control_number"], "test.wacz"))
+            text = res.get_data(as_text=True)
+    
+>           assert (
+                '<script src="/static/js/replaywebpage/ui.js" type="module"></script>'
+                in text
+            )
+E           assert '<script src="/static/js/replaywebpage/ui.js" type="module"></script>' in '\n<!DOCTYPE html>\n<html >\n  <head>\n    <title>Preview</title>\n    <meta charset="utf-8">\n    <meta name="viewpor...>\n<script src="/static/dist/js/previewer_theme.f60373f3c5d3b745f63e.js"></script>\n        \n    \n  </body>\n</html>'
+
+/home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_macros.py:302: AssertionError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/passlib/utils/__init__.py:854
+    from crypt import crypt as _crypt
+
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+    from jsonschema import RefResolver as _RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.12/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.12/site-packages/webargs/__init__.py:13
+    __version_info__ = tuple(LooseVersion(__version__).version)
+
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records/api.py:335: SAWarning: nested transaction already deassociated from connection
+    with db.session.begin_nested():
+
+    target.updated = datetime.utcnow()
+
+tests/test_macros.py::test_default_extension
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+tests/test_macros.py::test_default_extension
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+tests/test_macros.py::test_default_extension
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+tests/test_macros.py::test_default_extension
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+tests/test_macros.py::test_default_extension
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+
+    target.updated = datetime.utcnow()
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/tests/test_macros.py:38: SAWarning: nested transaction already deassociated from connection
+    db.session.commit()
+
+tests/test_utils.py::test_default_file_reader
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/pytest_invenio/fixtures.py:564: SAWarning: nested transaction already deassociated from connection
+    self._transaction.rollback(_to_root=False)
+
+- generated xml file: /home/runner/work/invenio-testrig/invenio-testrig/artifacts/test-report-patched.xml -
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.12-final-0 _______________
+
+Name                                              Stmts   Miss  Cover   Missing
+invenio_previewer/__init__.py                         4      0   100%
+invenio_previewer/api.py                             26      1    96%   41
+invenio_previewer/config.py                          34      0   100%
+invenio_previewer/ext.py                             96      9    91%   23, 25, 56-59, 81-84
+invenio_previewer/extensions/__init__.py              0      0   100%
+invenio_previewer/extensions/audio_videojs.py         9      2    78%   34-42
+invenio_previewer/extensions/csv_papaparsejs.py      12      1    92%   22
+invenio_previewer/extensions/default.py               7      1    86%   20
+invenio_previewer/extensions/ipynb.py                37      2    95%   37-38
+invenio_previewer/extensions/json_prismjs.py         26      0   100%
+invenio_previewer/extensions/mistune.py              18      0   100%
+invenio_previewer/extensions/pdfjs.py                 7      0   100%
+invenio_previewer/extensions/simple_image.py         11      0   100%
+invenio_previewer/extensions/txt.py                  13      0   100%
+invenio_previewer/extensions/video_videojs.py         9      2    78%   31-38
+invenio_previewer/extensions/web_archive.py           7      2    71%   20, 27
+invenio_previewer/extensions/xml_prismjs.py          30      4    87%   31, 42, 49-50
+invenio_previewer/extensions/zip.py                  53      5    91%   38, 43, 46-47, 57
+invenio_previewer/proxies.py                          4      0   100%
+invenio_previewer/utils.py                           20      0   100%
+invenio_previewer/views.py                           22      1    95%   49
+invenio_previewer/webpack.py                          3      0   100%
+TOTAL                                               448     30    93%
+=========================== short test summary info ============================
+FAILED tests/test_invenio_previewer.py::black
+FAILED tests/test_macros.py::test_wacz_extensions_range_requests_enabled - assert '<script src="/static/js/replaywebpage/ui.js" type="module"></script>' in '\n<!DOCTYPE html>\n<html >\n  <head>\n    <title>Preview</title>\n    <meta charset="utf-8">\n    <meta name="viewpor...>\n<script src="/static/dist/js/previewer_theme.f60373f3c5d3b745f63e.js"></script>\n        \n    \n  </body>\n</html>'
+FAILED tests/test_macros.py::test_wacz_extensions_range_requests_disabled - assert '<script src="/static/js/replaywebpage/ui.js" type="module"></script>' in '\n<!DOCTYPE html>\n<html >\n  <head>\n    <title>Preview</title>\n    <meta charset="utf-8">\n    <meta name="viewpor...>\n<script src="/static/dist/js/previewer_theme.f60373f3c5d3b745f63e.js"></script>\n        \n    \n  </body>\n</html>'
+=========== 3 failed, 109 passed, 321 warnings in 103.08s (0:01:43) ============
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed
