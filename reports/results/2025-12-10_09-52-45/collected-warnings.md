@@ -31,13 +31,22 @@ PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as we
 
 #### Warning 4 - 2 occurrences
 
+DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
+
+| Package | Count |
+|---------|-------|
+| `invenio-app` | 1 |
+| `invenio-cache` | 1 |
+
+#### Warning 5 - 2 occurrences
+
 FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
 
 | Package | Count |
 |---------|-------|
 | `invenio-rest` | 2 |
 
-#### Warning 5 - 2 occurrences
+#### Warning 6 - 2 occurrences
 
 PytestDeprecationWarning: @pytest.yield_fixture is deprecated.
 
@@ -45,7 +54,16 @@ PytestDeprecationWarning: @pytest.yield_fixture is deprecated.
 |---------|-------|
 | `invenio-pidstore` | 2 |
 
-#### Warning 6 - 1 occurrence
+#### Warning 7 - 2 occurrences
+
+UserWarning: Set configuration variable SECRET_KEY with random string
+
+| Package | Count |
+|---------|-------|
+| `invenio-app` | 1 |
+| `invenio-config` | 1 |
+
+#### Warning 8 - 1 occurrence
 
 DeprecationWarning: 'crypt' is deprecated and slated for removal in Python 3.13
 
@@ -53,7 +71,7 @@ DeprecationWarning: 'crypt' is deprecated and slated for removal in Python 3.13
 |---------|-------|
 | `invenio-pidstore` | 1 |
 
-#### Warning 7 - 1 occurrence
+#### Warning 9 - 1 occurrence
 
 DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_admin')`.
 
@@ -61,7 +79,7 @@ DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_a
 |---------|-------|
 | `invenio-pidstore` | 1 |
 
-#### Warning 8 - 1 occurrence
+#### Warning 10 - 1 occurrence
 
 DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_admin.contrib')`.
 
@@ -69,7 +87,7 @@ DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_a
 |---------|-------|
 | `invenio-pidstore` | 1 |
 
-#### Warning 9 - 1 occurrence
+#### Warning 11 - 1 occurrence
 
 DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
 
@@ -77,7 +95,7 @@ DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxc
 |---------|-------|
 | `invenio-pidstore` | 1 |
 
-#### Warning 10 - 1 occurrence
+#### Warning 12 - 1 occurrence
 
 DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;') might be removed in the next major version. Please use explicit imports (e.g., 'from idutils import function;') instead.
 
@@ -85,7 +103,7 @@ DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;')
 |---------|-------|
 | `invenio-pidstore` | 1 |
 
-#### Warning 11 - 1 occurrence
+#### Warning 13 - 1 occurrence
 
 DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
 
@@ -93,7 +111,7 @@ DeprecationWarning: No path_separator found in configuration; falling back to le
 |---------|-------|
 | `invenio-db` | 1 |
 
-#### Warning 12 - 1 occurrence
+#### Warning 14 - 1 occurrence
 
 DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
 
@@ -101,15 +119,7 @@ DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
 |---------|-------|
 | `invenio-logging` | 1 |
 
-#### Warning 13 - 1 occurrence
-
-DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
-
-| Package | Count |
-|---------|-------|
-| `invenio-cache` | 1 |
-
-#### Warning 14 - 1 occurrence
+#### Warning 15 - 1 occurrence
 
 DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
 
@@ -117,7 +127,7 @@ DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor
 |---------|-------|
 | `invenio-jsonschemas` | 1 |
 
-#### Warning 15 - 1 occurrence
+#### Warning 16 - 1 occurrence
 
 PendingDeprecationWarning: This feature is deprecated.
 
@@ -125,7 +135,7 @@ PendingDeprecationWarning: This feature is deprecated.
 |---------|-------|
 | `invenio-logging` | 1 |
 
-#### Warning 16 - 1 occurrence
+#### Warning 17 - 1 occurrence
 
 PytestConfigWarning: Unknown config option: pep8ignore
 
@@ -133,7 +143,15 @@ PytestConfigWarning: Unknown config option: pep8ignore
 |---------|-------|
 | `invenio-jsonschemas` | 1 |
 
-#### Warning 17 - 1 occurrence
+#### Warning 18 - 1 occurrence
+
+UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+
+| Package | Count |
+|---------|-------|
+| `invenio-app` | 1 |
+
+#### Warning 19 - 1 occurrence
 
 UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
 
