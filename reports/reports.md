@@ -4,7 +4,7 @@ This directory contains reports generated during the bug verification process. T
 
 | Test name | Report date and time | Status | Patches tested |
 |-------------|---------------------|--------|-------------|
-| pytest rollback patch | [2025-12-11 07-42-20](./results/2025-12-11_07-42-20/report.md) | 15 ✅ passed, 1 ❌ failed, 488 warnings | invenio-app-rdm, invenio-previewer, invenio-rdm-records, invenio-records-resources |
+| pytest rollback patch | [2025-12-11 07-42-20](./results/2025-12-11_07-42-20/report.md) | 16 ✅ passed, 1 ❌ failed, 548 warnings | invenio-app-rdm, invenio-previewer, invenio-rdm-records, invenio-records-resources |
 | pytest rollback patch | [2025-12-10 10-53-14](./results/2025-12-10_10-53-14/report.md) | 16 ✅ passed, 2 ❌ failed, 798 warnings | invenio-app-rdm, invenio-previewer, invenio-rdm-records, invenio-records-resources |
 | pytest rollback patch | [2025-12-10 10-31-20](./results/2025-12-10_10-31-20/report.md) | 15 ✅ passed, 2 ❌ failed, 600 warnings | invenio-app-rdm, invenio-previewer, invenio-rdm-records, invenio-records-resources |
 | pytest rollback patch | [2025-12-10 10-00-37](./results/2025-12-10_10-00-37/report.md) | 14 ✅ passed, 4 ❌ failed, 782 warnings | invenio-app-rdm, invenio-previewer, invenio-rdm-records, invenio-records-resources |
