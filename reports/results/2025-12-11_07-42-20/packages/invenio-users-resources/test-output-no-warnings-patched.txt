@@ -1,0 +1,1025 @@
+running extract_messages
+extracting messages from invenio_users_resources/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/config.py (encoding="utf-8")
+extracting messages from invenio_users_resources/entity_resolvers.py (encoding="utf-8")
+extracting messages from invenio_users_resources/ext.py (encoding="utf-8")
+extracting messages from invenio_users_resources/forms.py (encoding="utf-8")
+extracting messages from invenio_users_resources/models.py (encoding="utf-8")
+extracting messages from invenio_users_resources/permissions.py (encoding="utf-8")
+extracting messages from invenio_users_resources/proxies.py (encoding="utf-8")
+extracting messages from invenio_users_resources/views.py (encoding="utf-8")
+extracting messages from invenio_users_resources/notifications/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/notifications/filters.py (encoding="utf-8")
+extracting messages from invenio_users_resources/notifications/generators.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/api.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/hooks.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/models.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/dumpers/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/dumpers/email.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/mappings/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/mappings/os-v1/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/mappings/os-v2/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/mappings/v7/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/records/systemfields/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/domains/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/domains/config.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/domains/resource.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/groups/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/groups/config.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/groups/resource.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/users/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/users/config.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/users/errors.py (encoding="utf-8")
+extracting messages from invenio_users_resources/resources/users/resource.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/common.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/generators.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/params.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/permissions.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/results.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/schemas.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/domains/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/domains/components.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/domains/config.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/domains/facets.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/domains/service.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/domains/tasks.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/groups/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/groups/config.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/groups/results.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/groups/service.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/groups/tasks.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/users/__init__.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/users/config.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/users/facets.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/users/lock.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/users/results.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/users/search_params.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/users/service.py (encoding="utf-8")
+extracting messages from invenio_users_resources/services/users/tasks.py (encoding="utf-8")
+extracting messages from invenio_users_resources/templates/security/email/new_user_via_admin.html (encoding="utf-8")
+extracting messages from invenio_users_resources/templates/semantic-ui/invenio_users_resources/settings/notifications.html (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ opensearch Pulling 
+ redis Pulling 
+ rabbitmq Pulling 
+ redis Pulled 
+ rabbitmq Pulled 
+ postgresql Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/invenio-testrig/invenio-testrig/package-repo
+configfile: setup.cfg
+testpaths: docs, tests, invenio_users_resources
+plugins: github-actions-annotate-failures-0.3.0, pycodestyle-2.5.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, isort-4.0.0, cov-7.0.0, pydocstyle-2.4.0
+collecting ... collected 302 items
+
+docs/conf.py::PYDOCSTYLE PASSED
+docs/conf.py::ISORT PASSED
+docs/conf.py::black PASSED
+tests/conftest.py::PYDOCSTYLE PASSED
+tests/conftest.py::ISORT PASSED
+tests/conftest.py::black PASSED
+tests/resources/test_resources_domains.py::ISORT PASSED
+tests/resources/test_resources_domains.py::black PASSED
+tests/resources/test_resources_domains.py::test_domains_access PASSED
+tests/resources/test_resources_domains.py::test_domains_search PASSED
+
+tests/resources/test_resources_domains.py::test_domains_read Tried to build event emitter for unregistered event 'record-view'
+[2025-12-11 07:44:14,013] WARNING in receivers: Tried to build event emitter for unregistered event 'record-view'
+PASSED
+
+tests/resources/test_resources_domains.py::test_domains_delete PASSED
+
+tests/resources/test_resources_domains.py::test_domains_create PASSED
+
+tests/resources/test_resources_domains.py::test_domains_create_failure[400-json0] PASSED
+
+tests/resources/test_resources_domains.py::test_domains_create_failure[400-json1] PASSED
+
+tests/resources/test_resources_domains.py::test_domains_create_failure[400-json2] PASSED
+
+tests/resources/test_resources_domains.py::test_domains_create_failure[400-json3] PASSED
+
+tests/resources/test_resources_domains.py::test_domains_update PASSED
+
+tests/resources/test_resources_groups.py::ISORT PASSED
+tests/resources/test_resources_groups.py::black PASSED
+tests/resources/test_resources_groups.py::test_group_avatar PASSED
+
+tests/resources/test_resources_users.py::ISORT PASSED
+tests/resources/test_resources_users.py::black PASSED
+tests/resources/test_resources_users.py::test_read_self_serialization PASSED
+
+tests/resources/test_resources_users.py::test_read_anon_serialization PASSED
+
+tests/resources/test_resources_users.py::test_read_logged_in_serialization[pub] PASSED
+
+tests/resources/test_resources_users.py::test_read_logged_in_serialization[pubres] PASSED
+
+tests/resources/test_resources_users.py::test_read_logged_in_serialization[res] PASSED
+
+tests/resources/test_resources_users.py::test_user_avatar PASSED
+
+tests/resources/test_resources_users.py::test_user_avatar_non_ascii PASSED
+
+tests/resources/test_resources_users.py::test_create_user Content-Type: multipart/mixed; boundary="===============0531059171646459535=="
+MIME-Version: 1.0
+Subject: Password reset instructions
+From: no-reply@localhost
+To: newuser@inveniosoftware.org
+Date: Thu, 11 Dec 2025 07:44:20 +0000
+Message-ID: <176543906089.3762.2596590580647557123@runnervmoqczp.2lrh5qvjj2vuhn0zppj5ej11qb.ex.internal.cloudapp.net>
+
+--===============0531059171646459535==
+Content-Type: multipart/alternative; boundary="===============2158176017379137874=="
+MIME-Version: 1.0
+
+--===============2158176017379137874==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Your new account has been created
+
+Click the link below to create a new password:
+
+http://localhost/lost-password/WyIxMCIsIiQ1JHJvdW5kcz01MzUwMDAkTW5KZDB6YVhrMGxoczBzdiRHcmxrL2FwdlhURmVVOFB1UDAxUmFGbUtJU0wvTXdzVUd4MzdsYmpkTzZBIl0.aTp2VA.mkcqu-Q_q49iRozXTZk3zYFY8GU
+--===============2158176017379137874==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<p>Your new account has been created</p>
+
+<p>
+  <a href="http://localhost/lost-password/WyIxMCIsIiQ1JHJvdW5kcz01MzUwMDAkTW5KZDB6YVhrMGxoczBzdiRHcmxrL2FwdlhURmVVOFB1UDAxUmFGbUtJU0wvTXdzVUd4MzdsYmpkTzZBIl0.aTp2VA.mkcqu-Q_q49iRozXTZk3zYFY8GU">Click here to create a new password</a>
+</p>
+--===============2158176017379137874==--
+
+--===============0531059171646459535==--
+
+PASSED
+
+tests/resources/test_resources_users.py::test_approve_user PASSED
+
+tests/resources/test_resources_users.py::test_block_user PASSED
+
+tests/resources/test_resources_users.py::test_deactivate_user PASSED
+
+tests/resources/test_resources_users.py::test_management_permissions PASSED
+
+tests/resources/test_resources_users.py::test_impersonate_user PASSED
+
+tests/resources/test_resources_users.py::test_admin_links[admin_records_html-/administration/records?q=parent.access.owned_by.user:{id}&f=allversions] PASSED
+
+tests/resources/test_resources_users.py::test_admin_links[admin_drafts_html-/administration/drafts?q=parent.access.owned_by.user:{id}&f=allversions] PASSED
+
+tests/resources/test_resources_users.py::test_admin_links[admin_moderation_html-/administration/moderation?q=topic.user:{id}] PASSED
+
+tests/resources/test_resources_users.py::test_admin_links_visibility[user_moderator-True] PASSED
+
+tests/resources/test_resources_users.py::test_admin_links_visibility[pub-False] PASSED
+
+tests/resources/test_resources_users.py::test_admin_links_visibility[res-False] PASSED
+
+tests/services/test_generators.py::ISORT PASSED
+tests/services/test_generators.py::black PASSED
+tests/services/test_generators.py::test_group_not_managed_generator PASSED
+
+tests/services/test_service_groups.py::ISORT PASSED
+tests/services/test_service_groups.py::black PASSED
+tests/services/test_service_groups.py::test_groups_sort Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+[2025-12-11 07:44:27,294] ERROR in api: Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+[2025-12-11 07:44:27,307] ERROR in api: Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+Failed to index record administration-moderation
+Traceback (most recent call last):
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 370, in _actionsiter
+    yield self._index_action(payload)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 416, in _index_action
+    index = self.record_to_index(record)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_indexer/api.py", line 114, in record_to_index
+    result = self._record_to_index(record)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/service.py", line 67, in record_to_index
+    return record.index._name
+           ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'index'
+PASSED
+
+tests/services/test_service_groups.py::test_groups_no_facets PASSED
+tests/services/test_service_groups.py::test_groups_fixed_pagination PASSED
+tests/services/test_service_groups.py::test_groups_search_field[id:it-dep] PASSED
+tests/services/test_service_groups.py::test_groups_search_field[name:IT Department] PASSED
+tests/services/test_service_groups.py::test_groups_search_field[+name:it] PASSED
+tests/services/test_service_groups.py::test_groups_search_field[IT] PASSED
+tests/services/test_service_groups.py::test_groups_search PASSED
+
+tests/services/test_service_groups.py::test_groups_read PASSED
+
+tests/services/test_service_tasks_domains.py::ISORT PASSED
+tests/services/test_service_tasks_domains.py::black PASSED
+tests/services/test_service_tasks_domains.py::test_import_domain_blocklist PASSED
+
+tests/services/test_service_tasks_domains.py::test_import_domain_blocklist_download_error Failed to download http://fake-url
+[2025-12-11 07:44:30,105] ERROR in tasks: Failed to download http://fake-url
+Failed to download http://fake-url
+Failed to download http://fake-url
+Failed to download http://fake-url
+Failed to download http://fake-url
+Failed to download http://fake-url
+PASSED
+tests/services/users/test_service_users.py::ISORT PASSED
+tests/services/users/test_service_users.py::black PASSED
+tests/services/users/test_service_users.py::test_search_restricted PASSED
+
+tests/services/users/test_service_users.py::test_search_public_users PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[affiliations:CERN] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[affiliation:CERN] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[name:Jose affiliation:CERN] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[+name:Jose +affiliation:CERN] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[CERN] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[Tim] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[Tim CERN] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[Jose] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[Jos] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[Jose CERN] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[email:pub@inveniosoftware.org] PASSED
+
+tests/services/users/test_service_users.py::test_admin_search_field[username:pub] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field_not_searchable[res@inveniosoftware.org] PASSED
+tests/services/users/test_service_users.py::test_user_search_field_not_searchable[pubres@inveniosoftware.org] PASSED
+tests/services/users/test_service_users.py::test_user_search_field_not_searchable[Plazi0] PASSED
+tests/services/users/test_service_users.py::test_user_search_field_not_searchable[inactive] PASSED
+tests/services/users/test_service_users.py::test_user_search_field_not_searchable[unconfirmed] PASSED
+tests/services/users/test_service_users.py::test_user_search_field_not_searchable[restricted] PASSED
+tests/services/users/test_service_users.py::test_user_search_field_not_searchable[Plazi1] PASSED
+tests/services/users/test_service_users.py::test_user_search_field_not_searchable[test] PASSED
+tests/services/users/test_service_users.py::test_user_search_field[CERN] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field[Jose CERN] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field[Jose AND CERN] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field[Tim] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field[Tim CERN] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field[Jose] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field[Jos] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field[pub@inveniosoftware.org] PASSED
+
+tests/services/users/test_service_users.py::test_user_search_field[pub] PASSED
+
+tests/services/users/test_service_users.py::test_read_with_anon PASSED
+
+tests/services/users/test_service_users.py::test_read_with_logged_in PASSED
+
+tests/services/users/test_service_users.py::test_read_self[pub] PASSED
+
+tests/services/users/test_service_users.py::test_read_self[pubres] PASSED
+
+tests/services/users/test_service_users.py::test_read_self[res] PASSED
+
+tests/services/users/test_service_users.py::test_search_permissions PASSED
+tests/services/users/test_service_users.py::test_create_permission_denied PASSED
+tests/services/users/test_service_users.py::test_create_user Content-Type: multipart/mixed; boundary="===============7710945060071168908=="
+MIME-Version: 1.0
+Subject: Password reset instructions
+From: no-reply@localhost
+To: newuser@inveniosoftware.org
+Date: Thu, 11 Dec 2025 07:44:41 +0000
+Message-ID: <176543908181.3762.10356303380513229929@runnervmoqczp.2lrh5qvjj2vuhn0zppj5ej11qb.ex.internal.cloudapp.net>
+
+--===============7710945060071168908==
+Content-Type: multipart/alternative; boundary="===============1405048097872025451=="
+MIME-Version: 1.0
+
+--===============1405048097872025451==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Your new account has been created
+
+Click the link below to create a new password:
+
+http://localhost/lost-password/WyIxMCIsIiQ1JHJvdW5kcz01MzUwMDAkV1ZUVFNUdS9LUXhCRHQ5cCRadEwxNVNObENrSUxWVWUuNUxqNmQ1SE95aTBHSnZlM1E0OG82ZGFVdU9DIl0.aTp2aQ.O_tpN_uqAa55MqpBUCn7-aWfyp8
+--===============1405048097872025451==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<p>Your new account has been created</p>
+
+<p>
+  <a href="http://localhost/lost-password/WyIxMCIsIiQ1JHJvdW5kcz01MzUwMDAkV1ZUVFNUdS9LUXhCRHQ5cCRadEwxNVNObENrSUxWVWUuNUxqNmQ1SE95aTBHSnZlM1E0OG82ZGFVdU9DIl0.aTp2aQ.O_tpN_uqAa55MqpBUCn7-aWfyp8">Click here to create a new password</a>
+</p>
+--===============1405048097872025451==--
+
+--===============7710945060071168908==--
+
+PASSED
+
+tests/services/users/test_service_users.py::test_create_user_errors Content-Type: multipart/mixed; boundary="===============1483343394083582585=="
+MIME-Version: 1.0
+Subject: Password reset instructions
+From: no-reply@localhost
+To: newuser@inveniosoftware.org
+Date: Thu, 11 Dec 2025 07:44:43 +0000
+Message-ID: <176543908330.3762.15027555904742487000@runnervmoqczp.2lrh5qvjj2vuhn0zppj5ej11qb.ex.internal.cloudapp.net>
+
+--===============1483343394083582585==
+Content-Type: multipart/alternative; boundary="===============6403095279240716313=="
+MIME-Version: 1.0
+
+--===============6403095279240716313==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Your new account has been created
+
+Click the link below to create a new password:
+
+http://localhost/lost-password/WyIxMSIsIiQ1JHJvdW5kcz01MzUwMDAkWDRuRWowNHp1emlxc0ZaQSRhNjg1aWFKV1Z0eHNERVpEVUQ2cmUydXY5WmhsN1RaanouTTBrTFdjQWgxIl0.aTp2aw.XclvOpUTN10Jci-ULkHuMOLEDXE
+--===============6403095279240716313==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<p>Your new account has been created</p>
+
+<p>
+  <a href="http://localhost/lost-password/WyIxMSIsIiQ1JHJvdW5kcz01MzUwMDAkWDRuRWowNHp1emlxc0ZaQSRhNjg1aWFKV1Z0eHNERVpEVUQ2cmUydXY5WmhsN1RaanouTTBrTFdjQWgxIl0.aTp2aw.XclvOpUTN10Jci-ULkHuMOLEDXE">Click here to create a new password</a>
+</p>
+--===============6403095279240716313==--
+
+--===============1483343394083582585==--
+
+PASSED
+
+tests/services/users/test_service_users.py::test_block PASSED
+
+tests/services/users/test_service_users.py::test_approve PASSED
+
+tests/services/users/test_service_users.py::test_deactivate PASSED
+
+tests/services/users/test_service_users.py::test_non_existent_user_management PASSED
+
+tests/services/users/test_service_users.py::test_restore PASSED
+
+tests/services/users/test_user_moderation.py::ISORT PASSED
+tests/services/users/test_user_moderation.py::black PASSED
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_success PASSED
+
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_failure Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+[2025-12-11 07:44:48,400] WARNING in tasks: Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+Could not execute action 'block' for user: Error on lock: <Lock user_moderation_lock.3>: Lock failed to be acquired.
+PASSED
+
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_lock PASSED
+
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_lock_renewal[1-10-True] PASSED
+
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_lock_renewal[2-2-False] Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+[2025-12-11 07:44:51,830] WARNING in tasks: Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+Could not execute action 'block' for user: assert True == False
+ +  where True = exists()
+ +    where exists = <Lock user_moderation_lock.3>.exists
+PASSED
+
+tests/test_invenio_users_resources.py::ISORT PASSED
+tests/test_invenio_users_resources.py::black PASSED
+tests/test_invenio_users_resources.py::test_version PASSED
+tests/test_invenio_users_resources.py::test_init PASSED
+tests/test_notifications.py::ISORT PASSED
+tests/test_notifications.py::black PASSED
+tests/test_notifications.py::test_user_recipient_generator PASSED
+
+tests/test_notifications.py::test_user_recipient_filter PASSED
+invenio_users_resources/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/__init__.py::ISORT PASSED
+invenio_users_resources/__init__.py::black PASSED
+invenio_users_resources/config.py::PYDOCSTYLE PASSED
+invenio_users_resources/config.py::ISORT PASSED
+invenio_users_resources/config.py::black PASSED
+invenio_users_resources/entity_resolvers.py::PYDOCSTYLE PASSED
+invenio_users_resources/entity_resolvers.py::ISORT PASSED
+invenio_users_resources/entity_resolvers.py::black PASSED
+invenio_users_resources/ext.py::PYDOCSTYLE PASSED
+invenio_users_resources/ext.py::ISORT PASSED
+invenio_users_resources/ext.py::black PASSED
+invenio_users_resources/forms.py::PYDOCSTYLE PASSED
+invenio_users_resources/forms.py::ISORT PASSED
+invenio_users_resources/forms.py::black PASSED
+invenio_users_resources/models.py::PYDOCSTYLE PASSED
+invenio_users_resources/models.py::ISORT PASSED
+invenio_users_resources/models.py::black PASSED
+invenio_users_resources/notifications/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/notifications/__init__.py::ISORT PASSED
+invenio_users_resources/notifications/__init__.py::black PASSED
+invenio_users_resources/notifications/filters.py::PYDOCSTYLE PASSED
+invenio_users_resources/notifications/filters.py::ISORT PASSED
+invenio_users_resources/notifications/filters.py::black PASSED
+invenio_users_resources/notifications/generators.py::PYDOCSTYLE PASSED
+invenio_users_resources/notifications/generators.py::ISORT PASSED
+invenio_users_resources/notifications/generators.py::black PASSED
+invenio_users_resources/permissions.py::PYDOCSTYLE PASSED
+invenio_users_resources/permissions.py::ISORT PASSED
+invenio_users_resources/permissions.py::black PASSED
+invenio_users_resources/proxies.py::PYDOCSTYLE PASSED
+invenio_users_resources/proxies.py::ISORT PASSED
+invenio_users_resources/proxies.py::black PASSED
+invenio_users_resources/records/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/__init__.py::ISORT PASSED
+invenio_users_resources/records/__init__.py::black PASSED
+invenio_users_resources/records/api.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/api.py::ISORT PASSED
+invenio_users_resources/records/api.py::black PASSED
+invenio_users_resources/records/dumpers/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/dumpers/__init__.py::ISORT PASSED
+invenio_users_resources/records/dumpers/__init__.py::black PASSED
+invenio_users_resources/records/dumpers/email.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/dumpers/email.py::ISORT PASSED
+invenio_users_resources/records/dumpers/email.py::black PASSED
+invenio_users_resources/records/hooks.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/hooks.py::ISORT PASSED
+invenio_users_resources/records/hooks.py::black PASSED
+invenio_users_resources/records/mappings/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/mappings/__init__.py::ISORT PASSED
+invenio_users_resources/records/mappings/__init__.py::black PASSED
+invenio_users_resources/records/mappings/os-v1/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/mappings/os-v1/__init__.py::ISORT PASSED
+invenio_users_resources/records/mappings/os-v1/__init__.py::black PASSED
+invenio_users_resources/records/mappings/os-v2/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/mappings/os-v2/__init__.py::ISORT PASSED
+invenio_users_resources/records/mappings/os-v2/__init__.py::black PASSED
+invenio_users_resources/records/mappings/v7/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/mappings/v7/__init__.py::ISORT PASSED
+invenio_users_resources/records/mappings/v7/__init__.py::black PASSED
+invenio_users_resources/records/models.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/models.py::ISORT PASSED
+invenio_users_resources/records/models.py::black PASSED
+invenio_users_resources/records/systemfields/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/records/systemfields/__init__.py::ISORT PASSED
+invenio_users_resources/records/systemfields/__init__.py::black PASSED
+invenio_users_resources/resources/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/__init__.py::ISORT PASSED
+invenio_users_resources/resources/__init__.py::black PASSED
+invenio_users_resources/resources/domains/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/domains/__init__.py::ISORT PASSED
+invenio_users_resources/resources/domains/__init__.py::black PASSED
+invenio_users_resources/resources/domains/config.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/domains/config.py::ISORT PASSED
+invenio_users_resources/resources/domains/config.py::black PASSED
+invenio_users_resources/resources/domains/resource.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/domains/resource.py::ISORT PASSED
+invenio_users_resources/resources/domains/resource.py::black PASSED
+invenio_users_resources/resources/groups/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/groups/__init__.py::ISORT PASSED
+invenio_users_resources/resources/groups/__init__.py::black PASSED
+invenio_users_resources/resources/groups/config.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/groups/config.py::ISORT PASSED
+invenio_users_resources/resources/groups/config.py::black PASSED
+invenio_users_resources/resources/groups/resource.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/groups/resource.py::ISORT PASSED
+invenio_users_resources/resources/groups/resource.py::black PASSED
+invenio_users_resources/resources/users/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/users/__init__.py::ISORT PASSED
+invenio_users_resources/resources/users/__init__.py::black PASSED
+invenio_users_resources/resources/users/config.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/users/config.py::ISORT PASSED
+invenio_users_resources/resources/users/config.py::black PASSED
+invenio_users_resources/resources/users/errors.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/users/errors.py::ISORT PASSED
+invenio_users_resources/resources/users/errors.py::black PASSED
+invenio_users_resources/resources/users/resource.py::PYDOCSTYLE PASSED
+invenio_users_resources/resources/users/resource.py::ISORT PASSED
+invenio_users_resources/resources/users/resource.py::black PASSED
+invenio_users_resources/services/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/__init__.py::ISORT PASSED
+invenio_users_resources/services/__init__.py::black PASSED
+invenio_users_resources/services/common.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/common.py::ISORT PASSED
+invenio_users_resources/services/common.py::black PASSED
+invenio_users_resources/services/domains/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/domains/__init__.py::ISORT PASSED
+invenio_users_resources/services/domains/__init__.py::black PASSED
+invenio_users_resources/services/domains/components.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/domains/components.py::ISORT PASSED
+invenio_users_resources/services/domains/components.py::black PASSED
+invenio_users_resources/services/domains/config.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/domains/config.py::ISORT PASSED
+invenio_users_resources/services/domains/config.py::black PASSED
+invenio_users_resources/services/domains/facets.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/domains/facets.py::ISORT PASSED
+invenio_users_resources/services/domains/facets.py::black PASSED
+invenio_users_resources/services/domains/service.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/domains/service.py::ISORT PASSED
+invenio_users_resources/services/domains/service.py::black PASSED
+invenio_users_resources/services/domains/tasks.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/domains/tasks.py::ISORT PASSED
+invenio_users_resources/services/domains/tasks.py::black PASSED
+invenio_users_resources/services/generators.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/generators.py::ISORT PASSED
+invenio_users_resources/services/generators.py::black PASSED
+invenio_users_resources/services/groups/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/groups/__init__.py::ISORT PASSED
+invenio_users_resources/services/groups/__init__.py::black PASSED
+invenio_users_resources/services/groups/config.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/groups/config.py::ISORT PASSED
+invenio_users_resources/services/groups/config.py::black PASSED
+invenio_users_resources/services/groups/results.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/groups/results.py::ISORT PASSED
+invenio_users_resources/services/groups/results.py::black PASSED
+invenio_users_resources/services/groups/service.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/groups/service.py::ISORT PASSED
+invenio_users_resources/services/groups/service.py::black PASSED
+invenio_users_resources/services/groups/tasks.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/groups/tasks.py::ISORT PASSED
+invenio_users_resources/services/groups/tasks.py::black PASSED
+invenio_users_resources/services/params.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/params.py::ISORT PASSED
+invenio_users_resources/services/params.py::black PASSED
+invenio_users_resources/services/permissions.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/permissions.py::ISORT PASSED
+invenio_users_resources/services/permissions.py::black PASSED
+invenio_users_resources/services/results.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/results.py::ISORT PASSED
+invenio_users_resources/services/results.py::black PASSED
+invenio_users_resources/services/schemas.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/schemas.py::ISORT PASSED
+invenio_users_resources/services/schemas.py::black PASSED
+invenio_users_resources/services/users/__init__.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/users/__init__.py::ISORT PASSED
+invenio_users_resources/services/users/__init__.py::black PASSED
+invenio_users_resources/services/users/config.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/users/config.py::ISORT PASSED
+invenio_users_resources/services/users/config.py::black PASSED
+invenio_users_resources/services/users/facets.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/users/facets.py::ISORT PASSED
+invenio_users_resources/services/users/facets.py::black PASSED
+invenio_users_resources/services/users/lock.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/users/lock.py::ISORT PASSED
+invenio_users_resources/services/users/lock.py::black PASSED
+invenio_users_resources/services/users/results.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/users/results.py::ISORT PASSED
+invenio_users_resources/services/users/results.py::black PASSED
+invenio_users_resources/services/users/search_params.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/users/search_params.py::ISORT PASSED
+invenio_users_resources/services/users/search_params.py::black PASSED
+invenio_users_resources/services/users/service.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/users/service.py::ISORT PASSED
+invenio_users_resources/services/users/service.py::black PASSED
+invenio_users_resources/services/users/tasks.py::PYDOCSTYLE PASSED
+invenio_users_resources/services/users/tasks.py::ISORT PASSED
+invenio_users_resources/services/users/tasks.py::black PASSED
+invenio_users_resources/views.py::PYDOCSTYLE PASSED
+invenio_users_resources/views.py::ISORT PASSED
+invenio_users_resources/views.py::black PASSED
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/passlib/utils/__init__.py:854
+    from crypt import crypt as _crypt
+
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+    from jsonschema import RefResolver as _RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/fs/__init__.py:4
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:3146
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+.venv/lib/python3.12/site-packages/fs/__init__.py:4
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/fs/opener/__init__.py:6
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:2558
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+
+.venv/lib/python3.12/site-packages/marshmallow_utils/fields/generated.py:12
+.venv/lib/python3.12/site-packages/marshmallow_utils/fields/generated.py:12
+    from marshmallow import __version_info__ as marshmallow_version
+
+.venv/lib/python3.12/site-packages/invenio_records_resources/services/files/schema.py:154
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/files/schema.py:154: RemovedInMarshmallow4Warning: The 'default' argument to fields is deprecated. Use 'dump_default' instead.
+    storage_class = Str(default="L", dump_only=False)
+
+    warnings.warn(
+
+    warnings.warn(
+
+    _security.datetime_factory(),
+
+    target.updated = datetime.utcnow()
+
+    created = datetime.utcnow()
+
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+    return cls(int(id_s, 16), datetime.utcfromtimestamp(int(created_s, 16)))
+
+    now = now or datetime.utcnow()
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/schema.py:105: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    return self.schema(context=context, **schema_args).dump(data)
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/marshmallow/fields.py:631: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    self._schema = schema_class(
+
+tests/resources/test_resources_domains.py::test_domains_read
+    current_app.logger.warn(
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/schema.py:90: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    valid_data = self.schema(context=context, **schema_args).load(data)
+
+tests/resources/test_resources_groups.py::test_group_avatar
+tests/resources/test_resources_users.py::test_read_self_serialization
+tests/services/test_generators.py::test_group_not_managed_generator
+tests/services/test_service_groups.py::test_groups_sort
+tests/services/test_service_tasks_domains.py::test_import_domain_blocklist
+tests/services/users/test_service_users.py::test_search_restricted
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_success
+tests/test_notifications.py::test_user_recipient_generator
+    self.init_app(app)
+
+tests/resources/test_resources_groups.py::test_group_avatar
+tests/resources/test_resources_users.py::test_read_self_serialization
+tests/services/test_generators.py::test_group_not_managed_generator
+tests/services/test_service_groups.py::test_groups_sort
+tests/services/test_service_tasks_domains.py::test_import_domain_blocklist
+tests/services/users/test_service_users.py::test_search_restricted
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_success
+tests/test_notifications.py::test_user_recipient_generator
+    self._set_cache(app, config)
+
+    self._confirmed = datetime.utcnow() if confirmed else None
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/flask_security/datastore.py:235: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    return self.user_model.query.get(identifier)
+
+tests/resources/test_resources_groups.py::test_group_avatar
+tests/resources/test_resources_users.py::test_user_avatar
+tests/resources/test_resources_users.py::test_user_avatar_non_ascii
+    max_age = datetime.utcnow() - timedelta(days=7)
+
+tests/resources/test_resources_users.py::test_create_user
+tests/services/users/test_service_users.py::test_create_user
+tests/services/users/test_service_users.py::test_create_user_errors
+    user.confirmed_at = datetime.utcnow()
+
+tests/resources/test_resources_users.py::test_create_user
+tests/resources/test_resources_users.py::test_approve_user
+tests/services/users/test_service_users.py::test_create_user
+tests/services/users/test_service_users.py::test_create_user_errors
+tests/services/users/test_service_users.py::test_approve
+    now = datetime.utcnow()
+
+    self._created = datetime.utcnow()
+
+tests/resources/test_resources_users.py::test_block_user
+tests/services/users/test_service_users.py::test_block
+tests/services/users/test_service_users.py::test_restore
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_success
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_failure
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_lock
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_lock_renewal[1-10-True]
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_lock_renewal[2-2-False]
+    now = datetime.utcnow()
+
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_failure
+tests/services/users/test_user_moderation.py::test_moderation_callbacks_lock_renewal[2-2-False]
+    current_app.logger.warn(
+
+- generated xml file: /home/runner/work/invenio-testrig/invenio-testrig/artifacts/test-report-patched.xml -
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.12-final-0 _______________
+
+Name                                                                      Stmts   Miss  Cover   Missing
+invenio_users_resources/__init__.py                                           2      0   100%
+invenio_users_resources/config.py                                            30      0   100%
+invenio_users_resources/entity_resolvers.py                                  82     45    45%   36-43, 47-53, 57, 61-62, 66-90, 102-103, 107, 111, 115, 119, 128-136, 140-145, 149-150, 160, 173-174, 178, 182, 186, 190
+invenio_users_resources/ext.py                                               64      5    92%   115-118, 126
+invenio_users_resources/forms.py                                             14      5    64%   30-32, 38-39
+invenio_users_resources/models.py                                            10      4    60%   21, 25, 29, 39
+invenio_users_resources/notifications/__init__.py                             0      0   100%
+invenio_users_resources/notifications/filters.py                             11      1    91%   23
+invenio_users_resources/notifications/generators.py                          37     15    59%   25, 47, 51-53, 61-62, 67-68, 76-77, 80-85
+invenio_users_resources/permissions.py                                        3      0   100%
+invenio_users_resources/proxies.py                                           12      0   100%
+invenio_users_resources/records/__init__.py                                   2      0   100%
+invenio_users_resources/records/api.py                                      266     16    94%   89, 93, 102, 108, 228-232, 253-254, 263, 270, 277, 284, 296, 367
+invenio_users_resources/records/dumpers/__init__.py                           2      0   100%
+invenio_users_resources/records/dumpers/email.py                             15      0   100%
+invenio_users_resources/records/hooks.py                                     45     16    64%   36-41, 44-49, 73, 78, 82, 88
+invenio_users_resources/records/mappings/__init__.py                          0      0   100%
+invenio_users_resources/records/mappings/os-v1/__init__.py                    0      0   100%
+invenio_users_resources/records/mappings/os-v2/__init__.py                    0      0   100%
+invenio_users_resources/records/mappings/v7/__init__.py                       0      0   100%
+invenio_users_resources/records/models.py                                    98     11    89%   54, 85, 90, 152-154, 178-182
+invenio_users_resources/records/systemfields/__init__.py                     72      0   100%
+invenio_users_resources/resources/__init__.py                                 4      0   100%
+invenio_users_resources/resources/domains/__init__.py                         3      0   100%
+invenio_users_resources/resources/domains/config.py                          11      0   100%
+invenio_users_resources/resources/domains/resource.py                         6      0   100%
+invenio_users_resources/resources/groups/__init__.py                          3      0   100%
+invenio_users_resources/resources/groups/config.py                           11      0   100%
+invenio_users_resources/resources/groups/resource.py                         24      4    83%   44-49, 55-59
+invenio_users_resources/resources/users/__init__.py                           3      0   100%
+invenio_users_resources/resources/users/config.py                            19      0   100%
+invenio_users_resources/resources/users/errors.py                             4      0   100%
+invenio_users_resources/resources/users/resource.py                          74      8    89%   50, 79, 86-91, 149-153, 167-171
+invenio_users_resources/services/__init__.py                                  4      0   100%
+invenio_users_resources/services/common.py                                    5      0   100%
+invenio_users_resources/services/domains/__init__.py                          3      0   100%
+invenio_users_resources/services/domains/components.py                       27      6    78%   50-59
+invenio_users_resources/services/domains/config.py                           29      0   100%
+invenio_users_resources/services/domains/facets.py                            7      0   100%
+invenio_users_resources/services/domains/service.py                           8      0   100%
+invenio_users_resources/services/domains/tasks.py                            61     15    75%   25-30, 36-41, 71-73
+invenio_users_resources/services/generators.py                               80      9    89%   37, 54-59, 86, 95, 161
+invenio_users_resources/services/groups/__init__.py                           3      0   100%
+invenio_users_resources/services/groups/config.py                            30      0   100%
+invenio_users_resources/services/groups/results.py                           57      6    89%   39, 43, 59, 77, 83, 126
+invenio_users_resources/services/groups/service.py                           26      7    73%   32, 38-39, 48, 54-58
+invenio_users_resources/services/groups/tasks.py                             21      8    62%   27-28, 34-39
+invenio_users_resources/services/params.py                                    9      0   100%
+invenio_users_resources/services/permissions.py                              31      0   100%
+invenio_users_resources/services/results.py                                  29      0   100%
+invenio_users_resources/services/schemas.py                                 144     10    93%   199-202, 210, 213, 216, 259, 271, 281
+invenio_users_resources/services/users/__init__.py                            3      0   100%
+invenio_users_resources/services/users/config.py                             44      4    91%   54-57
+invenio_users_resources/services/users/facets.py                              7      0   100%
+invenio_users_resources/services/users/lock.py                               11      0   100%
+invenio_users_resources/services/users/results.py                            57      4    93%   39, 43, 77, 83
+invenio_users_resources/services/users/search_params.py                      23      8    65%   37-55
+invenio_users_resources/services/users/service.py                           134     13    90%   142, 148-149, 158, 164-166, 184, 207, 231, 254, 266, 280
+invenio_users_resources/services/users/tasks.py                              49      8    84%   56-57, 63-68
+invenio_users_resources/templates/security/email/new_user_via_admin.txt       3      1    67%   3
+invenio_users_resources/views.py                                             11      0   100%
+TOTAL                                                                      1843    229    88%
+====================== 302 passed, 911 warnings in 58.89s ======================
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed
