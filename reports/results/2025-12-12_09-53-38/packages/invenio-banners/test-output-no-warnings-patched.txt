@@ -1,0 +1,348 @@
+ opensearch Pulling 
+ postgresql Pulling 
+ postgresql Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/invenio-testrig/invenio-testrig/package-repo
+configfile: setup.cfg
+testpaths: tests, invenio_banners
+plugins: github-actions-annotate-failures-0.3.0, pycodestyle-2.5.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, isort-4.0.0, cov-7.0.0, pydocstyle-2.4.0
+collecting ... collected 134 items
+
+tests/conftest.py::PYDOCSTYLE PASSED
+tests/conftest.py::ISORT PASSED
+tests/conftest.py::black PASSED
+tests/records/test_disable.py::ISORT PASSED
+tests/records/test_disable.py::black PASSED
+tests/records/test_disable.py::test_disable_expired JSONSCHEMAS_HOST is set to localhost
+PASSED
+tests/records/test_models.py::ISORT PASSED
+tests/records/test_models.py::black PASSED
+tests/records/test_models.py::test_get_with_sub_path JSONSCHEMAS_HOST is set to localhost
+[2025-12-12 09:56:07,328] WARNING in ext: JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+PASSED
+
+tests/records/test_models.py::test_get_with_specific_path PASSED
+
+tests/records/test_models.py::test_get_active_with_datetime PASSED
+
+tests/records/test_models.py::test_get_active_future_datetime PASSED
+
+tests/records/test_models.py::test_get_active_disabled PASSED
+
+tests/records/test_models.py::test_create_banner PASSED
+
+tests/records/test_models.py::test_update_banner PASSED
+
+tests/records/test_models.py::test_delete_banner PASSED
+
+tests/records/test_models.py::test_get_banner PASSED
+
+tests/records/test_models.py::test_get_non_existing_banner PASSED
+tests/records/test_models.py::test_category PASSED
+tests/resources/conftest.py::PYDOCSTYLE PASSED
+tests/resources/conftest.py::ISORT PASSED
+tests/resources/conftest.py::black PASSED
+tests/resources/test_resources.py::ISORT PASSED
+tests/resources/test_resources.py::black PASSED
+tests/resources/test_resources.py::test_create_is_forbidden JSONSCHEMAS_HOST is set to localhost
+[2025-12-12 09:56:08,666] WARNING in ext: JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+PASSED
+
+tests/resources/test_resources.py::test_create_banner PASSED
+
+tests/resources/test_resources.py::test_disable_expired_after_create_action PASSED
+
+tests/resources/test_resources.py::test_update_banner PASSED
+
+tests/resources/test_resources.py::test_disable_expired_after_update_action PASSED
+
+tests/resources/test_resources.py::test_update_is_forbidden PASSED
+
+tests/resources/test_resources.py::test_update_non_existing_banner PASSED
+
+tests/resources/test_resources.py::test_delete_banner PASSED
+
+tests/resources/test_resources.py::test_delete_is_forbidden PASSED
+
+tests/resources/test_resources.py::test_delete_non_existing_banner PASSED
+
+tests/resources/test_resources.py::test_read_banner PASSED
+
+tests/resources/test_resources.py::test_read_non_existing_banner PASSED
+
+tests/resources/test_resources.py::test_search_banner PASSED
+
+tests/resources/test_resources.py::test_search_banner_with_query_string PASSED
+
+tests/resources/test_resources.py::test_search_banner_with_query_params PASSED
+
+tests/resources/test_resources.py::test_search_banner_empty_list PASSED
+
+tests/resources/test_resources.py::test_html_banner PASSED
+
+tests/services/conftest.py::PYDOCSTYLE PASSED
+tests/services/conftest.py::ISORT PASSED
+tests/services/conftest.py::black PASSED
+tests/services/test_services.py::ISORT PASSED
+tests/services/test_services.py::black PASSED
+tests/services/test_services.py::test_banner_creation JSONSCHEMAS_HOST is set to localhost
+[2025-12-12 09:56:11,865] WARNING in ext: JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+PASSED
+
+tests/services/test_services.py::test_create_is_forbidden PASSED
+
+tests/services/test_services.py::test_update_banner PASSED
+
+tests/services/test_services.py::test_update_is_forbidden PASSED
+
+tests/services/test_services.py::test_update_non_existing_banner PASSED
+
+tests/services/test_services.py::test_delete_banner PASSED
+
+tests/services/test_services.py::test_delete_is_forbidden PASSED
+
+tests/services/test_services.py::test_delete_non_existing_banner PASSED
+
+tests/services/test_services.py::test_read_banner PASSED
+
+tests/services/test_services.py::test_read_non_existing_banner PASSED
+
+tests/services/test_services.py::test_search_banner_with_query_string PASSED
+
+tests/services/test_services.py::test_search_banner_with_query_params PASSED
+
+tests/services/test_services.py::test_search_banner_empty_list PASSED
+
+tests/services/test_services.py::test_disable_expired_banners PASSED
+
+tests/services/test_services.py::test_disable_expired_is_forbidden PASSED
+
+tests/test_invenio_banners.py::ISORT PASSED
+tests/test_invenio_banners.py::black PASSED
+tests/test_invenio_banners.py::test_version PASSED
+tests/test_invenio_banners.py::test_init PASSED
+tests/test_macro.py::ISORT PASSED
+tests/test_macro.py::black PASSED
+tests/test_macro.py::test_jinja_macro JSONSCHEMAS_HOST is set to localhost
+[2025-12-12 09:56:13,862] WARNING in ext: JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+PASSED
+
+invenio_banners/__init__.py::PYDOCSTYLE PASSED
+invenio_banners/__init__.py::ISORT PASSED
+invenio_banners/__init__.py::black PASSED
+invenio_banners/administration/__init__.py::PYDOCSTYLE PASSED
+invenio_banners/administration/__init__.py::ISORT PASSED
+invenio_banners/administration/__init__.py::black PASSED
+invenio_banners/administration/banners.py::PYDOCSTYLE PASSED
+invenio_banners/administration/banners.py::ISORT PASSED
+invenio_banners/administration/banners.py::black PASSED
+invenio_banners/alembic/5e02314da32e_create_invenio_banners_db_table.py::PYDOCSTYLE PASSED
+invenio_banners/alembic/5e02314da32e_create_invenio_banners_db_table.py::ISORT PASSED
+invenio_banners/alembic/5e02314da32e_create_invenio_banners_db_table.py::black PASSED
+invenio_banners/alembic/e40d93d99040_create_invenio_banners_branch.py::PYDOCSTYLE PASSED
+invenio_banners/alembic/e40d93d99040_create_invenio_banners_branch.py::ISORT PASSED
+invenio_banners/alembic/e40d93d99040_create_invenio_banners_branch.py::black PASSED
+invenio_banners/config.py::PYDOCSTYLE PASSED
+invenio_banners/config.py::ISORT PASSED
+invenio_banners/config.py::black PASSED
+invenio_banners/ext.py::PYDOCSTYLE PASSED
+invenio_banners/ext.py::ISORT PASSED
+invenio_banners/ext.py::black PASSED
+invenio_banners/proxies.py::PYDOCSTYLE PASSED
+invenio_banners/proxies.py::ISORT PASSED
+invenio_banners/proxies.py::black PASSED
+invenio_banners/records/__init__.py::PYDOCSTYLE PASSED
+invenio_banners/records/__init__.py::ISORT PASSED
+invenio_banners/records/__init__.py::black PASSED
+invenio_banners/records/models.py::PYDOCSTYLE PASSED
+invenio_banners/records/models.py::ISORT PASSED
+invenio_banners/records/models.py::black PASSED
+invenio_banners/resources/__init__.py::PYDOCSTYLE PASSED
+invenio_banners/resources/__init__.py::ISORT PASSED
+invenio_banners/resources/__init__.py::black PASSED
+invenio_banners/resources/config.py::PYDOCSTYLE PASSED
+invenio_banners/resources/config.py::ISORT PASSED
+invenio_banners/resources/config.py::black PASSED
+invenio_banners/resources/errors.py::PYDOCSTYLE PASSED
+invenio_banners/resources/errors.py::ISORT PASSED
+invenio_banners/resources/errors.py::black PASSED
+invenio_banners/resources/resource.py::PYDOCSTYLE PASSED
+invenio_banners/resources/resource.py::ISORT PASSED
+invenio_banners/resources/resource.py::black PASSED
+invenio_banners/services/__init__.py::PYDOCSTYLE PASSED
+invenio_banners/services/__init__.py::ISORT PASSED
+invenio_banners/services/__init__.py::black PASSED
+invenio_banners/services/config.py::PYDOCSTYLE PASSED
+invenio_banners/services/config.py::ISORT PASSED
+invenio_banners/services/config.py::black PASSED
+invenio_banners/services/permissions.py::PYDOCSTYLE PASSED
+invenio_banners/services/permissions.py::ISORT PASSED
+invenio_banners/services/permissions.py::black PASSED
+invenio_banners/services/results.py::PYDOCSTYLE PASSED
+invenio_banners/services/results.py::ISORT PASSED
+invenio_banners/services/results.py::black PASSED
+invenio_banners/services/schemas.py::PYDOCSTYLE PASSED
+invenio_banners/services/schemas.py::ISORT PASSED
+invenio_banners/services/schemas.py::black PASSED
+invenio_banners/services/service.py::PYDOCSTYLE PASSED
+invenio_banners/services/service.py::ISORT PASSED
+invenio_banners/services/service.py::black PASSED
+invenio_banners/utils.py::PYDOCSTYLE PASSED
+invenio_banners/utils.py::ISORT PASSED
+invenio_banners/utils.py::black PASSED
+invenio_banners/views.py::PYDOCSTYLE PASSED
+invenio_banners/views.py::ISORT PASSED
+invenio_banners/views.py::black PASSED
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/passlib/utils/__init__.py:854
+    from crypt import crypt as _crypt
+
+.venv/lib/python3.12/site-packages/marshmallow_utils/fields/generated.py:12
+.venv/lib/python3.12/site-packages/marshmallow_utils/fields/generated.py:12
+    from marshmallow import __version_info__ as marshmallow_version
+
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+.venv/lib/python3.12/site-packages/jsonresolver/contrib/jsonschema.py:31
+    from jsonschema import RefResolver as _RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+.venv/lib/python3.12/site-packages/invenio_records/resolver.py:14
+    from jsonschema import RefResolutionError, RefResolver
+
+.venv/lib/python3.12/site-packages/fs/__init__.py:4
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:3146
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+.venv/lib/python3.12/site-packages/fs/__init__.py:4
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/fs/opener/__init__.py:6
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+
+.venv/lib/python3.12/site-packages/pkg_resources/__init__.py:2558
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+
+.venv/lib/python3.12/site-packages/invenio_records_resources/services/files/schema.py:154
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/files/schema.py:154: RemovedInMarshmallow4Warning: The 'default' argument to fields is deprecated. Use 'dump_default' instead.
+    storage_class = Str(default="L", dump_only=False)
+
+.venv/lib/python3.12/site-packages/invenio_records_resources/services/base/links.py:140
+.venv/lib/python3.12/site-packages/invenio_records_resources/services/base/links.py:140
+.venv/lib/python3.12/site-packages/invenio_records_resources/services/base/links.py:140
+.venv/lib/python3.12/site-packages/invenio_records_resources/services/base/links.py:140
+    warnings.warn(
+
+tests/records/test_models.py::test_get_with_sub_path
+tests/resources/test_resources.py::test_create_is_forbidden
+tests/services/test_services.py::test_banner_creation
+tests/test_macro.py::test_jinja_macro
+    self.init_app(app)
+
+tests/records/test_models.py::test_get_with_sub_path
+tests/resources/test_resources.py::test_create_is_forbidden
+tests/services/test_services.py::test_banner_creation
+tests/test_macro.py::test_jinja_macro
+    self._set_cache(app, config)
+
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+    self._confirmed = datetime.utcnow() if confirmed else None
+
+    warnings.warn(
+
+    _security.datetime_factory(),
+
+    target.updated = datetime.utcnow()
+
+    created = datetime.utcnow()
+
+    return cls(int(id_s, 16), datetime.utcfromtimestamp(int(created_s, 16)))
+
+    now = now or datetime.utcnow()
+
+tests/resources/test_resources.py::test_create_banner
+tests/resources/test_resources.py::test_disable_expired_after_create_action
+tests/resources/test_resources.py::test_update_banner
+tests/resources/test_resources.py::test_disable_expired_after_update_action
+tests/resources/test_resources.py::test_html_banner
+tests/services/test_services.py::test_banner_creation
+tests/services/test_services.py::test_update_banner
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/schema.py:90: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    valid_data = self.schema(context=context, **schema_args).load(data)
+
+  /home/runner/work/invenio-testrig/invenio-testrig/package-repo/.venv/lib/python3.12/site-packages/invenio_records_resources/services/records/schema.py:105: RemovedInMarshmallow4Warning: The `context` parameter is deprecated and will be removed in marshmallow 4.0. Use `contextvars.ContextVar` to pass context instead.
+    return self.schema(context=context, **schema_args).dump(data)
+
+- generated xml file: /home/runner/work/invenio-testrig/invenio-testrig/artifacts/test-report-patched.xml -
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.12-final-0 _______________
+
+Name                                                                      Stmts   Miss  Cover   Missing
+invenio_banners/__init__.py                                                   3      0   100%
+invenio_banners/administration/__init__.py                                    0      0   100%
+invenio_banners/administration/banners.py                                    49      0   100%
+invenio_banners/alembic/5e02314da32e_create_invenio_banners_db_table.py      10      2    80%   23, 42
+invenio_banners/alembic/e40d93d99040_create_invenio_banners_branch.py        10      2    80%   22, 27
+invenio_banners/config.py                                                    10      0   100%
+invenio_banners/ext.py                                                       26      0   100%
+invenio_banners/proxies.py                                                    6      0   100%
+invenio_banners/records/__init__.py                                           2      0   100%
+invenio_banners/records/models.py                                            63      0   100%
+invenio_banners/resources/__init__.py                                         3      0   100%
+invenio_banners/resources/config.py                                          16      0   100%
+invenio_banners/resources/errors.py                                          15      1    93%   36
+invenio_banners/resources/resource.py                                        41      0   100%
+invenio_banners/services/__init__.py                                          4      0   100%
+invenio_banners/services/config.py                                           27      0   100%
+invenio_banners/services/permissions.py                                      10      0   100%
+invenio_banners/services/results.py                                          37      0   100%
+invenio_banners/services/schemas.py                                          20      1    95%   38
+invenio_banners/services/service.py                                          67      5    93%   159-163
+invenio_banners/utils.py                                                     21      8    62%   28, 45-52
+invenio_banners/views.py                                                      3      0   100%
+TOTAL                                                                       443     19    96%
+====================== 134 passed, 492 warnings in 17.37s ======================
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed
