@@ -2,20 +2,20 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-12-12 09:45:43 UTC_
+_Last updated: 2025-12-12 09:46:06 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 35 |
-| **Patched Packages** | 0 |
+| **Total Packages** | 36 |
+| **Patched Packages** | 1 |
 | **Unpatched Packages** | 35 |
 
 ### Patch Results
 | Result | Count |
 |--------|-------|
-| ✅ Fixed | 0 |
+| ✅ Fixed | 1 |
 | ❌ Regressions | 0 |
 | ⚠️  Still Failing | 0 |
 | ℹ️  No Change | 0 |
@@ -78,10 +78,53 @@ _Last updated: 2025-12-12 09:45:43 UTC_
 
 | Package | Patches Applied | Original | Patched | Result |
 |---------|----------------|--------|-------|--------|
+| `invenio-github` | invenio-records-resources | ⏭️  Skip | ✅ Pass<br>[output](packages/invenio-github/test-output-patched.txt)<br>[output-no-warnings](packages/invenio-github/test-output-no-warnings-patched.txt)<br>[xml](packages/invenio-github/test-report-patched.xml)<br>[warnings](packages/invenio-github/warnings-patched.md) | ✅ Patch applied successfully, tests passed |
 
 ## Collected Warnings
 
-No warnings found in any package.
+### Patched
+
+#### Warning 1 - 6 occurrences
+
+DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+
+| Package | Count |
+|---------|-------|
+| `invenio-github` | 6 |
+
+#### Warning 2 - 1 occurrence
+
+DeprecationWarning: 'crypt' is deprecated and slated for removal in Python 3.13
+
+| Package | Count |
+|---------|-------|
+| `invenio-github` | 1 |
+
+#### Warning 3 - 1 occurrence
+
+DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.
+
+| Package | Count |
+|---------|-------|
+| `invenio-github` | 1 |
+
+#### Warning 4 - 1 occurrence
+
+DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+
+| Package | Count |
+|---------|-------|
+| `invenio-github` | 1 |
+
+#### Warning 5 - 1 occurrence
+
+FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
+
+| Package | Count |
+|---------|-------|
+| `invenio-github` | 1 |
+
+
 
 
 ---
