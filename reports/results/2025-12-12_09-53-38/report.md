@@ -2,15 +2,15 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-12-12 09:54:43 UTC_
+_Last updated: 2025-12-12 09:54:49 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 11 |
+| **Total Packages** | 24 |
 | **Patched Packages** | 0 |
-| **Unpatched Packages** | 11 |
+| **Unpatched Packages** | 24 |
 
 ### Patch Results
 | Result | Count |
@@ -40,15 +40,28 @@ _Last updated: 2025-12-12 09:54:43 UTC_
 |---------|--------------|
 | `invenio-mail` | ⏭️  Skipped |
 | `invenio-queues` | ⏭️  Skipped |
+| `invenio-oauthclient` | ⏭️  Skipped |
 | `invenio-app` | ⏭️  Skipped |
+| `invenio-theme` | ⏭️  Skipped |
 | `invenio-assets` | ⏭️  Skipped |
+| `invenio-celery` | ⏭️  Skipped |
+| `invenio-pidstore` | ⏭️  Skipped |
 | `invenio-db` | ⏭️  Skipped |
 | `invenio-indexer` | ⏭️  Skipped |
+| `invenio-oaiserver` | ⏭️  Skipped |
+| `invenio-access` | ⏭️  Skipped |
 | `invenio-rest` | ⏭️  Skipped |
+| `invenio-records-permissions` | ⏭️  Skipped |
+| `invenio-stats` | ⏭️  Skipped |
 | `invenio-logging` | ⏭️  Skipped |
 | `invenio-sitemap` | ⏭️  Skipped |
+| `invenio-files-rest` | ⏭️  Skipped |
+| `invenio-records-rest` | ⏭️  Skipped |
 | `invenio-i18n` | ⏭️  Skipped |
+| `invenio-oauth2server` | ⏭️  Skipped |
 | `invenio-jsonschemas` | ⏭️  Skipped |
+| `invenio-search` | ⏭️  Skipped |
+| `invenio-accounts` | ⏭️  Skipped |
 
 ## 🔄 Packages that depend on patched packages
 
