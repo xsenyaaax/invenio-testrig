@@ -2,15 +2,15 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-12-12 09:54:49 UTC_
+_Last updated: 2025-12-12 09:55:22 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 24 |
+| **Total Packages** | 27 |
 | **Patched Packages** | 0 |
-| **Unpatched Packages** | 24 |
+| **Unpatched Packages** | 27 |
 
 ### Patch Results
 | Result | Count |
@@ -56,12 +56,15 @@ _Last updated: 2025-12-12 09:54:49 UTC_
 | `invenio-logging` | ⏭️  Skipped |
 | `invenio-sitemap` | ⏭️  Skipped |
 | `invenio-files-rest` | ⏭️  Skipped |
+| `invenio-formatter` | ⏭️  Skipped |
 | `invenio-records-rest` | ⏭️  Skipped |
 | `invenio-i18n` | ⏭️  Skipped |
 | `invenio-oauth2server` | ⏭️  Skipped |
 | `invenio-jsonschemas` | ⏭️  Skipped |
 | `invenio-search` | ⏭️  Skipped |
 | `invenio-accounts` | ⏭️  Skipped |
+| `invenio-webhooks` | ⏭️  Skipped |
+| `invenio-records` | ⏭️  Skipped |
 
 ## 🔄 Packages that depend on patched packages
 
