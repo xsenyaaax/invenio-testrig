@@ -2,15 +2,15 @@
 
 > **⏳ Status: Running** - This report is being updated as tests complete.
 
-_Last updated: 2025-12-12 09:55:29 UTC_
+_Last updated: 2025-12-12 09:55:37 UTC_
 
 ## 📊 Overall Status
 
 | Metric | Count |
 |--------|-------|
-| **Total Packages** | 29 |
+| **Total Packages** | 32 |
 | **Patched Packages** | 0 |
-| **Unpatched Packages** | 29 |
+| **Unpatched Packages** | 32 |
 
 ### Patch Results
 | Result | Count |
@@ -43,6 +43,7 @@ _Last updated: 2025-12-12 09:55:29 UTC_
 | `invenio-queues` | ⏭️  Skipped |
 | `invenio-oauthclient` | ⏭️  Skipped |
 | `invenio-cache` | ⏭️  Skipped |
+| `invenio-base` | ⏭️  Skipped |
 | `invenio-app` | ⏭️  Skipped |
 | `invenio-theme` | ⏭️  Skipped |
 | `invenio-assets` | ⏭️  Skipped |
@@ -54,7 +55,9 @@ _Last updated: 2025-12-12 09:55:29 UTC_
 | `invenio-access` | ⏭️  Skipped |
 | `invenio-rest` | ⏭️  Skipped |
 | `invenio-records-permissions` | ⏭️  Skipped |
+| `invenio-records-ui` | ⏭️  Skipped |
 | `invenio-stats` | ⏭️  Skipped |
+| `invenio-search-ui` | ⏭️  Skipped |
 | `invenio-logging` | ⏭️  Skipped |
 | `invenio-sitemap` | ⏭️  Skipped |
 | `invenio-files-rest` | ⏭️  Skipped |
