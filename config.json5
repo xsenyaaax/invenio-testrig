@@ -6,19 +6,19 @@
     // Format: "package-name": { "git": "git-url", "branch": "branch-name" }
     "invenio-previewer": {
       git: "https://github.com/oarepo/invenio-previewer.git",
-      branch: "oarepo-feature-container-previewers",
+      branch: "contribution-container-previewers",
     },
     "invenio-records-resources": {
       git: "https://github.com/oarepo/invenio-records-resources.git",
-      branch: "oarepo-feature-extractors",
+      branch: "contribution-container-extractors",
     },
     "invenio-rdm-records": {
       git: "https://github.com/oarepo/invenio-rdm-records.git",
-      branch: "oarepo-feature-zip",
+      branch: "contribution-zip-extractors-processors",
     },
     "invenio-app-rdm": {
       git: "https://github.com/oarepo/invenio-app-rdm.git",
-      branch: "oarepo-feature-extract-preview-ui-links",
+      branch: "contribution-zip-previewer-ui",
     },
     // Add more patches here as needed
   },
